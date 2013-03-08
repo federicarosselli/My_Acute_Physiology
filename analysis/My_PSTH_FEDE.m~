@@ -1,0 +1,33 @@
+function My_PSTH_FEDE (BIT_Number)
+
+%BIT_Number=1;
+
+cd ..
+
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_AcuteTest_19_12_12/ANALYSED/Block-1/PSTH/25
+
+load([num2str(BIT_Number),'.mat'])
+
+% bb = length(PSTH{1}(1,1,:));
+% tr = 1:lengthTrial_Spike_Num{nn,BIT_Number}
+% nn = 1:length(PSTH{1}(1,:,1));
+
+nn = 1;
+
+for bb=238
+    for tr=1:100
+        B(tr,bb)=PSTH{BIT_Number}(Trial_Spike_Num{nn,BIT_Number}(tr),nn,bb);
+    end
+end
+
+%COLORSET=varycolor(numel(Trial_Spike_Num));
+T=linspace(-200,2200,238);
+figure(nn)
+plot(T,mean(B))
+        %title('Condition Number', num2str(BIT_Number))
+        %xlabel('Neuron', num2str(nn))
+axis tight
+
+
+
+
