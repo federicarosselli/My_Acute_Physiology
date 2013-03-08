@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>247.1</string>
+	<key>AMApplicationVersion</key>
+	<string>2.1.1</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.1</string>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>fileNames</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action</string>
+				<key>ActionName</key>
+				<string>Get Specified Finder Items</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>fileNames</key>
+					<array>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/1.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/2.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/3.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/4.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/5.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/6.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/7.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/8.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/9.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/10.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/11.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/12.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/13.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/14.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/15.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/16.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/17.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/18.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/19.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/20.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/21.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/22.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/23.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/24.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/25.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/26.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/27.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/28.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/29.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/30.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/31.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/32.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/33.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/34.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/35.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/36.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/37.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/38.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/39.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/40.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/41.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/42.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/43.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/44.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/45.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/46.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/47.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/48.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/49.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/50.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/51.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/52.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/53.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/54.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/55.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/56.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/57.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/58.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/59.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/60.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/61.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/62.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/63.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/64.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/65.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/66.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/67.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/68.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/69.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/70.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/71.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/72.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/73.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/74.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/75.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/76.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/77.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/78.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/79.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/80.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/81.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/82.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/83.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/84.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/85.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/86.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/87.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/88.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/89.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/90.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/91.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/92.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/93.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/94.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/95.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/96.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/97.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/98.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/99.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/100.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/101.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/102.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/103.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/104.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/105.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/106.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/107.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/108.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/109.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/110.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/111.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/112.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/113.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/114.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/115.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/116.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/117.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/118.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/119.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/120.jpg</string>
+						<string>~/Desktop/N_orientation0_spatial frequency_0.224/121.jpg</string>
+					</array>
+				</dict>
+				<key>Application</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.SpecifiedFiles</string>
+				<key>CFBundleVersion</key>
+				<string>1.1</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>SpecifiedFilesAction</string>
+				<key>InputUUID</key>
+				<string>106047DD-D8EF-4C04-99B1-7C7FCADD07F3</string>
+				<key>Keywords</key>
+				<array>
+					<string>File</string>
+					<string>Choose</string>
+					<string>Find</string>
+					<string>Get</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>7F7BC781-2369-48A3-9BDA-494D8DCC0D26</string>
+				<key>UUID</key>
+				<string>90107DE1-9E26-4C67-AC9E-56F994D1B690</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<array/>
+						<key>name</key>
+						<string>fileNames</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>426.000000:603.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<false/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.3</string>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>replaceExisting</key>
+					<dict/>
+					<key>toDirectory</key>
+					<dict>
+						<key>isPathPopUp</key>
+						<true/>
+						<key>variableUUIDsInMenu</key>
+						<array/>
+					</dict>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Copy Finder Items.action</string>
+				<key>ActionName</key>
+				<string>Copy Finder Items</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>replaceExisting</key>
+					<false/>
+					<key>toDirectory</key>
+					<string>~/Desktop/Fede_Acute_experiments_2.2.13/Gratings/N_orientation0_spatial frequency_0.224</string>
+				</dict>
+				<key>Application</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.CopyFiles</string>
+				<key>CFBundleVersion</key>
+				<string>1.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<true/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>CopyFilesAction</string>
+				<key>InputUUID</key>
+				<string>851DAE46-A573-4B30-BFAF-B9EAB1BDA404</string>
+				<key>Keywords</key>
+				<array>
+					<string>File</string>
+					<string>Copy</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>EF2DE92E-6156-49D1-B08D-B707AFE14F6B</string>
+				<key>UUID</key>
+				<string>D19EAA9A-EA17-4AC1-B60C-5596BA58502A</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>~/Desktop</string>
+						<key>name</key>
+						<string>toDirectory</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>replaceExisting</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>426.000000:365.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Copy Finder Items.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<false/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.3</string>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>caseIndicator</key>
+					<dict/>
+					<key>dateFormat</key>
+					<dict/>
+					<key>datePlacement</key>
+					<dict/>
+					<key>dateSeparator</key>
+					<dict/>
+					<key>dateToUse</key>
+					<dict/>
+					<key>defaultName</key>
+					<dict/>
+					<key>ignoreCase</key>
+					<dict/>
+					<key>includeExtensions</key>
+					<dict/>
+					<key>insertionPosition</key>
+					<dict/>
+					<key>minimumCount</key>
+					<dict/>
+					<key>nameDateSeparator</key>
+					<dict/>
+					<key>nameSingleItem</key>
+					<dict/>
+					<key>numberLocation</key>
+					<dict/>
+					<key>numberSeparator</key>
+					<dict/>
+					<key>renameItems</key>
+					<dict/>
+					<key>renameType</key>
+					<dict/>
+					<key>replaceWithText</key>
+					<dict/>
+					<key>singleItemOption</key>
+					<dict/>
+					<key>startingNumber</key>
+					<dict/>
+					<key>textInput</key>
+					<dict/>
+					<key>textToFind</key>
+					<dict/>
+					<key>useLeadingZeros</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Rename Finder Items.action</string>
+				<key>ActionName</key>
+				<string>Make Finder Item Names Sequential</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>caseIndicator</key>
+					<integer>0</integer>
+					<key>dateFormat</key>
+					<string>0</string>
+					<key>datePlacement</key>
+					<integer>0</integer>
+					<key>dateSeparator</key>
+					<string>0</string>
+					<key>dateToUse</key>
+					<integer>0</integer>
+					<key>ignoreCase</key>
+					<true/>
+					<key>includeExtensions</key>
+					<integer>0</integer>
+					<key>insertionPosition</key>
+					<integer>0</integer>
+					<key>minimumCount</key>
+					<string>2</string>
+					<key>nameDateSeparator</key>
+					<integer>0</integer>
+					<key>nameSingleItem</key>
+					<string></string>
+					<key>numberLocation</key>
+					<integer>1</integer>
+					<key>numberSeparator</key>
+					<integer>4</integer>
+					<key>renameItems</key>
+					<integer>1</integer>
+					<key>renameType</key>
+					<integer>3</integer>
+					<key>replaceWithText</key>
+					<string></string>
+					<key>singleItemOption</key>
+					<integer>0</integer>
+					<key>startingNumber</key>
+					<real>122</real>
+					<key>textInput</key>
+					<string></string>
+					<key>textToFind</key>
+					<string></string>
+					<key>useLeadingZeros</key>
+					<false/>
+				</dict>
+				<key>Application</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.AddNumbersToFinderNames</string>
+				<key>CFBundleVersion</key>
+				<string>1.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>RenameFinderItemsClass</string>
+				<key>InputUUID</key>
+				<string>82585B19-C7B8-4CA2-94FF-FDFC2D2EA805</string>
+				<key>Keywords</key>
+				<array>
+					<string>Name</string>
+					<string>File</string>
+					<string>Folder</string>
+					<string>Add</string>
+					<string>Number</string>
+					<string>Change</string>
+					<string>Case</string>
+					<string>Rename</string>
+					<string>Date</string>
+					<string>Time</string>
+					<string>Set</string>
+					<string>Text</string>
+					<string>Find</string>
+					<string>Replace</string>
+					<string>Make</string>
+					<string>Sequential</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>C07AD558-C6D0-47C3-BC47-1ED8A10C0967</string>
+				<key>UUID</key>
+				<string>1E0C52F7-B702-4750-A1D7-85AB8EFF09BC</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>nameDateSeparator</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>textToFind</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>10</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>nameSingleItem</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>10</string>
+					</dict>
+					<key>11</key>
+					<dict>
+						<key>default value</key>
+						<true/>
+						<key>name</key>
+						<string>ignoreCase</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>11</string>
+					</dict>
+					<key>12</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>textInput</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>12</string>
+					</dict>
+					<key>13</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>dateToUse</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>13</string>
+					</dict>
+					<key>14</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>includeExtensions</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>14</string>
+					</dict>
+					<key>15</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>replaceWithText</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>15</string>
+					</dict>
+					<key>16</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>renameItems</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>16</string>
+					</dict>
+					<key>17</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>defaultName</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>17</string>
+					</dict>
+					<key>18</key>
+					<dict>
+						<key>default value</key>
+						<integer>1</integer>
+						<key>name</key>
+						<string>startingNumber</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>18</string>
+					</dict>
+					<key>19</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>numberSeparator</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>19</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>datePlacement</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>20</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>caseIndicator</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>20</string>
+					</dict>
+					<key>21</key>
+					<dict>
+						<key>default value</key>
+						<string>0</string>
+						<key>name</key>
+						<string>dateFormat</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>21</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>insertionPosition</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+					<key>4</key>
+					<dict>
+						<key>default value</key>
+						<string>0</string>
+						<key>name</key>
+						<string>dateSeparator</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>4</string>
+					</dict>
+					<key>5</key>
+					<dict>
+						<key>default value</key>
+						<string>2</string>
+						<key>name</key>
+						<string>minimumCount</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>5</string>
+					</dict>
+					<key>6</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>numberLocation</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>6</string>
+					</dict>
+					<key>7</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>useLeadingZeros</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>7</string>
+					</dict>
+					<key>8</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>singleItemOption</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>8</string>
+					</dict>
+					<key>9</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>renameType</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>9</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>426.000000:262.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Rename Finder Items.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict>
+		<key>04D14602-1652-4F89-89DE-434F35BAAA73</key>
+		<dict>
+			<key>from</key>
+			<string>D19EAA9A-EA17-4AC1-B60C-5596BA58502A - D19EAA9A-EA17-4AC1-B60C-5596BA58502A</string>
+			<key>to</key>
+			<string>1E0C52F7-B702-4750-A1D7-85AB8EFF09BC - 1E0C52F7-B702-4750-A1D7-85AB8EFF09BC</string>
+		</dict>
+		<key>DADA5BFE-49F3-44F1-92DE-36F0C70A07CD</key>
+		<dict>
+			<key>from</key>
+			<string>90107DE1-9E26-4C67-AC9E-56F994D1B690 - 90107DE1-9E26-4C67-AC9E-56F994D1B690</string>
+			<key>to</key>
+			<string>D19EAA9A-EA17-4AC1-B60C-5596BA58502A - D19EAA9A-EA17-4AC1-B60C-5596BA58502A</string>
+		</dict>
+	</dict>
+	<key>state</key>
+	<dict>
+		<key>AMLogTabViewSelectedIndex</key>
+		<integer>0</integer>
+		<key>libraryState</key>
+		<dict>
+			<key>actionsMajorSplitViewState</key>
+			<dict>
+				<key>expandedPosition</key>
+				<real>0.0</real>
+				<key>subviewState</key>
+				<array>
+					<string>0.000000, 0.000000, 381.000000, 499.000000, NO</string>
+					<string>0.000000, 500.000000, 381.000000, 239.000000, NO</string>
+				</array>
+			</dict>
+			<key>actionsMinorSplitViewState</key>
+			<dict>
+				<key>expandedPosition</key>
+				<real>0.0</real>
+				<key>subviewState</key>
+				<array>
+					<string>0.000000, 0.000000, 163.000000, 499.000000, NO</string>
+					<string>164.000000, 0.000000, 217.000000, 499.000000, NO</string>
+				</array>
+			</dict>
+			<key>variablesMajorSplitViewState</key>
+			<dict>
+				<key>expandedPosition</key>
+				<real>0.0</real>
+				<key>subviewState</key>
+				<array>
+					<string>0.000000, 0.000000, 350.000000, 555.000000, NO</string>
+					<string>0.000000, 556.000000, 350.000000, 148.000000, NO</string>
+				</array>
+			</dict>
+			<key>variablesMinorSplitViewState</key>
+			<dict>
+				<key>expandedPosition</key>
+				<real>0.0</real>
+				<key>subviewState</key>
+				<array>
+					<string>0.000000, 0.000000, 163.000000, 555.000000, NO</string>
+					<string>164.000000, 0.000000, 186.000000, 555.000000, NO</string>
+				</array>
+			</dict>
+		</dict>
+		<key>majorSplitViewState</key>
+		<dict>
+			<key>expandedPosition</key>
+			<real>249</real>
+			<key>subviewState</key>
+			<array>
+				<string>0.000000, 0.000000, 381.000000, 784.000000, NO</string>
+				<string>382.000000, 0.000000, 852.000000, 784.000000, NO</string>
+			</array>
+		</dict>
+		<key>minorSplitViewState</key>
+		<dict>
+			<key>expandedPosition</key>
+			<real>0.0</real>
+			<key>subviewState</key>
+			<array>
+				<string>0.000000, 0.000000, 852.000000, 593.000000, NO</string>
+				<string>0.000000, 603.000000, 852.000000, 162.000000, NO</string>
+			</array>
+		</dict>
+		<key>windowFrame</key>
+		<string>{{10, 118}, {1233, 861}}</string>
+		<key>workflowViewScrollPosition</key>
+		<string>{{0, 0}, {852, 593}}</string>
+	</dict>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.workflow</string>
+	</dict>
+</dict>
+</plist>

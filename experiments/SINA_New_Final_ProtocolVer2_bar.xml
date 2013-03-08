@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<monkeyml version="1.0">
+    <io_devices tag="IO Devices"></io_devices>
+    <variables tag="Variables">
+        <variable tag="RejectTS" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+        <folder tag="Grating">
+            <variable tag="Grating_Size_default" scope="global" logging="when_changed" default_value="120" type="integer"></variable>
+        </folder>
+        <folder tag="MovingBar">
+            <variable tag="sin_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="cos_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="x_pos" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="y_pos" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="Grid_x_pos" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Grid_y_pos" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_Angle" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_Pos" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_x_siz" scope="global" logging="when_changed" default_value="10" type="float"></variable>
+            <variable tag="Bar_y_siz" scope="global" logging="when_changed" default_value="6" type="float"></variable>
+            <variable tag="Bar_rot" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Freq" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+        </folder>
+        <folder tag="Objects">
+            <variable tag="ClutterPos" scope="global" logging="when_changed" default_value="30" type="float" persistant="1"></variable>
+            <variable tag="Obj_rot" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="Clut" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="ImageIndexClut" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="NumOfObj" scope="global" logging="when_changed" default_value="10" type="integer"></variable>
+            <variable tag="Obj_Num" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="stm_pos_y" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="stm_pos_x" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Stim_Size" scope="global" logging="when_changed" default_value="30" type="integer"></variable>
+            <variable tag="Stim_Size_default" scope="global" logging="when_changed" default_value="25" type="integer"></variable>
+            <variable tag="stim_index" full_name="fullname9" default_value="0" scope="LOCAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="NumStim2Load" full_name="number of stimuli to load" default_value="90" scope="GLOBAL" type="integer" editable="ALWAYS" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="ImageIndex" full_name="fullname9" default_value="0" scope="global" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="FrameToStimHeightRatio" scope="global" logging="when_changed" default_value="1.83" type="float"></variable>
+        </folder>
+        <folder tag="EyeTracker">
+            <variable tag="EyeTracker_pos_y" scope="global" logging="when_changed" default_value="0" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="EyeTracker_pos_x" scope="global" logging="when_changed" default_value="78" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="ET_Mon_Deg" scope="global" logging="when_changed" default_value="12" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="y_offset" scope="global" logging="when_changed" default_value="0" type="integer" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="x_offset" scope="global" logging="when_changed" default_value="15" type="integer" groups="EyeTracker" persistant="1"></variable>
+        </folder>
+        <folder tag="BitCodeVariables">
+            <variable tag="Cov_x_siz" scope="global" logging="when_changed" default_value="20" type="float" persistant="1"></variable>
+            <variable tag="Cov_y_siz" scope="global" logging="when_changed" default_value="10" type="float" persistant="1"></variable>
+            <variable tag="Cov_x_pos" scope="global" logging="when_changed" default_value="-47" type="float" persistant="1"></variable>
+            <variable tag="Cov_y_pos" scope="global" logging="when_changed" default_value="-33" type="float" persistant="1"></variable>
+            <variable tag="num_bit" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="AnalogYoffSet" scope="global" logging="when_changed" default_value="2" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="BcodPosOffset" scope="global" logging="when_changed" default_value="2.7" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="Bit1" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit3" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit2" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit4" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit5" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit6" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit7" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit8" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit9" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit10" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="q" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="r" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="bitcode_val" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="dec_num" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="rect_xsiz" scope="global" logging="when_changed" default_value="0.8" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_ysiz" scope="global" logging="when_changed" default_value="0.8" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_xpos" scope="global" logging="when_changed" default_value="-50" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_ypos" scope="global" logging="when_changed" default_value="-30" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="X1" scope="global" logging="when_changed" default_value="-4" type="float" persistant="1"></variable>
+            <variable tag="X2" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+            <variable tag="X3" scope="global" logging="when_changed" default_value="-0.4" type="float" persistant="1"></variable>
+            <variable tag="X4" scope="global" logging="when_changed" default_value="1.5" type="float" persistant="1"></variable>
+            <variable tag="X5" scope="global" logging="when_changed" default_value="3.8" type="float" persistant="1"></variable>
+            <variable tag="X6" scope="global" logging="when_changed" default_value="6" type="float" persistant="1"></variable>
+            <variable tag="X7" scope="global" logging="when_changed" default_value="8.5" type="float" persistant="1"></variable>
+            <variable tag="X8" scope="global" logging="when_changed" default_value="11.2" type="float" persistant="1"></variable>
+            <variable tag="X9" scope="global" logging="when_changed" default_value="11.2" type="float" persistant="1"></variable>
+            <variable tag="X10" scope="global" logging="when_changed" default_value="8.5" type="float" persistant="1"></variable>
+            <variable tag="Y1" scope="global" logging="when_changed" default_value="1" type="float" persistant="1"></variable>
+            <variable tag="Y2" scope="global" logging="when_changed" default_value="0" type="float" persistant="1"></variable>
+            <variable tag="Y3" scope="global" logging="when_changed" default_value="-1" type="float" persistant="1"></variable>
+            <variable tag="Y4" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+            <variable tag="Y5" scope="global" logging="when_changed" default_value="-3" type="float" persistant="1"></variable>
+            <variable tag="Y6" scope="global" logging="when_changed" default_value="-3.8" type="float" persistant="1"></variable>
+            <variable tag="Y7" scope="global" logging="when_changed" default_value="-4.7" type="float" persistant="1"></variable>
+            <variable tag="Y8" scope="global" logging="when_changed" default_value="-5.6" type="float" persistant="1"></variable>
+            <variable tag="Y9" scope="global" logging="when_changed" default_value="-4" type="float" persistant="1"></variable>
+            <variable tag="Y10" scope="global" logging="when_changed" default_value="-2.9" type="float" persistant="1"></variable>
+            <variable tag="OX" scope="global" logging="when_changed" default_value="6" type="float" persistant="1"></variable>
+            <variable tag="OY" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+        </folder>
+        <folder tag="Timing parameters">
+            <variable default_value="5" editable="ALWAYS" full_name="Intertrial Interval" logging="WHEN_CHANGED" scope="GLOBAL" tag="intertrial_interval" type="integer" persistant="NO"></variable>
+            <variable tag="StimulusPresentation_time" full_name="fullname9" default_value="250" scope="GLOBAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="InterStimulusTime" full_name="fullname9" default_value="250" scope="GLOBAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+        </folder>
+        <folder tag="Lick Sensor 1">
+            <variable default_value="0" editable="ALWAYS" full_name="Always give reward after stimulus is presented" logging="WHEN_CHANGED" scope="GLOBAL" tag="FlagAlwaysReward" type="INTEGER" persistant="NO" groups="Reward, Training_Strategies"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 1 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput1" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 2 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput2" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 3 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput3" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 1 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput1" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 2 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput2" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 3 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput3" type="INTEGER" persistant="NO"></variable>
+        </folder>
+    </variables>
+    <sounds tag="Sounds">
+        <sound full_name="fullname_32" path="./Sounds/DZ_sound_long_6000_right.wav" tag="StimRight" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/DZ_sound_long_600_left.wav" tag="StimLeft" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/failure_DZ.wav" tag="FailureSound2" type="wav_file"></sound>
+        <sound tag="StartTrialSound" full_name="fullname_1" type="wav_file" path="./Sounds/start.wav"></sound>
+        <sound tag="BlockedTrialSound" full_name="fullname_1" type="wav_file" path="./Sounds/blocked_trial.wav"></sound>
+        <sound full_name="fullname_6" path="./Sounds/acquire.wav" tag="AcquireSound" type="wav_file"></sound>
+        <sound full_name="fullname_7" path="./Sounds/NRsuccess.wav" tag="RewardSound" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/failure.wav" tag="FailureSound" type="wav_file"></sound>
+    </sounds>
+    <stimuli tag="Stimuli">
+        <stimulus tag="BlankScreen" full_name="fullname_3" type="blank_screen" color="0,0,0"></stimulus>
+        <stimulus type="rectangle" tag="CoverRectangle" color="0,0,0" x_size="Cov_x_siz" y_size="Cov_y_siz" x_position="Cov_x_pos" y_position="Cov_y_pos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle" color="1,1,1" x_size="Bar_x_siz" y_size="Bar_y_siz" x_position="x_pos" y_position="y_pos" rotation="Bar_rot" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle1" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X1" y_position="rect_ypos+Y1" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle2" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X2" y_position="rect_ypos+Y2" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle3" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X3" y_position="rect_ypos+Y3" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle4" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X4" y_position="rect_ypos+Y4" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle5" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X5" y_position="rect_ypos+Y5" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle6" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X6" y_position="rect_ypos+Y6" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle7" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X7" y_position="rect_ypos+Y7" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle8" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X8" y_position="rect_ypos+Y8" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle9" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X9" y_position="rect_ypos+ Y9" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle10" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X10" y_position="rect_ypos+ Y10" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Timing_Rectangle" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ OX" y_position="rect_ypos+OY" rotation="0" alpha_multiplier="1"></stimulus>
+    </stimuli>
+    <experiment tag="MyExperiment" full_name="My Experiment" description="">
+        <protocol tag="Selectivity Screening" full_name="Protocol 1" description="" interruptible="YES" selection="random_without_replacement" nsamples="1" sampling_method="cycles">
+            <block tag="Basic Block" description="" interruptible="YES" selection="sequential" nsamples="5000" sampling_method="cycles" full_name="fullname_~ELEMENTCOUNT~">
+                <list tag="TrialRandomization" full_name="fullname_1" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles">
+                    <range_replicator tag="Increment Bar Orientation" from="0" to="135" step="45" variable="Bar_Angle">
+                        <range_replicator tag="Increment Grid X position" from="-5" to="5" step="1" variable="Grid_x_pos">
+                            <range_replicator tag="Increment Grid Y Position" from="-2" to="3" step="1" variable="Grid_y_pos">
+                                <task_system tag="Drifting Bar" interruptible="YES">
+                                    <task_system_state tag="Initialize Bits" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Reset Bit1" variable="Bit1" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit2" variable="Bit2" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit3" variable="Bit3" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit4" variable="Bit4" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit5" variable="Bit5" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit6" variable="Bit6" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit7" variable="Bit7" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit8" variable="Bit8" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit9" variable="Bit9" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit10" variable="Bit10" value="0"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Always Go to Dec to Bin Stage 1" target="Convert Dec to Bin Stage 1"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
+                                        <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
+                                            <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="(Grid_y_pos+3)+ (Grid_x_pos+5)*6+66*(Bar_Angle/45)"></action>
+                                        </action>
+                                        <action type="assignment" tag="Calculate q" variable="q" value="dec_num/2"></action>
+                                        <action type="assignment" tag="Calculate r" variable="r" value="dec_num%2"></action>
+                                        <action type="report" tag="Announce Begin State System" message="Stage1: decnum=$dec_num"></action>
+                                        <action type="if" tag="if Bit 9" condition="num_bit==9">
+                                            <action type="assignment" tag="Bit9=r" variable="Bit9" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 8" condition="num_bit==8">
+                                            <action type="assignment" tag="Bit8=r" variable="Bit8" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 7" condition="num_bit==7">
+                                            <action type="assignment" tag="Bit7=r" variable="Bit7" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 6" condition="num_bit==6">
+                                            <action type="assignment" tag="Bit6=r" variable="Bit6" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 5" condition="num_bit==5">
+                                            <action type="assignment" tag="Bit5=r" variable="Bit5" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 4" condition="num_bit==4">
+                                            <action type="assignment" tag="Bit4=r" variable="Bit4" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 3" condition="num_bit==3">
+                                            <action type="assignment" tag="Bit3=r" variable="Bit3" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 2" condition="num_bit==2">
+                                            <action type="assignment" tag="Bit2=r" variable="Bit2" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 1" condition="num_bit==1">
+                                            <action type="assignment" tag="Bit1=r" variable="Bit1" value="r"></action>
+                                        </action>
+                                        <action type="assignment" tag="Assign dec to q" variable="dec_num" value="q"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="conditional" tag="If Condition is True, Transition to ..." condition="2&lt;=q" target="Convert Dec to Bin Stage 1"></transition>
+                                        <transition type="direct" tag="Always Go to ..." target="Convert Dec to Bin Stage 2"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Convert Dec to Bin Stage 2" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="if" tag="if Bit 10" condition="(num_bit+1)==10">
+                                            <action type="assignment" tag="Bit10=q" variable="Bit10" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 9" condition="(num_bit+1)==9">
+                                            <action type="assignment" tag="Bit9=q" variable="Bit9" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 8" condition="(num_bit+1)==8">
+                                            <action type="assignment" tag="Bit8=q" variable="Bit8" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 7" condition="(num_bit+1)==7">
+                                            <action type="assignment" tag="Bit7=q" variable="Bit7" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 6" condition="(num_bit+1)==6">
+                                            <action type="assignment" tag="Bit6=q" variable="Bit6" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 5" condition="(num_bit+1)==5">
+                                            <action type="assignment" tag="Bit5=q" variable="Bit5" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 4" condition="(num_bit+1)==4">
+                                            <action type="assignment" tag="Bit4=q" variable="Bit4" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 3" condition="(num_bit+1)==3">
+                                            <action type="assignment" tag="Bit3=q" variable="Bit3" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 2" condition="(num_bit+1)==2">
+                                            <action type="assignment" tag="Bit2=q" variable="Bit2" value="q"></action>
+                                        </action>
+                                        <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="0"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Always Go to initate experiment" target="Initialize Parameters"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Assign the value for barpos" variable="Bar_Pos" value="-10"></action>
+                                        <action type="assignment" tag="Assign Variable" variable="Bar_rot" value="Bar_Angle"></action>
+                                        <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="(Grid_y_pos+3)+ (Grid_x_pos+5)*6+66*(Bar_Angle/45)"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Show Moving Bar" target="Show Moving Bar"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Show Moving Bar" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Change X Position of the Bar" variable="x_pos" value="Grid_x_pos*10+sin(Bar_Angle*0.017453292519943)*(abs(Bar_Pos)-5)"></action>
+                                        <action type="assignment" tag="Change Y Position of the Bar" variable="y_pos" value="Grid_y_pos*10-cos(Bar_Angle*0.017453292519943)*(abs(Bar_Pos)-5)"></action>
+                                        <action tag="Queue Stimulus" type="queue_stimulus" stimulus="BlankScreen"></action>
+                                        <action tag="Queue Stimulus" type="queue_stimulus" stimulus="Rectangle"></action>
+                                        <action tag="Queue Cover Rectangle 3" type="queue_stimulus" stimulus="CoverRectangle"></action>
+                                        <action tag="Queue Timing Rectangular" type="queue_stimulus" stimulus="Timing_Rectangle"></action>
+                                        <action type="if" tag="if show bit1" condition="Bit1==1">
+                                            <action tag="Queue rect 1" type="queue_stimulus" stimulus="Rectangle1"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit2" condition="Bit2==1">
+                                            <action tag="Queue rect 2" type="queue_stimulus" stimulus="Rectangle2"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit3" condition="Bit3==1">
+                                            <action tag="Queue rect 3" type="queue_stimulus" stimulus="Rectangle3"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit4" condition="Bit4==1">
+                                            <action tag="Queue rect 4" type="queue_stimulus" stimulus="Rectangle4"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit5" condition="Bit5==1">
+                                            <action tag="Queue rect 5" type="queue_stimulus" stimulus="Rectangle5"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit6" condition="Bit6==1">
+                                            <action tag="Queue rect 6" type="queue_stimulus" stimulus="Rectangle6"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit7" condition="Bit7==1">
+                                            <action tag="Queue rect 7" type="queue_stimulus" stimulus="Rectangle7"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit8" condition="Bit8==1">
+                                            <action tag="Queue rect 8" type="queue_stimulus" stimulus="Rectangle8"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit9" condition="Bit9==1">
+                                            <action tag="Queue rect 9" type="queue_stimulus" stimulus="Rectangle9"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit10" condition="Bit10==1">
+                                            <action tag="Queue rect 10" type="queue_stimulus" stimulus="Rectangle10"></action>
+                                        </action>
+                                        <action tag="Update Stimulus" type="update_stimulus_display"></action>
+                                        <action type="assignment" tag="increase the barpos" variable="Bar_Pos" value="Bar_Pos+1"></action>
+                                        <action type="wait" tag="Wait" duration="Freq" duration_units="ms"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="conditional" tag="If Condition is True, Transition to ..." condition="Bar_Pos&lt;=9" target="Show Moving Bar"></transition>
+                                        <transition type="direct" tag="Always Go to ..." target="End Trial"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="End Trial" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action tag="Dequeue Stimulus 2" type="dequeue_stimulus" stimulus="Rectangle"></action>
+                                        <action tag="Dequeue Timing Rectangular" type="dequeue_stimulus" stimulus="Timing_Rectangle" full_name=""></action>
+                                        <action type="if" tag="if show bit1" condition="Bit1==1">
+                                            <action tag="Dequeue Rect 1" type="dequeue_stimulus" stimulus="Rectangle1"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit2" condition="Bit2==1">
+                                            <action tag="Dequeue Rect 2" type="dequeue_stimulus" stimulus="Rectangle2"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit3" condition="Bit3==1">
+                                            <action tag="Dequeue Rect 3" type="dequeue_stimulus" stimulus="Rectangle3"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit4" condition="Bit4==1">
+                                            <action tag="Dequeue Rect 4" type="dequeue_stimulus" stimulus="Rectangle4"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit5" condition="Bit5==1">
+                                            <action tag="Dequeue Rect 5" type="dequeue_stimulus" stimulus="Rectangle5"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit6" condition="Bit6==1">
+                                            <action tag="Dequeue Rect 6" type="dequeue_stimulus" stimulus="Rectangle6"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit7" condition="Bit7==1">
+                                            <action tag="Dequeue Rect 7" type="dequeue_stimulus" stimulus="Rectangle7"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit8" condition="Bit8==1">
+                                            <action tag="Dequeue Rect 8" type="dequeue_stimulus" stimulus="Rectangle8"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit9" condition="Bit9==1">
+                                            <action tag="Dequeue Rect 9" type="dequeue_stimulus" stimulus="Rectangle9"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit10" condition="Bit10==1">
+                                            <action tag="Dequeue Rect 10" type="dequeue_stimulus" stimulus="Rectangle10"></action>
+                                        </action>
+                                        <action tag="Update Stimulus 2" type="update_stimulus_display"></action>
+                                        <action type="wait" tag="Wait 2" duration="InterStimulusTime" duration_units="ms"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Always Go to ... 2" target="Finish"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Finish" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="report" tag="Announce Exit State System" message="Leaving state system"></action>
+                                        <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition tag="Return to parent task system" type="yield"></transition>
+                                    </task_system_state>
+                                </task_system>
+                            </range_replicator>
+                        </range_replicator>
+                    </range_replicator>
+                </list>
+            </block>
+        </protocol>
+    </experiment>
+</monkeyml>

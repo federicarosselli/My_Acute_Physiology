@@ -1,0 +1,1084 @@
+<?xml version="1.0"?>
+<monkeyml version="1.0">
+    <io_devices tag="IO Devices"></io_devices>
+    <variables tag="Variables">
+        <variable tag="success" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+        <variable tag="RejectTS" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+        <folder tag="Grating">
+            <variable tag="Grating_Size_default" scope="global" logging="when_changed" default_value="120" type="integer"></variable>
+        </folder>
+        <folder tag="MovingBar">
+            <variable tag="sin_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="cos_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="x_pos" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="y_pos" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="Grid_x_pos" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Grid_y_pos" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_Angle" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_Pos" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bar_x_siz" scope="global" logging="when_changed" default_value="10" type="float"></variable>
+            <variable tag="Bar_y_siz" scope="global" logging="when_changed" default_value="6" type="float"></variable>
+            <variable tag="Bar_rot" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Freq" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+        </folder>
+        <folder tag="Objects">
+            <variable tag="ClutterPos" scope="global" logging="when_changed" default_value="30" type="float" persistant="1"></variable>
+            <variable tag="Obj_rot" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="Clut" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="ImageIndexClut" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="NumOfObj" scope="global" logging="when_changed" default_value="10" type="integer"></variable>
+            <variable tag="Obj_Num" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="stm_pos_y" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="stm_pos_x" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Stim_Size" scope="global" logging="when_changed" default_value="30" type="integer"></variable>
+            <variable tag="Stim_Size_default" scope="global" logging="when_changed" default_value="25" type="integer"></variable>
+            <variable tag="stim_index" full_name="fullname9" default_value="0" scope="LOCAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="NumStim2Load" full_name="number of stimuli to load" default_value="90" scope="GLOBAL" type="integer" editable="ALWAYS" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="ImageIndex" full_name="fullname9" default_value="0" scope="global" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="FrameToStimHeightRatio" scope="global" logging="when_changed" default_value="1.83" type="float"></variable>
+        </folder>
+        <folder tag="EyeTracker">
+            <variable tag="EyeTracker_pos_y" scope="global" logging="when_changed" default_value="0" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="EyeTracker_pos_x" scope="global" logging="when_changed" default_value="78" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="ET_Mon_Deg" scope="global" logging="when_changed" default_value="12" type="float" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="y_offset" scope="global" logging="when_changed" default_value="0" type="integer" groups="EyeTracker" persistant="1"></variable>
+            <variable tag="x_offset" scope="global" logging="when_changed" default_value="15" type="integer" groups="EyeTracker" persistant="1"></variable>
+        </folder>
+        <folder tag="BitCodeVariables">
+            <variable tag="Cov_x_siz" scope="global" logging="when_changed" default_value="20" type="float" persistant="1"></variable>
+            <variable tag="Cov_y_siz" scope="global" logging="when_changed" default_value="10" type="float" persistant="1"></variable>
+            <variable tag="Cov_x_pos" scope="global" logging="when_changed" default_value="-47" type="float" persistant="1"></variable>
+            <variable tag="Cov_y_pos" scope="global" logging="when_changed" default_value="-33" type="float" persistant="1"></variable>
+            <variable tag="num_bit" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="AnalogYoffSet" scope="global" logging="when_changed" default_value="2" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="BcodPosOffset" scope="global" logging="when_changed" default_value="2.7" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="Bit1" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit3" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit2" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit4" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit5" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit6" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit7" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit8" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit9" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="Bit10" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="q" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="r" scope="global" logging="when_changed" default_value="0" type="float"></variable>
+            <variable tag="bitcode_val" scope="global" logging="when_changed" default_value="0" type="integer" groups="BitCode"></variable>
+            <variable tag="dec_num" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
+            <variable tag="rect_xsiz" scope="global" logging="when_changed" default_value="0.8" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_ysiz" scope="global" logging="when_changed" default_value="0.8" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_xpos" scope="global" logging="when_changed" default_value="-50" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_ypos" scope="global" logging="when_changed" default_value="-30" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="X1" scope="global" logging="when_changed" default_value="-4" type="float" persistant="1"></variable>
+            <variable tag="X2" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+            <variable tag="X3" scope="global" logging="when_changed" default_value="-0.4" type="float" persistant="1"></variable>
+            <variable tag="X4" scope="global" logging="when_changed" default_value="1.5" type="float" persistant="1"></variable>
+            <variable tag="X5" scope="global" logging="when_changed" default_value="3.8" type="float" persistant="1"></variable>
+            <variable tag="X6" scope="global" logging="when_changed" default_value="6" type="float" persistant="1"></variable>
+            <variable tag="X7" scope="global" logging="when_changed" default_value="8.5" type="float" persistant="1"></variable>
+            <variable tag="X8" scope="global" logging="when_changed" default_value="11.2" type="float" persistant="1"></variable>
+            <variable tag="X9" scope="global" logging="when_changed" default_value="11.2" type="float" persistant="1"></variable>
+            <variable tag="X10" scope="global" logging="when_changed" default_value="8.5" type="float" persistant="1"></variable>
+            <variable tag="Y1" scope="global" logging="when_changed" default_value="1" type="float" persistant="1"></variable>
+            <variable tag="Y2" scope="global" logging="when_changed" default_value="0" type="float" persistant="1"></variable>
+            <variable tag="Y3" scope="global" logging="when_changed" default_value="-1" type="float" persistant="1"></variable>
+            <variable tag="Y4" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+            <variable tag="Y5" scope="global" logging="when_changed" default_value="-3" type="float" persistant="1"></variable>
+            <variable tag="Y6" scope="global" logging="when_changed" default_value="-3.8" type="float" persistant="1"></variable>
+            <variable tag="Y7" scope="global" logging="when_changed" default_value="-4.7" type="float" persistant="1"></variable>
+            <variable tag="Y8" scope="global" logging="when_changed" default_value="-5.6" type="float" persistant="1"></variable>
+            <variable tag="Y9" scope="global" logging="when_changed" default_value="-4" type="float" persistant="1"></variable>
+            <variable tag="Y10" scope="global" logging="when_changed" default_value="-2.9" type="float" persistant="1"></variable>
+            <variable tag="OX" scope="global" logging="when_changed" default_value="6" type="float" persistant="1"></variable>
+            <variable tag="OY" scope="global" logging="when_changed" default_value="-2" type="float" persistant="1"></variable>
+        </folder>
+        <folder tag="Timing parameters">
+            <variable default_value="5" editable="ALWAYS" full_name="Intertrial Interval" logging="WHEN_CHANGED" scope="GLOBAL" tag="intertrial_interval" type="integer" persistant="NO"></variable>
+            <variable tag="StimulusPresentation_time" full_name="fullname9" default_value="250" scope="GLOBAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+            <variable tag="InterStimulusTime" full_name="fullname9" default_value="250" scope="GLOBAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO"></variable>
+        </folder>
+        <folder tag="Lick Sensor 1">
+            <variable default_value="0" editable="ALWAYS" full_name="Always give reward after stimulus is presented" logging="WHEN_CHANGED" scope="GLOBAL" tag="FlagAlwaysReward" type="INTEGER" persistant="NO" groups="Reward, Training_Strategies"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 1 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput1" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 2 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput2" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="1" editable="ALWAYS" full_name="Lick Sensor 3 Analog Value" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickInput3" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 1 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput1" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 2 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput2" type="INTEGER" persistant="NO"></variable>
+            <variable default_value="0" editable="ALWAYS" full_name="Reward Output 3 Time" logging="WHEN_CHANGED" scope="GLOBAL" tag="LickOutput3" type="INTEGER" persistant="NO"></variable>
+        </folder>
+    </variables>
+    <sounds tag="Sounds">
+        <sound full_name="fullname_32" path="./Sounds/DZ_sound_long_6000_right.wav" tag="StimRight" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/DZ_sound_long_600_left.wav" tag="StimLeft" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/failure_DZ.wav" tag="FailureSound2" type="wav_file"></sound>
+        <sound tag="StartTrialSound" full_name="fullname_1" type="wav_file" path="./Sounds/start.wav"></sound>
+        <sound tag="BlockedTrialSound" full_name="fullname_1" type="wav_file" path="./Sounds/blocked_trial.wav"></sound>
+        <sound full_name="fullname_6" path="./Sounds/acquire.wav" tag="AcquireSound" type="wav_file"></sound>
+        <sound full_name="fullname_7" path="./Sounds/NRsuccess.wav" tag="RewardSound" type="wav_file"></sound>
+        <sound full_name="fullname_32" path="./Sounds/failure.wav" tag="FailureSound" type="wav_file"></sound>
+    </sounds>
+    <stimuli tag="Stimuli">
+        <stimulus tag="BlankScreen" full_name="fullname_3" type="blank_screen" color="0,0,0"></stimulus>
+        <stimulus type="rectangle" tag="CoverRectangle" color="0,0,0" x_size="Cov_x_siz" y_size="Cov_y_siz" x_position="Cov_x_pos" y_position="Cov_y_pos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle" color="1,1,1" x_size="Bar_x_siz" y_size="Bar_y_siz" x_position="x_pos" y_position="y_pos" rotation="Bar_rot" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle1" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X1" y_position="rect_ypos+Y1" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle2" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X2" y_position="rect_ypos+Y2" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle3" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X3" y_position="rect_ypos+Y3" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle4" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X4" y_position="rect_ypos+Y4" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle5" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+X5" y_position="rect_ypos+Y5" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle6" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X6" y_position="rect_ypos+Y6" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle7" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X7" y_position="rect_ypos+Y7" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle8" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X8" y_position="rect_ypos+Y8" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle9" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X9" y_position="rect_ypos+ Y9" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle10" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ X10" y_position="rect_ypos+ Y10" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Timing_Rectangle" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ OX" y_position="rect_ypos+OY" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus_group tag="Grating" full_name="fullname_~ELEMENTCOUNT~">
+            <range_replicator tag="StimulusReplicator" from="1" to="64" step="1" variable="stim_index" full_name="fullname_~ELEMENTCOUNT~">
+                <stimulus tag="$stim_index.png" type="image_file" path="./GratingStim/GratingSpherical6Orient/I_$stim_index.png" x_size="Stim_Size" y_size="Stim_Size" x_position="0" y_position="0" rotation="0.0" full_name="fullname_~ELEMENTCOUNT~"></stimulus>
+            </range_replicator>
+        </stimulus_group>
+        <stimulus_group tag="FullStimSet" full_name="fullname_~ELEMENTCOUNT~">
+            <range_replicator tag="StimulusReplicator" from="1" to="118" step="1" variable="stim_index" full_name="fullname_~ELEMENTCOUNT~">
+                <stimulus tag="STIM_$stim_index.png" type="image_file" path="./New_FinalStimSet/Condition_$stim_index.png" x_size="Stim_Size* FrameToStimHeightRatio" y_size="Stim_Size* FrameToStimHeightRatio" x_position="stm_pos_x-x_offset" y_position="stm_pos_y-y_offset" rotation="Obj_rot" full_name="fullname_~ELEMENTCOUNT~"></stimulus>
+            </range_replicator>
+        </stimulus_group>
+    </stimuli>
+    <experiment tag="MyExperiment" full_name="My Experiment" description="">
+        <protocol tag="Selectivity Screening" full_name="Protocol 1" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles">
+            <block tag="Basic Block" description="" interruptible="YES" selection="sequential" nsamples="5000" sampling_method="cycles" full_name="fullname_~ELEMENTCOUNT~">
+                <list tag="TrialRandomization" full_name="fullname_1" description="" interruptible="YES" selection="random_without_replacement" nsamples="1" sampling_method="cycles">
+                    <trial tag="Present Blank Screen" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles" full_name="fullname_~ELEMENTCOUNT~">
+                        <task_system tag="Task System Black Screen" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                            <task_system_state tag="Initialize Bits" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action type="assignment" tag="Reset Bit1" variable="Bit1" value="0"></action>
+                                <action type="assignment" tag="Reset Bit2" variable="Bit2" value="0"></action>
+                                <action type="assignment" tag="Reset Bit3" variable="Bit3" value="0"></action>
+                                <action type="assignment" tag="Reset Bit4" variable="Bit4" value="0"></action>
+                                <action type="assignment" tag="Reset Bit5" variable="Bit5" value="0"></action>
+                                <action type="assignment" tag="Reset Bit6" variable="Bit6" value="0"></action>
+                                <action type="assignment" tag="Reset Bit7" variable="Bit7" value="0"></action>
+                                <action type="assignment" tag="Reset Bit8" variable="Bit8" value="0"></action>
+                                <action type="assignment" tag="Reset Bit9" variable="Bit9" value="0"></action>
+                                <action type="assignment" tag="Reset Bit10" variable="Bit10" value="0"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="direct" tag="Always Go to Dec to Bin Stage 1" target="Convert Dec to Bin Stage 1"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
+                                <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
+                                    <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="745"></action>
+                                </action>
+                                <action type="assignment" tag="Calculate q" variable="q" value="dec_num/2"></action>
+                                <action type="assignment" tag="Calculate r" variable="r" value="dec_num%2"></action>
+                                <action type="report" tag="Announce Begin State System" message="Stage1: decnum=$dec_num"></action>
+                                <action type="if" tag="if Bit 9" condition="num_bit==9">
+                                    <action type="assignment" tag="Bit9=r" variable="Bit9" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 8" condition="num_bit==8">
+                                    <action type="assignment" tag="Bit8=r" variable="Bit8" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 7" condition="num_bit==7">
+                                    <action type="assignment" tag="Bit7=r" variable="Bit7" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 6" condition="num_bit==6">
+                                    <action type="assignment" tag="Bit6=r" variable="Bit6" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 5" condition="num_bit==5">
+                                    <action type="assignment" tag="Bit5=r" variable="Bit5" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 4" condition="num_bit==4">
+                                    <action type="assignment" tag="Bit4=r" variable="Bit4" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 3" condition="num_bit==3">
+                                    <action type="assignment" tag="Bit3=r" variable="Bit3" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 2" condition="num_bit==2">
+                                    <action type="assignment" tag="Bit2=r" variable="Bit2" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 1" condition="num_bit==1">
+                                    <action type="assignment" tag="Bit1=r" variable="Bit1" value="r"></action>
+                                </action>
+                                <action type="assignment" tag="Assign dec to q" variable="dec_num" value="q"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="conditional" tag="If Condition is True, Transition to ..." condition="2&lt;=q" target="Convert Dec to Bin Stage 1"></transition>
+                                <transition type="direct" tag="Always Go to ..." target="Convert Dec to Bin Stage 2"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Convert Dec to Bin Stage 2" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action type="if" tag="if Bit 10" condition="(num_bit+1)==10">
+                                    <action type="assignment" tag="Bit10=q" variable="Bit10" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 9" condition="(num_bit+1)==9">
+                                    <action type="assignment" tag="Bit9=q" variable="Bit9" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 8" condition="(num_bit+1)==8">
+                                    <action type="assignment" tag="Bit8=q" variable="Bit8" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 7" condition="(num_bit+1)==7">
+                                    <action type="assignment" tag="Bit7=q" variable="Bit7" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 6" condition="(num_bit+1)==6">
+                                    <action type="assignment" tag="Bit6=q" variable="Bit6" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 5" condition="(num_bit+1)==5">
+                                    <action type="assignment" tag="Bit5=q" variable="Bit5" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 4" condition="(num_bit+1)==4">
+                                    <action type="assignment" tag="Bit4=q" variable="Bit4" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 3" condition="(num_bit+1)==3">
+                                    <action type="assignment" tag="Bit3=q" variable="Bit3" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 2" condition="(num_bit+1)==2">
+                                    <action type="assignment" tag="Bit2=q" variable="Bit2" value="q"></action>
+                                </action>
+                                <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="0"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="direct" tag="Always Go to initate experiment" target="Show stimulus"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Show stimulus" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                <action full_name="fullname_6" message="Showing the Stimulus Number $stim_index" tag="Report" type="report"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="745"></action>
+                                <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                <action tag="Queue Timing Rectangular" type="queue_stimulus" stimulus="Timing_Rectangle"></action>
+                                <action type="if" tag="if show bit1" condition="Bit1==1">
+                                    <action tag="Queue rect 1" type="queue_stimulus" stimulus="Rectangle1"></action>
+                                </action>
+                                <action type="if" tag="if show bit2" condition="Bit2==1">
+                                    <action tag="Queue rect 2" type="queue_stimulus" stimulus="Rectangle2"></action>
+                                </action>
+                                <action type="if" tag="if show bit3" condition="Bit3==1">
+                                    <action tag="Queue rect 3" type="queue_stimulus" stimulus="Rectangle3"></action>
+                                </action>
+                                <action type="if" tag="if show bit4" condition="Bit4==1">
+                                    <action tag="Queue rect 4" type="queue_stimulus" stimulus="Rectangle4"></action>
+                                </action>
+                                <action type="if" tag="if show bit5" condition="Bit5==1">
+                                    <action tag="Queue rect 5" type="queue_stimulus" stimulus="Rectangle5"></action>
+                                </action>
+                                <action type="if" tag="if show bit6" condition="Bit6==1">
+                                    <action tag="Queue rect 6" type="queue_stimulus" stimulus="Rectangle6"></action>
+                                </action>
+                                <action type="if" tag="if show bit7" condition="Bit7==1">
+                                    <action tag="Queue rect 7" type="queue_stimulus" stimulus="Rectangle7"></action>
+                                </action>
+                                <action type="if" tag="if show bit8" condition="Bit8==1">
+                                    <action tag="Queue rect 8" type="queue_stimulus" stimulus="Rectangle8"></action>
+                                </action>
+                                <action type="if" tag="if show bit9" condition="Bit9==1">
+                                    <action tag="Queue rect 9" type="queue_stimulus" stimulus="Rectangle9"></action>
+                                </action>
+                                <action type="if" tag="if show bit10" condition="Bit10==1">
+                                    <action tag="Queue rect 10" type="queue_stimulus" stimulus="Rectangle10"></action>
+                                </action>
+                                <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                <action tag="Start Stim Duration Timer" type="start_timer" timer="Grating_StimulusPresentation_timer" duration="StimulusPresentation_time" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                <transition tag="if Stim Duration Timer expired" target="End Task" type="timer_expired" timer="Grating_StimulusPresentation_timer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                            </task_system_state>
+                            <task_system_state tag="End Task" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                <action tag="Dequeue Timing Rectangular" type="dequeue_stimulus" stimulus="Timing_Rectangle" full_name=""></action>
+                                <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                <action type="if" tag="if show bit1" condition="Bit1==1">
+                                    <action tag="Dequeue Rect 1" type="dequeue_stimulus" stimulus="Rectangle1"></action>
+                                </action>
+                                <action type="if" tag="if show bit2" condition="Bit2==1">
+                                    <action tag="Dequeue Rect 2" type="dequeue_stimulus" stimulus="Rectangle2"></action>
+                                </action>
+                                <action type="if" tag="if show bit3" condition="Bit3==1">
+                                    <action tag="Dequeue Rect 3" type="dequeue_stimulus" stimulus="Rectangle3"></action>
+                                </action>
+                                <action type="if" tag="if show bit4" condition="Bit4==1">
+                                    <action tag="Dequeue Rect 4" type="dequeue_stimulus" stimulus="Rectangle4"></action>
+                                </action>
+                                <action type="if" tag="if show bit5" condition="Bit5==1">
+                                    <action tag="Dequeue Rect 5" type="dequeue_stimulus" stimulus="Rectangle5"></action>
+                                </action>
+                                <action type="if" tag="if show bit6" condition="Bit6==1">
+                                    <action tag="Dequeue Rect 6" type="dequeue_stimulus" stimulus="Rectangle6"></action>
+                                </action>
+                                <action type="if" tag="if show bit7" condition="Bit7==1">
+                                    <action tag="Dequeue Rect 7" type="dequeue_stimulus" stimulus="Rectangle7"></action>
+                                </action>
+                                <action type="if" tag="if show bit8" condition="Bit8==1">
+                                    <action tag="Dequeue Rect 8" type="dequeue_stimulus" stimulus="Rectangle8"></action>
+                                </action>
+                                <action type="if" tag="if show bit9" condition="Bit9==1">
+                                    <action tag="Dequeue Rect 9" type="dequeue_stimulus" stimulus="Rectangle9"></action>
+                                </action>
+                                <action type="if" tag="if show bit10" condition="Bit10==1">
+                                    <action tag="Dequeue Rect 10" type="dequeue_stimulus" stimulus="Rectangle10"></action>
+                                </action>
+                                <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                <action type="assignment" tag="update success" variable="success" value="1"></action>
+                                <action tag="Start Inter-stimulus interval" type="start_timer" timer="Grating_InterStimulusTimer" duration="InterStimulusTime" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                <transition tag="if interstim-interval expires" target="Idle" type="timer_expired" timer="Grating_InterStimulusTimer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                            </task_system_state>
+                            <task_system_state description="" full_name="fullname_13" interruptible="YES" tag="Idle">
+                                <action full_name="fullname_6" message="Idling..." tag="Report" type="report"></action>
+                                <action duration="intertrial_interval" full_name="fullname_19" tag="Start Idle Timer" timer="Grating_idle_timer" type="start_timer" timebase="" duration_units="ms"></action>
+                                <transition full_name="fullname_20" tag="If Timer Expired..." target="Finish" timer="Grating_idle_timer" type="timer_expired"></transition>
+                            </task_system_state>
+                            <task_system_state description="" full_name="fullname_3" interruptible="YES" tag="Finish">
+                                <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                <action full_name="fullname_6" message="Yielding" tag="Report" type="report"></action>
+                                <transition full_name="fullname_5" tag="Yield" type="yield" target="~STATE_REF~"></transition>
+                            </task_system_state>
+                        </task_system>
+                    </trial>
+                    <range_replicator tag="Objects Replicator" from="1" to="416" step="1" variable="Obj_Num">
+                        <task_system tag="Task System RSVP OBJECTS" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                            <task_system_state tag="Initialize Bits" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action tag="Set stm_pos_x to eyetracker" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="0"></action>
+                                <action tag="Set stm_pos_y to eyetracker" full_name="fullname_21" type="assignment" variable="stm_pos_y" value="0"></action>
+                                <action tag="Set object rotation to 0" full_name="fullname_21" type="assignment" variable="Obj_rot" value="0"></action>
+                                <action tag="Set Aspect Ratio to default" full_name="fullname_21" type="assignment" variable="FrameToStimHeightRatio" value="1.83"></action>
+                                <action tag="Set stm size to 35" full_name="fullname_21" type="assignment" variable="Stim_Size" value="35"></action>
+                                <action type="if" tag="If Object Numebr is 1 to 10 it is the position x=-22.5 size 35" condition="Obj_Num>=1 #AND Obj_Num&lt;=NumOfObj">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to -7.5" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="-7.5"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 11 to 20 it is the position x=-15 size 35" condition="Obj_Num>=NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*2">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 21 to 30 it is the position x=-7.5 size 35" condition="Obj_Num>=2*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*3">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 7.5" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="7.5"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 31 to 40 it is the position x=0 size 35" condition="Obj_Num>=3*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*4">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 15" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="15"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 41 to 50 it is the position x=7.5 size 35" condition="Obj_Num>=4*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*5">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 22.5" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="22.5"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 51 to 60 it is the position x=15 size 35" condition="Obj_Num>=5*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*6">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 61 to 70 it is the position x=22.5 size 35" condition="Obj_Num>=6*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*7">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 37.5" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="37.5"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 71 to 80 it is the position x=30 size 35" condition="Obj_Num>=7*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*8">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 45" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="45"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 81 to 90 it is the Size 15 pos -15" condition="Obj_Num>=8*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*9">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 15" full_name="fullname_21" type="assignment" variable="Stim_Size" value="15"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 91 to 100 it is the Size 25 pos -15" condition="Obj_Num>=9*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*10">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 25" full_name="fullname_21" type="assignment" variable="Stim_Size" value="25"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 101 to 110 it is the Size 45 pos -15" condition="Obj_Num>=10*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*11">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 45" full_name="fullname_21" type="assignment" variable="Stim_Size" value="45"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 111 to 120 it is the Size 55 pos -15" condition="Obj_Num>=11*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*12">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 55" full_name="fullname_21" type="assignment" variable="Stim_Size" value="55"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 121 to 130 it is the inplane -40 pos -15 size 35" condition="Obj_Num>=12*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*13">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT -40" full_name="fullname_21" type="assignment" variable="Obj_rot" value="-40"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 131 to 140 it is the inplane -20 pos -15 size 35" condition="Obj_Num>=13*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*14">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT -20" full_name="fullname_21" type="assignment" variable="Obj_rot" value="-20"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 141 to 150 it is the inplane 20 pos -15 size 35" condition="Obj_Num>=14*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*15">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT 20" full_name="fullname_21" type="assignment" variable="Obj_rot" value="20"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 151 to 160 it is the inplane 40 pos -15 size 35" condition="Obj_Num>=15*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*16">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT 40" full_name="fullname_21" type="assignment" variable="Obj_rot" value="40"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 161 to 170 it is the Azimuth -60 pos -15 size 35" condition="Obj_Num>=16*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*17">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="2*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 171 to 180 it is the Azimuth -40 pos -15 size 35" condition="Obj_Num>=17*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*18">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="3*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 181 to 190 it is the Azimuth 40 pos -15 size 35" condition="Obj_Num>=18*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*19">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="4*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 191 to 200 it is the Azimuth 60 pos -15 size 35" condition="Obj_Num>=19*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*20">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="5*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 201 to 210 it is the Size 15 pos 15" condition="Obj_Num>=20*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*21">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 15" full_name="fullname_21" type="assignment" variable="Stim_Size" value="15"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 211 to 220 it is the Size 25 pos 15" condition="Obj_Num>=21*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*22">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 25" full_name="fullname_21" type="assignment" variable="Stim_Size" value="25"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 221 to 230 it is the Size 45 pos 15" condition="Obj_Num>=22*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*23">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 45" full_name="fullname_21" type="assignment" variable="Stim_Size" value="45"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 231 to 240 it is the size 55 pos 15" condition="Obj_Num>=23*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*24">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm size to 55" full_name="fullname_21" type="assignment" variable="Stim_Size" value="55"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 241 to 250 it is the inplane -40 pos 15 size 35" condition="Obj_Num>=24*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*25">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT -40" full_name="fullname_21" type="assignment" variable="Obj_rot" value="-40"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 251 to 260 it is the inplane -20 pos 15 size 35" condition="Obj_Num>=25*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*26">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT -20" full_name="fullname_21" type="assignment" variable="Obj_rot" value="-20"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 261 to 270 it is the inplane 20 pos 15 size 35" condition="Obj_Num>=26*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*27">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT 20" full_name="fullname_21" type="assignment" variable="Obj_rot" value="20"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 271 to 280 it is the inplane 40 pos 15 size 35" condition="Obj_Num>=27*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*28">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set INPLANE ROT 40" full_name="fullname_21" type="assignment" variable="Obj_rot" value="40"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 281 to 290 it is the Azimuth -60 pos 15 size 35" condition="Obj_Num>=28*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*29">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="2*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 291 to 300 it is the Azimuth -40 pos 15 size 35" condition="Obj_Num>=29*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*30">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="3*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 301 to 310 it is the Azimuth 40 pos 15 size 35" condition="Obj_Num>=30*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*31">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="4*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 311 to 320 it is the Azimuth 60 pos 15 size 35" condition="Obj_Num>=31*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*32">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="5*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 321 to 330 it is the half illumination size 35 position -15" condition="Obj_Num>=32*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*33">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="7*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 331 to 340 it is the half illumination size 35 position 15" condition="Obj_Num>=33*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*34">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="7*NumOfObj +1+(Obj_Num-1)%NumOfObj"></action>
+                                    <action tag="Set stm_pos_x to 15" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 341 to 350 it is the 0.25 illumination size 35 position -15" condition="Obj_Num>=34*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*35">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="9*NumOfObj +(Obj_Num)%NumOfObj+10*((Obj_Num/10)-34)+8"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 351 to 360 it is the 0.25 illumination size 35 position 15" condition="Obj_Num>=35*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*36">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="9*NumOfObj +(Obj_Num)%NumOfObj+10*((Obj_Num/10)-35)+8"></action>
+                                    <action tag="Set stm_pos_x to 15" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 361 to 370 it is the 0.125 illumination size 35 position -15" condition="Obj_Num>=36*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*37">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="10*NumOfObj +(Obj_Num)%NumOfObj+10*((Obj_Num/10)-36)+8"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 371 to 380 it is the 0.125 illumination size 35 position 15" condition="Obj_Num>=37*NumOfObj+1 #AND Obj_Num&lt;=NumOfObj*38">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="10*NumOfObj +(Obj_Num)%NumOfObj+10*((Obj_Num/10)-37)+8"></action>
+                                    <action tag="Set stm_pos_x to 15" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 381 to 389 it is the stim set1 morphline size 35 position -15" condition="Obj_Num>=381 #AND Obj_Num&lt;=389">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="8*NumOfObj +(Obj_Num)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 390 to 398 it is the stim set2 morphline size 35 position -15" condition="Obj_Num>=390 #AND Obj_Num&lt;=398">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="9*NumOfObj +(Obj_Num)%NumOfObj"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 399 to 407 it is the stim set1 morphline size 35 position 15" condition="Obj_Num>=399 #AND Obj_Num&lt;=407">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="7*NumOfObj +(Obj_Num)%NumOfObj+10*((Obj_Num/10)-39)+2"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="if" tag="If Object Numebr is 408 to 416 it is the stim set2 morphline size 35 position 15" condition="Obj_Num>=408 #AND Obj_Num&lt;=416">
+                                    <action type="assignment" tag="Calculate the image index" variable="ImageIndex" value="8*NumOfObj+(Obj_Num)%NumOfObj+10*((Obj_Num/10)-40)+2"></action>
+                                    <action tag="Set stm_pos_x to 30" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="30"></action>
+                                </action>
+                                <action type="assignment" tag="Reset Bit1" variable="Bit1" value="0"></action>
+                                <action type="assignment" tag="Reset Bit2" variable="Bit2" value="0"></action>
+                                <action type="assignment" tag="Reset Bit3" variable="Bit3" value="0"></action>
+                                <action type="assignment" tag="Reset Bit4" variable="Bit4" value="0"></action>
+                                <action type="assignment" tag="Reset Bit5" variable="Bit5" value="0"></action>
+                                <action type="assignment" tag="Reset Bit6" variable="Bit6" value="0"></action>
+                                <action type="assignment" tag="Reset Bit7" variable="Bit7" value="0"></action>
+                                <action type="assignment" tag="Reset Bit8" variable="Bit8" value="0"></action>
+                                <action type="assignment" tag="Reset Bit9" variable="Bit9" value="0"></action>
+                                <action type="assignment" tag="Reset Bit10" variable="Bit10" value="0"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="direct" tag="Always Go to Dec to Bin Stage 1" target="Convert Dec to Bin Stage 1"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
+                                <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
+                                    <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="Obj_Num"></action>
+                                </action>
+                                <action type="assignment" tag="Calculate q" variable="q" value="dec_num/2"></action>
+                                <action type="assignment" tag="Calculate r" variable="r" value="dec_num%2"></action>
+                                <action type="report" tag="Announce Begin State System" message="Stage1: decnum=$dec_num"></action>
+                                <action type="if" tag="if Bit 9" condition="num_bit==9">
+                                    <action type="assignment" tag="Bit9=r" variable="Bit9" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 8" condition="num_bit==8">
+                                    <action type="assignment" tag="Bit8=r" variable="Bit8" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 7" condition="num_bit==7">
+                                    <action type="assignment" tag="Bit7=r" variable="Bit7" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 6" condition="num_bit==6">
+                                    <action type="assignment" tag="Bit6=r" variable="Bit6" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 5" condition="num_bit==5">
+                                    <action type="assignment" tag="Bit5=r" variable="Bit5" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 4" condition="num_bit==4">
+                                    <action type="assignment" tag="Bit4=r" variable="Bit4" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 3" condition="num_bit==3">
+                                    <action type="assignment" tag="Bit3=r" variable="Bit3" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 2" condition="num_bit==2">
+                                    <action type="assignment" tag="Bit2=r" variable="Bit2" value="r"></action>
+                                </action>
+                                <action type="if" tag="if Bit 1" condition="num_bit==1">
+                                    <action type="assignment" tag="Bit1=r" variable="Bit1" value="r"></action>
+                                </action>
+                                <action type="assignment" tag="Assign dec to q" variable="dec_num" value="q"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="conditional" tag="If Condition is True, Transition to ..." condition="2&lt;=q" target="Convert Dec to Bin Stage 1"></transition>
+                                <transition type="direct" tag="Always Go to ..." target="Convert Dec to Bin Stage 2"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Convert Dec to Bin Stage 2" interruptible="YES">
+                                <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                <action type="if" tag="if Bit 10" condition="(num_bit+1)==10">
+                                    <action type="assignment" tag="Bit10=q" variable="Bit10" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 9" condition="(num_bit+1)==9">
+                                    <action type="assignment" tag="Bit9=q" variable="Bit9" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 8" condition="(num_bit+1)==8">
+                                    <action type="assignment" tag="Bit8=q" variable="Bit8" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 7" condition="(num_bit+1)==7">
+                                    <action type="assignment" tag="Bit7=q" variable="Bit7" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 6" condition="(num_bit+1)==6">
+                                    <action type="assignment" tag="Bit6=q" variable="Bit6" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 5" condition="(num_bit+1)==5">
+                                    <action type="assignment" tag="Bit5=q" variable="Bit5" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 4" condition="(num_bit+1)==4">
+                                    <action type="assignment" tag="Bit4=q" variable="Bit4" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 3" condition="(num_bit+1)==3">
+                                    <action type="assignment" tag="Bit3=q" variable="Bit3" value="q"></action>
+                                </action>
+                                <action type="if" tag="if Bit 2" condition="(num_bit+1)==2">
+                                    <action type="assignment" tag="Bit2=q" variable="Bit2" value="q"></action>
+                                </action>
+                                <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="0"></action>
+                                <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                <transition type="direct" tag="Always Go to initate experiment" target="Show stimulus"></transition>
+                            </task_system_state>
+                            <task_system_state tag="Show stimulus" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                <action full_name="fullname_6" message="Showing the Stimulus Number $ImageIndex" tag="Report" type="report"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="Obj_Num"></action>
+                                <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                <action tag="Queue Stimulus" type="queue_stimulus" stimulus="FullStimSet[ImageIndex-1]" full_name=""></action>
+                                <action tag="Queue Cover Rectangle 2" type="queue_stimulus" stimulus="CoverRectangle"></action>
+                                <action tag="Queue Timing Rectangular" type="queue_stimulus" stimulus="Timing_Rectangle"></action>
+                                <action type="if" tag="if show bit1" condition="Bit1==1">
+                                    <action tag="Queue rect 1" type="queue_stimulus" stimulus="Rectangle1"></action>
+                                </action>
+                                <action type="if" tag="if show bit2" condition="Bit2==1">
+                                    <action tag="Queue rect 2" type="queue_stimulus" stimulus="Rectangle2"></action>
+                                </action>
+                                <action type="if" tag="if show bit3" condition="Bit3==1">
+                                    <action tag="Queue rect 3" type="queue_stimulus" stimulus="Rectangle3"></action>
+                                </action>
+                                <action type="if" tag="if show bit4" condition="Bit4==1">
+                                    <action tag="Queue rect 4" type="queue_stimulus" stimulus="Rectangle4"></action>
+                                </action>
+                                <action type="if" tag="if show bit5" condition="Bit5==1">
+                                    <action tag="Queue rect 5" type="queue_stimulus" stimulus="Rectangle5"></action>
+                                </action>
+                                <action type="if" tag="if show bit6" condition="Bit6==1">
+                                    <action tag="Queue rect 6" type="queue_stimulus" stimulus="Rectangle6"></action>
+                                </action>
+                                <action type="if" tag="if show bit7" condition="Bit7==1">
+                                    <action tag="Queue rect 7" type="queue_stimulus" stimulus="Rectangle7"></action>
+                                </action>
+                                <action type="if" tag="if show bit8" condition="Bit8==1">
+                                    <action tag="Queue rect 8" type="queue_stimulus" stimulus="Rectangle8"></action>
+                                </action>
+                                <action type="if" tag="if show bit9" condition="Bit9==1">
+                                    <action tag="Queue rect 9" type="queue_stimulus" stimulus="Rectangle9"></action>
+                                </action>
+                                <action type="if" tag="if show bit10" condition="Bit10==1">
+                                    <action tag="Queue rect 10" type="queue_stimulus" stimulus="Rectangle10"></action>
+                                </action>
+                                <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                <action tag="Start Stim Duration Timer" type="start_timer" timer="Object_StimulusPresentation_timer" duration="StimulusPresentation_time" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                <transition tag="if Stim Duration Timer expired" target="End Task" type="timer_expired" timer="Object_StimulusPresentation_timer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                            </task_system_state>
+                            <task_system_state tag="End Task" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                <action tag="Dequeue Stimulus" type="dequeue_stimulus" stimulus="FullStimSet[ImageIndex-1]" full_name=""></action>
+                                <action type="if" tag="If clut image" condition="Clut==1">
+                                    <action tag="Dequeue Stimulus" type="dequeue_stimulus" stimulus="FullStimSet[ImageIndexClut-1]"></action>
+                                </action>
+                                <action tag="Dequeue Timing Rectangular" type="dequeue_stimulus" stimulus="Timing_Rectangle" full_name=""></action>
+                                <action tag="Queue background 2" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                <action type="if" tag="if show bit1" condition="Bit1==1">
+                                    <action tag="Dequeue Rect 1" type="dequeue_stimulus" stimulus="Rectangle1"></action>
+                                </action>
+                                <action type="if" tag="if show bit2" condition="Bit2==1">
+                                    <action tag="Dequeue Rect 2" type="dequeue_stimulus" stimulus="Rectangle2"></action>
+                                </action>
+                                <action type="if" tag="if show bit3" condition="Bit3==1">
+                                    <action tag="Dequeue Rect 3" type="dequeue_stimulus" stimulus="Rectangle3"></action>
+                                </action>
+                                <action type="if" tag="if show bit4" condition="Bit4==1">
+                                    <action tag="Dequeue Rect 4" type="dequeue_stimulus" stimulus="Rectangle4"></action>
+                                </action>
+                                <action type="if" tag="if show bit5" condition="Bit5==1">
+                                    <action tag="Dequeue Rect 5" type="dequeue_stimulus" stimulus="Rectangle5"></action>
+                                </action>
+                                <action type="if" tag="if show bit6" condition="Bit6==1">
+                                    <action tag="Dequeue Rect 6" type="dequeue_stimulus" stimulus="Rectangle6"></action>
+                                </action>
+                                <action type="if" tag="if show bit7" condition="Bit7==1">
+                                    <action tag="Dequeue Rect 7" type="dequeue_stimulus" stimulus="Rectangle7"></action>
+                                </action>
+                                <action type="if" tag="if show bit8" condition="Bit8==1">
+                                    <action tag="Dequeue Rect 8" type="dequeue_stimulus" stimulus="Rectangle8"></action>
+                                </action>
+                                <action type="if" tag="if show bit9" condition="Bit9==1">
+                                    <action tag="Dequeue Rect 9" type="dequeue_stimulus" stimulus="Rectangle9"></action>
+                                </action>
+                                <action type="if" tag="if show bit10" condition="Bit10==1">
+                                    <action tag="Dequeue Rect 10" type="dequeue_stimulus" stimulus="Rectangle10"></action>
+                                </action>
+                                <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                <action type="assignment" tag="update success" variable="success" value="1"></action>
+                                <action tag="Start Inter-stimulus interval" type="start_timer" timer="Object_InterStimulusTimer" duration="InterStimulusTime" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                <transition tag="if interstim-interval expires" target="Idle" type="timer_expired" timer="Object_InterStimulusTimer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                            </task_system_state>
+                            <task_system_state description="" full_name="fullname_13" interruptible="YES" tag="Idle">
+                                <action full_name="fullname_6" message="Idling..." tag="Report" type="report"></action>
+                                <action duration="intertrial_interval" full_name="fullname_19" tag="Start Idle Timer" timer="Object_idle_timer" type="start_timer" timebase="" duration_units="ms"></action>
+                                <transition full_name="fullname_20" tag="If Timer Expired..." target="Finish" timer="Object_idle_timer" type="timer_expired"></transition>
+                            </task_system_state>
+                            <task_system_state description="" full_name="fullname_3" interruptible="YES" tag="Finish">
+                                <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                <action full_name="fullname_6" message="Yielding" tag="Report" type="report"></action>
+                                <transition full_name="fullname_5" tag="Yield" type="yield" target="~STATE_REF~"></transition>
+                            </task_system_state>
+                        </task_system>
+                    </range_replicator>
+                    <range_replicator tag="Increment Bar Orientation" from="0" to="135" step="45" variable="Bar_Angle">
+                        <range_replicator tag="Increment Grid X position" from="-5" to="5" step="1" variable="Grid_x_pos">
+                            <range_replicator tag="Increment Grid Y Position" from="-2" to="3" step="1" variable="Grid_y_pos">
+                                <task_system tag="Drifting Bar" interruptible="YES">
+                                    <task_system_state tag="Initialize Bits" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Reset Bit1" variable="Bit1" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit2" variable="Bit2" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit3" variable="Bit3" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit4" variable="Bit4" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit5" variable="Bit5" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit6" variable="Bit6" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit7" variable="Bit7" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit8" variable="Bit8" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit9" variable="Bit9" value="0"></action>
+                                        <action type="assignment" tag="Reset Bit10" variable="Bit10" value="0"></action>
+                                        <action type="assignment" tag="Set RejectTS" variable="RejectTS" value="rand(0,1)"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="conditional" tag="Reject Trials" condition="RejectTS>0.25" target="Finish"></transition>
+                                        <transition type="direct" tag="Always Go to Dec to Bin Stage 1" target="Convert Dec to Bin Stage 1"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
+                                        <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
+                                            <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="(Grid_y_pos+3)+ (Grid_x_pos+5)*6+66*(Bar_Angle/45)+416"></action>
+                                        </action>
+                                        <action type="assignment" tag="Calculate q" variable="q" value="dec_num/2"></action>
+                                        <action type="assignment" tag="Calculate r" variable="r" value="dec_num%2"></action>
+                                        <action type="report" tag="Announce Begin State System" message="Stage1: decnum=$dec_num"></action>
+                                        <action type="if" tag="if Bit 9" condition="num_bit==9">
+                                            <action type="assignment" tag="Bit9=r" variable="Bit9" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 8" condition="num_bit==8">
+                                            <action type="assignment" tag="Bit8=r" variable="Bit8" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 7" condition="num_bit==7">
+                                            <action type="assignment" tag="Bit7=r" variable="Bit7" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 6" condition="num_bit==6">
+                                            <action type="assignment" tag="Bit6=r" variable="Bit6" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 5" condition="num_bit==5">
+                                            <action type="assignment" tag="Bit5=r" variable="Bit5" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 4" condition="num_bit==4">
+                                            <action type="assignment" tag="Bit4=r" variable="Bit4" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 3" condition="num_bit==3">
+                                            <action type="assignment" tag="Bit3=r" variable="Bit3" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 2" condition="num_bit==2">
+                                            <action type="assignment" tag="Bit2=r" variable="Bit2" value="r"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 1" condition="num_bit==1">
+                                            <action type="assignment" tag="Bit1=r" variable="Bit1" value="r"></action>
+                                        </action>
+                                        <action type="assignment" tag="Assign dec to q" variable="dec_num" value="q"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="conditional" tag="If Condition is True, Transition to ..." condition="2&lt;=q" target="Convert Dec to Bin Stage 1"></transition>
+                                        <transition type="direct" tag="Always Go to ..." target="Convert Dec to Bin Stage 2"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Convert Dec to Bin Stage 2" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="if" tag="if Bit 10" condition="(num_bit+1)==10">
+                                            <action type="assignment" tag="Bit10=q" variable="Bit10" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 9" condition="(num_bit+1)==9">
+                                            <action type="assignment" tag="Bit9=q" variable="Bit9" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 8" condition="(num_bit+1)==8">
+                                            <action type="assignment" tag="Bit8=q" variable="Bit8" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 7" condition="(num_bit+1)==7">
+                                            <action type="assignment" tag="Bit7=q" variable="Bit7" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 6" condition="(num_bit+1)==6">
+                                            <action type="assignment" tag="Bit6=q" variable="Bit6" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 5" condition="(num_bit+1)==5">
+                                            <action type="assignment" tag="Bit5=q" variable="Bit5" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 4" condition="(num_bit+1)==4">
+                                            <action type="assignment" tag="Bit4=q" variable="Bit4" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 3" condition="(num_bit+1)==3">
+                                            <action type="assignment" tag="Bit3=q" variable="Bit3" value="q"></action>
+                                        </action>
+                                        <action type="if" tag="if Bit 2" condition="(num_bit+1)==2">
+                                            <action type="assignment" tag="Bit2=q" variable="Bit2" value="q"></action>
+                                        </action>
+                                        <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="0"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Always Go to initate experiment" target="Initialize Parameters"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Assign the value for barpos" variable="Bar_Pos" value="-10"></action>
+                                        <action type="assignment" tag="Assign Variable" variable="Bar_rot" value="Bar_Angle"></action>
+                                        <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="(Grid_y_pos+3)+ (Grid_x_pos+5)*6+66*(Bar_Angle/45)+416"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Show Moving Bar" target="Show Moving Bar"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Show Moving Bar" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="assignment" tag="Change X Position of the Bar" variable="x_pos" value="Grid_x_pos*10+sin(Bar_Angle*0.017453292519943)*(abs(Bar_Pos)-5)"></action>
+                                        <action type="assignment" tag="Change Y Position of the Bar" variable="y_pos" value="Grid_y_pos*10-cos(Bar_Angle*0.017453292519943)*(abs(Bar_Pos)-5)"></action>
+                                        <action tag="Queue Stimulus" type="queue_stimulus" stimulus="BlankScreen"></action>
+                                        <action tag="Queue Stimulus" type="queue_stimulus" stimulus="Rectangle"></action>
+                                        <action tag="Queue Cover Rectangle 3" type="queue_stimulus" stimulus="CoverRectangle"></action>
+                                        <action tag="Queue Timing Rectangular" type="queue_stimulus" stimulus="Timing_Rectangle"></action>
+                                        <action type="if" tag="if show bit1" condition="Bit1==1">
+                                            <action tag="Queue rect 1" type="queue_stimulus" stimulus="Rectangle1"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit2" condition="Bit2==1">
+                                            <action tag="Queue rect 2" type="queue_stimulus" stimulus="Rectangle2"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit3" condition="Bit3==1">
+                                            <action tag="Queue rect 3" type="queue_stimulus" stimulus="Rectangle3"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit4" condition="Bit4==1">
+                                            <action tag="Queue rect 4" type="queue_stimulus" stimulus="Rectangle4"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit5" condition="Bit5==1">
+                                            <action tag="Queue rect 5" type="queue_stimulus" stimulus="Rectangle5"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit6" condition="Bit6==1">
+                                            <action tag="Queue rect 6" type="queue_stimulus" stimulus="Rectangle6"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit7" condition="Bit7==1">
+                                            <action tag="Queue rect 7" type="queue_stimulus" stimulus="Rectangle7"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit8" condition="Bit8==1">
+                                            <action tag="Queue rect 8" type="queue_stimulus" stimulus="Rectangle8"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit9" condition="Bit9==1">
+                                            <action tag="Queue rect 9" type="queue_stimulus" stimulus="Rectangle9"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit10" condition="Bit10==1">
+                                            <action tag="Queue rect 10" type="queue_stimulus" stimulus="Rectangle10"></action>
+                                        </action>
+                                        <action tag="Update Stimulus" type="update_stimulus_display"></action>
+                                        <action type="assignment" tag="increase the barpos" variable="Bar_Pos" value="Bar_Pos+1"></action>
+                                        <action type="wait" tag="Wait" duration="Freq" duration_units="ms"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="conditional" tag="If Condition is True, Transition to ..." condition="Bar_Pos&lt;=9" target="Show Moving Bar"></transition>
+                                        <transition type="direct" tag="Always Go to ..." target="End Trial"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="End Trial" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action tag="Dequeue Stimulus 2" type="dequeue_stimulus" stimulus="Rectangle"></action>
+                                        <action tag="Dequeue Timing Rectangular" type="dequeue_stimulus" stimulus="Timing_Rectangle" full_name=""></action>
+                                        <action type="if" tag="if show bit1" condition="Bit1==1">
+                                            <action tag="Dequeue Rect 1" type="dequeue_stimulus" stimulus="Rectangle1"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit2" condition="Bit2==1">
+                                            <action tag="Dequeue Rect 2" type="dequeue_stimulus" stimulus="Rectangle2"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit3" condition="Bit3==1">
+                                            <action tag="Dequeue Rect 3" type="dequeue_stimulus" stimulus="Rectangle3"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit4" condition="Bit4==1">
+                                            <action tag="Dequeue Rect 4" type="dequeue_stimulus" stimulus="Rectangle4"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit5" condition="Bit5==1">
+                                            <action tag="Dequeue Rect 5" type="dequeue_stimulus" stimulus="Rectangle5"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit6" condition="Bit6==1">
+                                            <action tag="Dequeue Rect 6" type="dequeue_stimulus" stimulus="Rectangle6"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit7" condition="Bit7==1">
+                                            <action tag="Dequeue Rect 7" type="dequeue_stimulus" stimulus="Rectangle7"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit8" condition="Bit8==1">
+                                            <action tag="Dequeue Rect 8" type="dequeue_stimulus" stimulus="Rectangle8"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit9" condition="Bit9==1">
+                                            <action tag="Dequeue Rect 9" type="dequeue_stimulus" stimulus="Rectangle9"></action>
+                                        </action>
+                                        <action type="if" tag="if show bit10" condition="Bit10==1">
+                                            <action tag="Dequeue Rect 10" type="dequeue_stimulus" stimulus="Rectangle10"></action>
+                                        </action>
+                                        <action tag="Update Stimulus 2" type="update_stimulus_display"></action>
+                                        <action type="assignment" tag="update success" variable="success" value="1"></action>
+                                        <action type="wait" tag="Wait 2" duration="InterStimulusTime" duration_units="ms"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition type="direct" tag="Always Go to ... 2" target="Finish"></transition>
+                                    </task_system_state>
+                                    <task_system_state tag="Finish" interruptible="YES">
+                                        <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                        <action type="report" tag="Announce Exit State System" message="Leaving state system"></action>
+                                        <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                        <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                        <transition tag="Return to parent task system" type="yield"></transition>
+                                    </task_system_state>
+                                </task_system>
+                            </range_replicator>
+                        </range_replicator>
+                    </range_replicator>
+                    <range_replicator tag="Grating" from="1" to="64" step="1" variable="stim_index" full_name="fullname_~ELEMENTCOUNT~">
+                        <trial tag="Present Stimulus Sequence" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles" full_name="fullname_~ELEMENTCOUNT~">
+                            <task_system tag="Task System RSVP Gratings" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                <task_system_state tag="Initialize Bits" interruptible="YES">
+                                    <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                    <action type="assignment" tag="Set RejectTS" variable="RejectTS" value="rand(0,1)"></action>
+                                    <action tag="Set stm_pos_x to eyetracker" full_name="fullname_21" type="assignment" variable="stm_pos_x" value="0"></action>
+                                    <action tag="Set stm_pos_y to eyetracker" full_name="fullname_21" type="assignment" variable="stm_pos_y" value="0"></action>
+                                    <action tag="Set stm size to defualt" full_name="fullname_21" type="assignment" variable="Stim_Size" value="Grating_Size_default"></action>
+                                    <action type="assignment" tag="Reset Bit1" variable="Bit1" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit2" variable="Bit2" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit3" variable="Bit3" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit4" variable="Bit4" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit5" variable="Bit5" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit6" variable="Bit6" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit7" variable="Bit7" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit8" variable="Bit8" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit9" variable="Bit9" value="0"></action>
+                                    <action type="assignment" tag="Reset Bit10" variable="Bit10" value="0"></action>
+                                    <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                    <transition type="conditional" tag="Reject Trials" condition="RejectTS>0.25" target="Finish"></transition>
+                                    <transition type="direct" tag="Always Go to Dec to Bin Stage 1" target="Convert Dec to Bin Stage 1"></transition>
+                                </task_system_state>
+                                <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
+                                    <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                    <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
+                                    <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
+                                        <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="416+264+stim_index"></action>
+                                    </action>
+                                    <action type="assignment" tag="Calculate q" variable="q" value="dec_num/2"></action>
+                                    <action type="assignment" tag="Calculate r" variable="r" value="dec_num%2"></action>
+                                    <action type="report" tag="Announce Begin State System" message="Stage1: decnum=$dec_num"></action>
+                                    <action type="if" tag="if Bit 9" condition="num_bit==9">
+                                        <action type="assignment" tag="Bit9=r" variable="Bit9" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 8" condition="num_bit==8">
+                                        <action type="assignment" tag="Bit8=r" variable="Bit8" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 7" condition="num_bit==7">
+                                        <action type="assignment" tag="Bit7=r" variable="Bit7" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 6" condition="num_bit==6">
+                                        <action type="assignment" tag="Bit6=r" variable="Bit6" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 5" condition="num_bit==5">
+                                        <action type="assignment" tag="Bit5=r" variable="Bit5" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 4" condition="num_bit==4">
+                                        <action type="assignment" tag="Bit4=r" variable="Bit4" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 3" condition="num_bit==3">
+                                        <action type="assignment" tag="Bit3=r" variable="Bit3" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 2" condition="num_bit==2">
+                                        <action type="assignment" tag="Bit2=r" variable="Bit2" value="r"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 1" condition="num_bit==1">
+                                        <action type="assignment" tag="Bit1=r" variable="Bit1" value="r"></action>
+                                    </action>
+                                    <action type="assignment" tag="Assign dec to q" variable="dec_num" value="q"></action>
+                                    <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                    <transition type="conditional" tag="If Condition is True, Transition to ..." condition="2&lt;=q" target="Convert Dec to Bin Stage 1"></transition>
+                                    <transition type="direct" tag="Always Go to ..." target="Convert Dec to Bin Stage 2"></transition>
+                                </task_system_state>
+                                <task_system_state tag="Convert Dec to Bin Stage 2" interruptible="YES">
+                                    <action_marker _unmoveable="1" tag="Actions"></action_marker>
+                                    <action type="if" tag="if Bit 10" condition="(num_bit+1)==10">
+                                        <action type="assignment" tag="Bit10=q" variable="Bit10" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 9" condition="(num_bit+1)==9">
+                                        <action type="assignment" tag="Bit9=q" variable="Bit9" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 8" condition="(num_bit+1)==8">
+                                        <action type="assignment" tag="Bit8=q" variable="Bit8" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 7" condition="(num_bit+1)==7">
+                                        <action type="assignment" tag="Bit7=q" variable="Bit7" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 6" condition="(num_bit+1)==6">
+                                        <action type="assignment" tag="Bit6=q" variable="Bit6" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 5" condition="(num_bit+1)==5">
+                                        <action type="assignment" tag="Bit5=q" variable="Bit5" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 4" condition="(num_bit+1)==4">
+                                        <action type="assignment" tag="Bit4=q" variable="Bit4" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 3" condition="(num_bit+1)==3">
+                                        <action type="assignment" tag="Bit3=q" variable="Bit3" value="q"></action>
+                                    </action>
+                                    <action type="if" tag="if Bit 2" condition="(num_bit+1)==2">
+                                        <action type="assignment" tag="Bit2=q" variable="Bit2" value="q"></action>
+                                    </action>
+                                    <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="0"></action>
+                                    <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
+                                    <transition type="direct" tag="Always Go to initate experiment" target="Show stimulus"></transition>
+                                </task_system_state>
+                                <task_system_state tag="Show stimulus" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                    <action full_name="fullname_6" message="Showing the Stimulus Number $stim_index" tag="Report" type="report"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="416+264+stim_index"></action>
+                                    <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                    <action tag="Queue Stimulus" type="queue_stimulus" stimulus="Grating[stim_index-1]" full_name=""></action>
+                                    <action tag="Queue Cover Rectangle" type="queue_stimulus" stimulus="CoverRectangle"></action>
+                                    <action tag="Queue Timing Rectangular" type="queue_stimulus" stimulus="Timing_Rectangle"></action>
+                                    <action type="if" tag="if show bit1" condition="Bit1==1">
+                                        <action tag="Queue rect 1" type="queue_stimulus" stimulus="Rectangle1"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit2" condition="Bit2==1">
+                                        <action tag="Queue rect 2" type="queue_stimulus" stimulus="Rectangle2"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit3" condition="Bit3==1">
+                                        <action tag="Queue rect 3" type="queue_stimulus" stimulus="Rectangle3"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit4" condition="Bit4==1">
+                                        <action tag="Queue rect 4" type="queue_stimulus" stimulus="Rectangle4"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit5" condition="Bit5==1">
+                                        <action tag="Queue rect 5" type="queue_stimulus" stimulus="Rectangle5"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit6" condition="Bit6==1">
+                                        <action tag="Queue rect 6" type="queue_stimulus" stimulus="Rectangle6"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit7" condition="Bit7==1">
+                                        <action tag="Queue rect 7" type="queue_stimulus" stimulus="Rectangle7"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit8" condition="Bit8==1">
+                                        <action tag="Queue rect 8" type="queue_stimulus" stimulus="Rectangle8"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit9" condition="Bit9==1">
+                                        <action tag="Queue rect 9" type="queue_stimulus" stimulus="Rectangle9"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit10" condition="Bit10==1">
+                                        <action tag="Queue rect 10" type="queue_stimulus" stimulus="Rectangle10"></action>
+                                    </action>
+                                    <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                    <action tag="Start Stim Duration Timer" type="start_timer" timer="Grating_StimulusPresentation_timer" duration="StimulusPresentation_time" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                    <transition tag="if Stim Duration Timer expired" target="End Task" type="timer_expired" timer="Grating_StimulusPresentation_timer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                                </task_system_state>
+                                <task_system_state tag="End Task" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
+                                    <action tag="Dequeue Stimulus" type="dequeue_stimulus" stimulus="Grating[stim_index-1]" full_name=""></action>
+                                    <action tag="Dequeue CoverRectangle" type="dequeue_stimulus" stimulus="CoverRectangle" full_name=""></action>
+                                    <action tag="Dequeue Timing Rectangular" type="dequeue_stimulus" stimulus="Timing_Rectangle" full_name=""></action>
+                                    <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
+                                    <action type="if" tag="if show bit1" condition="Bit1==1">
+                                        <action tag="Dequeue Rect 1" type="dequeue_stimulus" stimulus="Rectangle1"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit2" condition="Bit2==1">
+                                        <action tag="Dequeue Rect 2" type="dequeue_stimulus" stimulus="Rectangle2"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit3" condition="Bit3==1">
+                                        <action tag="Dequeue Rect 3" type="dequeue_stimulus" stimulus="Rectangle3"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit4" condition="Bit4==1">
+                                        <action tag="Dequeue Rect 4" type="dequeue_stimulus" stimulus="Rectangle4"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit5" condition="Bit5==1">
+                                        <action tag="Dequeue Rect 5" type="dequeue_stimulus" stimulus="Rectangle5"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit6" condition="Bit6==1">
+                                        <action tag="Dequeue Rect 6" type="dequeue_stimulus" stimulus="Rectangle6"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit7" condition="Bit7==1">
+                                        <action tag="Dequeue Rect 7" type="dequeue_stimulus" stimulus="Rectangle7"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit8" condition="Bit8==1">
+                                        <action tag="Dequeue Rect 8" type="dequeue_stimulus" stimulus="Rectangle8"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit9" condition="Bit9==1">
+                                        <action tag="Dequeue Rect 9" type="dequeue_stimulus" stimulus="Rectangle9"></action>
+                                    </action>
+                                    <action type="if" tag="if show bit10" condition="Bit10==1">
+                                        <action tag="Dequeue Rect 10" type="dequeue_stimulus" stimulus="Rectangle10"></action>
+                                    </action>
+                                    <action tag="Update Stimulus Display" type="update_stimulus_display" full_name="fullname_~ELEMENTCOUNT~"></action>
+                                    <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                    <action type="assignment" tag="update success" variable="success" value="1"></action>
+                                    <action tag="Start Inter-stimulus interval" type="start_timer" timer="Grating_InterStimulusTimer" duration="InterStimulusTime" timebase="" full_name="fullname_~ELEMENTCOUNT~" duration_units="ms"></action>
+                                    <transition tag="if interstim-interval expires" target="Idle" type="timer_expired" timer="Grating_InterStimulusTimer" full_name="fullname_~ELEMENTCOUNT~"></transition>
+                                </task_system_state>
+                                <task_system_state description="" full_name="fullname_13" interruptible="YES" tag="Idle">
+                                    <action full_name="fullname_6" message="Idling..." tag="Report" type="report"></action>
+                                    <action duration="intertrial_interval" full_name="fullname_19" tag="Start Idle Timer" timer="Grating_idle_timer" type="start_timer" timebase="" duration_units="ms"></action>
+                                    <transition full_name="fullname_20" tag="If Timer Expired..." target="Finish" timer="Grating_idle_timer" type="timer_expired"></transition>
+                                </task_system_state>
+                                <task_system_state description="" full_name="fullname_3" interruptible="YES" tag="Finish">
+                                    <action tag="Accept Selections" type="accept_selections" selection="TrialRandomization"></action>
+                                    <action full_name="fullname_6" message="Yielding" tag="Report" type="report"></action>
+                                    <transition full_name="fullname_5" tag="Yield" type="yield" target="~STATE_REF~"></transition>
+                                </task_system_state>
+                            </task_system>
+                        </trial>
+                    </range_replicator>
+                </list>
+            </block>
+        </protocol>
+    </experiment>
+</monkeyml>
