@@ -289,6 +289,12 @@
         <stimulus type="rectangle" tag="Rectangle8" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*7" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle9" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*6" y_position="rect_ypos+AnalogYoffSet" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle10" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*7" y_position="rect_ypos+AnalogYoffSet" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus_group tag="Dots_DC" full_name="fullname_~ELEMENTCOUNT~">
+            <stimulus type="image_file" tag="Dots_DC_1" path="Dots/Dots_DC_1.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
+            <stimulus type="image_file" tag="Dots_DC_2" path="Dots/Dots_DC_2.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
+            <stimulus type="image_file" tag="Dots_DC_3" path="Dots/Dots_DC_3.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
+            <stimulus type="image_file" tag="Dots_DC_4" path="Dots/Dots_DC_4.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
+        </stimulus_group>
         <stimulus_group tag="Dots" full_name="fullname_~ELEMENTCOUNT~">
             <stimulus type="image_file" tag="Dots_1" path="Dots/Dots_1.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
             <stimulus type="image_file" tag="Dots_2" path="Dots/Dots_2.png" x_size="dot_size" y_size="dot_size" x_position="dot_pos_x" y_position="dot_pos_y" rotation="dot_rot" deferred="NO"></stimulus>
