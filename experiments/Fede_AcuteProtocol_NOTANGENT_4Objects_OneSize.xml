@@ -14702,7 +14702,7 @@
                                 <action type="assignment" tag="set pos y" variable="stm_pos_y" value="0"></action>
                                 <action type="assignment" tag="set pos x" variable="stm_pos_x" value="0"></action>
                                 <action type="assignment" tag="set in plane" variable="stm_rotation" value="0"></action>
-                                <action type="assignment" tag="set size" variable="stm_size" value="12"></action>
+                                <action type="assignment" tag="set size" variable="stm_size" value="11.8"></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
                                 <transition type="direct" tag="Always Go to ... 2" target="Show Object"></transition>
@@ -14885,7 +14885,7 @@
                                 <action type="assignment" tag="set pos y" variable="stm_pos_y" value="0"></action>
                                 <action type="assignment" tag="set pos x" variable="stm_pos_x" value="0"></action>
                                 <action type="assignment" tag="set in plane" variable="stm_rotation" value="0"></action>
-                                <action type="assignment" tag="set size" variable="stm_size" value="15"></action>
+                                <action type="assignment" tag="set size" variable="stm_size" value="15.8"></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
                                 <transition type="direct" tag="Always Go to ... 2" target="Show Object"></transition>
@@ -15251,7 +15251,7 @@
                                 <action type="assignment" tag="set pos y" variable="stm_pos_y" value="0"></action>
                                 <action type="assignment" tag="set pos x" variable="stm_pos_x" value="0"></action>
                                 <action type="assignment" tag="set in plane" variable="stm_rotation" value="0"></action>
-                                <action type="assignment" tag="set size" variable="stm_size" value="27"></action>
+                                <action type="assignment" tag="set size" variable="stm_size" value="26"></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
                                 <transition type="direct" tag="Always Go to ... 3" target="Show Object"></transition>
@@ -15617,7 +15617,7 @@
                                 <action type="assignment" tag="set pos y" variable="stm_pos_y" value="0"></action>
                                 <action type="assignment" tag="set pos x" variable="stm_pos_x" value="0"></action>
                                 <action type="assignment" tag="set in plane" variable="stm_rotation" value="0"></action>
-                                <action type="assignment" tag="set size" variable="stm_size" value="34"></action>
+                                <action type="assignment" tag="set size" variable="stm_size" value="33.8"></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
                                 <transition type="direct" tag="Always Go to ... 4" target="Show Object"></transition>
@@ -15800,7 +15800,7 @@
                                 <action type="assignment" tag="set pos y" variable="stm_pos_y" value="0"></action>
                                 <action type="assignment" tag="set pos x" variable="stm_pos_x" value="0"></action>
                                 <action type="assignment" tag="set in plane" variable="stm_rotation" value="0"></action>
-                                <action type="assignment" tag="set size" variable="stm_size" value="38"></action>
+                                <action type="assignment" tag="set size" variable="stm_size" value="37"></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
                                 <transition type="direct" tag="Always Go to ... 4" target="Show Object"></transition>
