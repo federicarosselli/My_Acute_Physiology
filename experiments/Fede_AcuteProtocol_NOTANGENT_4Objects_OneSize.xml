@@ -193,7 +193,7 @@
             <variable tag="dec_num" scope="global" logging="when_changed" default_value="0" type="integer"></variable>
             <variable tag="rect_xsiz" scope="global" logging="when_changed" default_value="1.2" type="float" groups="BitCode" persistant="1"></variable>
             <variable tag="rect_ysiz" scope="global" logging="when_changed" default_value="1.2" type="float" groups="BitCode" persistant="1"></variable>
-            <variable tag="rect_xpos" scope="global" logging="when_changed" default_value="-48" type="float" groups="BitCode" persistant="1"></variable>
+            <variable tag="rect_xpos" scope="global" logging="when_changed" default_value="-47.5" type="float" groups="BitCode" persistant="1"></variable>
             <variable tag="rect_ypos" scope="global" logging="when_changed" default_value="-32.2" type="float" groups="BitCode" persistant="1"></variable>
         </folder>
         <folder tag="Timing parameters">
