@@ -100,12 +100,12 @@
         <stimulus tag="BlankScreen" full_name="fullname_3" type="blank_screen" color="0,0,0"></stimulus>
         <stimulus type="rectangle" tag="CoverRectangle" color="0,0,0" x_size="Cov_x_siz" y_size="Cov_y_siz" x_position="Cov_x_pos" y_position="Cov_y_pos" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle" color="1,1,1" x_size="Bar_x_siz" y_size="Bar_y_siz" x_position="x_pos" y_position="y_pos" rotation="Bar_rot" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Timing_Rectangle" color="0,0,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*3" y_position="rect_ypos+AnalogYoffSet" rotation="0" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Rectangle1" color="1,0,0" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Rectangle2" color="0,1,0" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+BcodPosOffset" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Rectangle3" color=".5,0,.5" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*2" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Rectangle4" color=".5,.5,.5" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*3" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
-        <stimulus type="rectangle" tag="Rectangle5" color="0,.5,.5" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*4" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Timing_Rectangle" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*3" y_position="rect_ypos+AnalogYoffSet" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle1" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle2" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+BcodPosOffset" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle3" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*2" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle4" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*3" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
+        <stimulus type="rectangle" tag="Rectangle5" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*4" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle6" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*5" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle7" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*6" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
         <stimulus type="rectangle" tag="Rectangle8" color="1,1,1" x_size="rect_xsiz" y_size="rect_ysiz" x_position="rect_xpos+ BcodPosOffset*7" y_position="rect_ypos" rotation="0" alpha_multiplier="1"></stimulus>
