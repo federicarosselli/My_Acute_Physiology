@@ -1,21 +1,29 @@
+function My_PSTH_Static_FEDE_BlankTest %(BIT_Number)
+
+clear all
+close all
+clc
+
+
 % load Fede_STIM.mat
 
 cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/PSTH/25
 
 mkdir ('Results_Static');
 
-close all
-
         % bb = 1:length(PSTH{BIT_Number}(1,1,:));    % bb = bin number;
         % tr = 1:length(Trial_Spike_Num{1,1})        % tr = trial number;
         % nn = 1:length(PSTH{BIT_Number}(1,:,1));    % nn = neuron number;
 
 %COLORSET=varycolor(length(Fede_STIM));
-B_static_All = [];
 B_static_Blanks_All = [];
+B_static_All = [];
 
-for nn = 1  %:37
+for nn = 1:37
     countolo = 0;
+    
+    B_static = [];
+    B_static_Blanks = [];
     
     for BIT_Number = 1:4  
         load([num2str(BIT_Number),'.mat'])
@@ -58,7 +66,7 @@ for nn = 1  %:37
     end
     
     
-    for BIT_Number = 5  %:270
+    for BIT_Number = 5:270
         load([num2str(BIT_Number),'.mat'])
         
         COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
@@ -92,17 +100,18 @@ for nn = 1  %:37
                 end
                 
                 figure(nn)                
-                a = mean(B_static);
-                b = a*(1000/25);
+                alla = mean(B_static);
+                b = alla*(1000/25);
                 B_static_All = vertcat(B_static_All, b);
-                T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
-                [int tm]=min(abs(T-700));
+                T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+                [int tm]=min(abs(T-450));
                 plot(T(1:tm),b(1:tm), 'Color', COLORSET(nn,:))
+%                 plot(T,b, 'Color', COLORSET(nn,:))
                 title(['All Static Conditions, n= ', num2str(countolo)])
                 xlabel(['Neuron', num2str(nn)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
-                ylim([0 100])
+                ylim([-20 250])
                 hold on;
                  
             end
@@ -110,15 +119,15 @@ for nn = 1  %:37
             
     end
     
-           T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
-           [int tm]=min(abs(T-700));
+           T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+           [int tm]=min(abs(T-450));
            bubu = mean(B_static_All,1);
            bubublank = mean(B_static_Blanks_All,1);
            grey=[0.5, 0.5, 0.5];
-           plot(T(1:tm),bubu(1:tm), 'LineWidth',3, 'Color', grey)
-           hold on;
-           plot(T(1:tm),bubublank(1:tm), '--k', 'LineWidth',3)
-    
+%            plot(T(1:tm),bubu(1:tm), 'LineWidth',3, 'Color', grey)
+%            hold on;
+           plot(T(1:tm),bubublank(1:tm), '-k', 'LineWidth',3, 'Color', grey)
+%            plot(T,bubublank, '-k', 'LineWidth',3, 'Color', grey)
             ww = cd;
             saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.jpeg']) 
             saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.fig'])  
