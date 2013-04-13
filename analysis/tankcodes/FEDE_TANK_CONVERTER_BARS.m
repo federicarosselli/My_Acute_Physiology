@@ -10,7 +10,7 @@ BLOCK_NUM_SET=[1]
 sub_block=0; %0=full block,1=first half block, 2=second half block
  
 % FOLDER_FROM='\\zocconasphys2.cns.sissa.it\acute_objects\Recording_03_07_2012';
-FOLDER_FROM='\\zocconasphys1.cns.sissa.it\chronic_inv_rec\Tanks\Fede_AcuteTest_19_12_12';
+FOLDER_FROM='C:\TDT\OpenEx\Tanks\Fede_Acute_Recording_10_4_2013';
 
 % FOLDER_FROM='C:\TDT\OpenEx\Tanks\Sina_Acute1_Rec_20_12_2012';
 
@@ -18,7 +18,7 @@ for BLOCK_NUM=BLOCK_NUM_SET
 BCODE1=[];
 TBCOD1=[];
 ss=0;
-FOLDER_TO=[FOLDER_FROM,'\ANALYSED\Block-',num2str(BLOCK_NUM)];
+FOLDER_TO=['\\zocconasphys1.cns.sissa.it\chronic_inv_rec\Tanks\Fede_Acute_Recording_10_4_2013\ANALYSED\Block-',num2str(BLOCK_NUM)];
 
 TIME_CU=0;
 
@@ -104,7 +104,7 @@ end
 YANLG=[];
 TANLG=[];
 for PE=1:PER
-[YANLG1 TANLG1]=plotchan2(FOLDER_FROM,['Block-',num2str(BLOCK_NUM)],'ANLG',0,TIME_S(PE),TIME_E(PE),0);
+[YANLG1 TANLG1]=plotchan2(FOLDER_FROM,['Block-',num2str(BLOCK_NUM)],'ANLG',2,TIME_S(PE),TIME_E(PE),0);
 if (isempty(YANLG1) | isempty(TANLG1))
     error('long loading, read shorter portion')
 end
