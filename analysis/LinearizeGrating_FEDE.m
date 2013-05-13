@@ -7,11 +7,11 @@
        p4 =   -0.008323  ;
        p5 =      0.6728;
        
-cd Gratings_Linearized
+cd blanks
 
-for i=13:16
-         I=double(imread([num2str(i) '.jpg'],'jpg'));
-        %I=double((imread([num2str(i) '.png'],'png')));
+for i=1:2
+         %I=double(imread([num2str(i) '.jpg'],'jpg'));
+        I=double((imread([num2str(i) '.png'],'png')));
           Ip=LinEstimBrigh13(I);
          Ig=GammaCorrectionFunc(I);
          ILinv=GammaCorrectionInvFunc(Ip);
@@ -35,5 +35,5 @@ for i=13:16
          image(Ig)
          axis off
          axis equal
-         imwrite(uint8(ILinv),[num2str(i) '.jpg'])
+         imwrite(uint8(ILinv),[num2str(i) '.png'])
 end

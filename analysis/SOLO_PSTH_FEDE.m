@@ -2,8 +2,9 @@ clear all
 close all
 clc
 w=cd;
-BLOCK_NUM1=4;
+BLOCK_NUM1=3;
 bin=25/1000;
+%bin=50/1000;
 
 POST_TIME=2200/1000; 
 PRE_TIME=200/1000;
@@ -16,7 +17,7 @@ PRE_TIME=200/1000;
 shift_bin=10/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_AcuteTest_19_12_12/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED'];
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Recording_21_6_2012/ANALYSED'];
 
@@ -45,11 +46,11 @@ BITCODE=BCODE(TBCOD>TSTART);
 TBC=TBCOD(TBCOD>TSTART);
 
 ind_start=find(diff(BITCODE)>=1);
-STIM_START=TBC(ind_start);
-BIT_START=BITCODE(ind_start+1);
+STIM_START=TBC(ind_start);   %%% vector of all the trial starts in a session 
+BIT_START=BITCODE(ind_start+1);  %%% vector of all the bitcodes in a session
 
 ind_stop=find(diff(BITCODE)<=-1);
-STIM_STOP=TBC(ind_stop);
+STIM_STOP=TBC(ind_stop);  %%% vector of all the trial stops in a session
 BIT_STOP=BITCODE(ind_stop); % should be equal to BIT_START
 
 %BIT_START=BIT_START(1:13813)

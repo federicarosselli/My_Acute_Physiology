@@ -7,26 +7,28 @@ clc
 
 % load Fede_STIM.mat
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/PSTH/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/ReceptiveFieldAnalysis/BL_2/PSTH/25
 
-mkdir ('Results_Static');
+mkdir ('Results_Static_TEST');
 
         % bb = 1:length(PSTH{BIT_Number}(1,1,:));    % bb = bin number;
         % tr = 1:length(Trial_Spike_Num{1,1})        % tr = trial number;
         % nn = 1:length(PSTH{BIT_Number}(1,:,1));    % nn = neuron number;
 
-%COLORSET=varycolor(length(Fede_STIM));
-B_static_Blanks_All = [];
-B_static_All = [];
 
-for nn = 1:37
+
+for nn = 1:8 %40
     countolo = 0;
     
-    B_static = [];
-    B_static_Blanks = [];
+    B_static_All = [];
+    B_static_Blanks_All = [];
     
-    for BIT_Number = 1:4  
+    for BIT_Number = 3:4  
         load([num2str(BIT_Number),'.mat'])
+            
+        bn = 1:length(PSTH{BIT_Number}(1,1,:)); 
+        tri = 1:length(Trial_Spike_Num{1,1});
+        B_static_Blanks = zeros(tri,bn); 
         
 %         COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
         
@@ -64,13 +66,16 @@ for nn = 1:37
                 
             end
     end
+    bn = 1:length(PSTH{BIT_Number}(1,1,:)); 
+    tri = 1:length(Trial_Spike_Num{1,1});
+    B_static = zeros(tri,bn); 
+    lulu = [1:2, 5:270];
     
-    
-    for BIT_Number = 5:270
+    for BIT_Number = lulu
         load([num2str(BIT_Number),'.mat'])
         
         COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
-        
+    
         %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
             % such overwriting made possible the computation of only 156 codes (instead
             % of 174) for this session. codes from 137 (included) to 156 were therefore
@@ -111,7 +116,7 @@ for nn = 1:37
                 xlabel(['Neuron', num2str(nn)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
-                ylim([-20 250])
+                ylim([-20 300])
                 hold on;
                  
             end
@@ -121,7 +126,7 @@ for nn = 1:37
     
            T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
            [int tm]=min(abs(T-450));
-           bubu = mean(B_static_All,1);
+%            bubu = mean(B_static_All,1);
            bubublank = mean(B_static_Blanks_All,1);
            grey=[0.5, 0.5, 0.5];
 %            plot(T(1:tm),bubu(1:tm), 'LineWidth',3, 'Color', grey)
@@ -129,10 +134,12 @@ for nn = 1:37
            plot(T(1:tm),bubublank(1:tm), '-k', 'LineWidth',3, 'Color', grey)
 %            plot(T,bubublank, '-k', 'LineWidth',3, 'Color', grey)
             ww = cd;
-            saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.jpeg']) 
-            saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.fig'])  
+            saveas(figure(nn),[ww,'/Results_Static_TEST/PSTH_',num2str(nn),'.jpeg']) 
+            saveas(figure(nn),[ww,'/Results_Static_TEST/PSTH_',num2str(nn),'.fig'])  
     
             close all
+            
+            clear B_static B_static_All B_static_Blanks B_static_Blanks_All
     
 % Uncomment for Each Neuron for that Condition
 % for z = 1:length(B_Static_All);

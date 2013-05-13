@@ -1,8 +1,8 @@
 function My_PSTH_Movies_FEDE %(BIT_Number)
 
-load Fede_STIM.mat
+%load Fede_STIM.mat
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_AcuteTest_19_12_12/ANALYSED/Block-1/PSTH/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/PSTH/25
 
 mkdir ('Results_Movies');
 
@@ -14,10 +14,10 @@ close all
 
 %COLORSET=varycolor(length(Fede_STIM));
 
-for nn = 1:16 %49  %16 
+for nn = 1:37
     countolo = 0;
     B_Movies_All = [];
-    for BIT_Number = 1:136 %1:174
+    for BIT_Number = 1:270
         load([num2str(BIT_Number),'.mat'])
         
         COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
@@ -53,7 +53,7 @@ for nn = 1:16 %49  %16
                 a = mean(B_movies);
                 b = a*(1000/25);
                 B_Movies_All = vertcat(B_Movies_All, b);
-                T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+                T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
                 plot(T,b, 'Color', COLORSET(nn,:))
                 title(['All Moving Conditions, n= ', num2str(countolo)]) 
                 xlabel(['Neuron', num2str(nn)])
@@ -67,7 +67,7 @@ for nn = 1:16 %49  %16
            
             
     end
-           T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+           T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
            %[int tm]=min(abs(T-700));
            bubu = mean(B_Movies_All,1);
            grey=[0.5, 0.5, 0.5];

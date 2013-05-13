@@ -5,7 +5,7 @@ function My_PSTH_FEDE %(BIT_Number)
 cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_AcuteTest_19_12_12/ANALYSED/Block-1/PSTH/25
 
 
-for BIT_Number = 1:136
+for BIT_Number = 1:270
     load([num2str(BIT_Number),'.mat'])
     COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
     figure;
@@ -34,7 +34,7 @@ for BIT_Number = 1:136
         stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000
 
 
-        for nn = 1:16      
+        for nn = 1:37      
         % for nn = 1:length(PSTH{BIT_Number}(1,:,1));      
             for bb=1:length(PSTH{BIT_Number}(1,1,:));   
                 for tr=1:numel(Trial_Spike_Num{nn,BIT_Number})
@@ -51,7 +51,7 @@ for BIT_Number = 1:136
                 % axis tight
 
                 %% Uncomment for All Neurons for that Condition
-                T=linspace(-200,stim_pres_time+200,length(PSTH{BIT_Number}(1,1,:)));
+                T=linspace(-100,stim_pres_time+100,length(PSTH{BIT_Number}(1,1,:)));
                 plot(T,mean(B), 'Color', COLORSET(nn,:))
                 title(['Condition Number ', num2str(BIT_Number)])
                 xlabel(['AllNeurons, n=', num2str(nn)])

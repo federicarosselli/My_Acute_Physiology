@@ -13,13 +13,13 @@ function [RFo fitresulto rsqo]=BarResponse_BarProtocol
 
 POST_STIM_WINDOW_BAR=[250 500]*0.001;
 WINDOW_BAR=POST_STIM_WINDOW_BAR(2)-POST_STIM_WINDOW_BAR(1);
-PATH='/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-6/PSTH/25/';
-mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/RFs');
+PATH='/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/ReceptiveFieldAnalysis/BL_1/PSTH/25/';
+mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/ReceptiveFieldAnalysis/BL_1/RFs');
 NOBJ = 0;
 
 global NN
 
-for NN=1:40;
+for NN=1 %:40;
 
 % NN=NER;
 load STIM_CODE_BAR
@@ -132,7 +132,7 @@ end
         
    end
    
-   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/RFs/', num2str(NN),'.fig']);
+   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/ReceptiveFieldAnalysis/BL_1/RFs/', num2str(NN),'.fig']);
    %imwrite(RFcut,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/RFs/', num2str(NN),'.fig']);
 
  [RFo{NN}]=RF;

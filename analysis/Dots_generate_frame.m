@@ -5,18 +5,18 @@ clc
 
 %%
 %fundamental parameters
-size=[2160 3840];
+size=[1080 1920];
 %size=[452 1206]; %size of the frame
-n_dots=800; %n. of dots
+n_dots=400; %n. of dots
 %true_r_dots=10; %true size of the dots in pixels
-true_r_dots=10;
+true_r_dots=15;
 
 factor=3; %
 r_dots=factor*true_r_dots;
 %other parameters
 max_iterations = 1e5; %number of trials for the random sampling
 %your directory here
-mkdir='/Users/davidezoccolan/Desktop/Dots_Acute';
+mkdir='/Desktop/users/labuser/Dots_Behavior';
 %directory='C:\Users\ansuin\Dropbox\scientific software\python\workspace\Random_Dots\postprocessing';
 %destfile=strcat(directory,'Dots_1.png');
 %%
@@ -89,6 +89,6 @@ imshow(A3,[]);
 %%
 %save image
 
-imwrite(A3,['/Users/davidezoccolan/Desktop/Dots_Acute/', 'Dots_3.png']);
+imwrite(A3,['/Desktop/users/labuser/Dots_Behavior/', 'D_smaller_1.png']);
 
 close all

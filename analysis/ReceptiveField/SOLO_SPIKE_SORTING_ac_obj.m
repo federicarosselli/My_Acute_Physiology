@@ -3,7 +3,7 @@ close all
 clear all
 ss=0;
 FILE_TOO='TEST_REV';
-BLOCK_NUM_SET=[6]
+BLOCK_NUM_SET=[5]
 sub_block=0; %0=full block,1=first half block, 2=second half block
 
 for BLOCK_NUM=BLOCK_NUM_SET
@@ -14,6 +14,7 @@ load([FOLDER_FROM12,'/MATLAB_DATA.mat']);
 
 FOLDER_FROM_REV=FOLDER_FROM12;
 FOLDER_TO=FOLDER_FROM_REV;
+% channa = [1:23, 25:32]
 
 for channel=1:32
 

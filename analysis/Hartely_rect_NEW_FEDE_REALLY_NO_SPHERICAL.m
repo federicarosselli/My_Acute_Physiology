@@ -7,20 +7,20 @@ clear all
 coglio=0;
 count=0;
 N=60;
-% L=1900;   %% px referring to ±120 deg (equalized for the 2 dimensions)
-% W=1900;   %% px referring to ±120 deg (equalized for the 2 dimensions)
-L=1080*3;
-W=1920*3;
+% L=1900;   %% px referring to ï¿½120 deg (equalized for the 2 dimensions)
+% W=1900;   %% px referring to ï¿½120 deg (equalized for the 2 dimensions)
+L=1080;
+W=1920;
 %M=1000;%5000
 refresh_rate=1/(60); %1/(2*28);
-spf= 0.4 %0.03 % [0.03, 0.05, 0.1, 0.4]
+spf=0.05   %0.05 %0.03 % [0.03, 0.05, 0.1, 0.4]
 shift_in_pix = 1.6142; % 0.25 deg
 %/u/shared/CODES
 or=0;
 %kx=3
 %ky=3
 
-for i=0:45:135      %30:90:300    %180:45:315   %0:45:135 %0:45:135orientation
+for i=0 %:45:135      %30:90:300    %180:45:315   %0:45:135 %0:45:135orientation
     or=or+1;
     alberto(or)=i
 % ori{1}=[0 1];%90 deg
@@ -46,9 +46,9 @@ ky=(ori{or}(2)*k);
 %scrivere il valore a seconda dell'orientazione che si vuole!!!
 Dphas=2*pi*0.25*spf; %Dphas=2*pi*0.25*spf;
 
-for orientation=1:4
-    mkdir(['/Users/labuser/Desktop/REALLY_NO_SPH/']) %,'orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
-%mkdir(['/zocconasphys2/acute_rev_core/gssdggds/REALLY_NO_SPH/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
+for orientation=1   %:4
+%     mkdir(['/Users/invernomuto/Desktop/REALLY_NO_SPH/']) %,'orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
+mkdir(['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 %mkdir(['/zocconasphys2/acute_rev_core/Test/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 %mkdir(['/u/shared/Gratings/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 
@@ -136,8 +136,8 @@ H=Hartley_REALLY_FEDE(kx,ky,L,W,PHASE);
 % % % % % % % % saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\New_New_Original','\',num2str(phn),'.jpg'])
 %H_TRUE=IM;
 H_TRUE=H; %imresize(H,2);
-imwrite(H_TRUE,['/Users/labuser/Desktop/REALLY_NO_SPH/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'.jpg'])%'_',num2str(coglio),'.jpg'])
-%imwrite(H_TRUE,['/zocconasphys2/acute_rev_core/Test/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
+% imwrite(H_TRUE,['/Users/labuser/Desktop/REALLY_NO_SPH/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'.jpg'])%'_',num2str(coglio),'.jpg'])
+imwrite(H_TRUE,['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
 %imwrite(H_TRUE,['/u/shared/Gratings/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
 
 toc

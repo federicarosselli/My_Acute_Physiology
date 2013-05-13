@@ -4,10 +4,11 @@ function My_Deg2Pix (my_deg_h, my_deg_v)
 
 %my_deg = 0.25; 
 screen_res = [1920.0, 1080.0];  %% in pixels
+%screen_res = [300, 400]; 
 %screen_res = [3840, 2160];
-%screen_size = [47.7, 26.9];
-screen_size = [103.8, 58.8]; %% in cm, accordin to the setup variable for tg screen
-%screen_size = [207.6, 117.6];
+screen_size = [47.7, 26.9];
+%screen_size = [103.8, 58.8]; %% in cm, accordin to the setup variable for tg screen
+
 d = 30; %% distance from screen in cm
 
 my_rad_h =  my_deg_h*pi/180; %% converts my_degs to rads

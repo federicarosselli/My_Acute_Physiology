@@ -1,6 +1,6 @@
-load Fede_STIM.mat
+% load Fede_STIM.mat
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_AcuteTest_19_12_12/ANALYSED/Block-3/PSTH/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/PSTH/25
 
 mkdir ('Results_Static');
 
@@ -13,10 +13,10 @@ close all
 %COLORSET=varycolor(length(Fede_STIM));
 
 
-for nn = 1:43  %16 
+for nn = 1:37
     countolo = 0;
     B_static_All = [];
-    for BIT_Number = 1:136 %1:174
+    for BIT_Number = 1:270
         load([num2str(BIT_Number),'.mat'])
         
         COLORSET=varycolor(length(PSTH{BIT_Number}(1,:,1)));
@@ -53,7 +53,7 @@ for nn = 1:43  %16
                 a = mean(B_static);
                 b = a*(1000/25);
                 B_static_All = vertcat(B_static_All, b);
-                T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+                T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
                 [int tm]=min(abs(T-700));
                 plot(T(1:tm),b(1:tm), 'Color', COLORSET(nn,:))
                 title(['All Static Conditions, n= ', num2str(countolo)])
@@ -68,7 +68,7 @@ for nn = 1:43  %16
             
     end
     
-           T=linspace(-200,2200,length(PSTH{BIT_Number}(1,1,:)));
+           T=linspace(-100,2100,length(PSTH{BIT_Number}(1,1,:)));
            [int tm]=min(abs(T-700));
            bubu = mean(B_static_All,1);
            grey=[0.5, 0.5, 0.5];
