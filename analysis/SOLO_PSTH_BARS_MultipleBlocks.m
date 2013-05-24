@@ -2,17 +2,17 @@ clear all
 close all
 clc
 w=cd;
-BLOCK_NUM1=67;
+BLOCK_NUM1=56;
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED'];
 
 bin=25/1000;
 
 shift_bin=10/1000;  
 
-for BLOCK_PHASE=1:2
+for BLOCK_PHASE=1  %:2
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCK_NUM1),'/SPIKE.mat'])
 % FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_13_07_201   2/ANALYSED'];
@@ -43,13 +43,17 @@ PRE_TIME=250/1000;
 num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
 BCODE=BCODE(TBCOD<=TB_1_end);
 TBCOD=TBCOD(TBCOD<=TB_1_end);
+
     case 2
 POST_TIME=2200/1000; 
 PRE_TIME=200/1000;
 num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
 BCODE=BCODE(TBCOD>TB_1_end);
 TBCOD=TBCOD(TBCOD>TB_1_end)-TB_1_end;
+
+
 end
+
 BITCODE=BCODE(TBCOD>TSTART);
 TBC=TBCOD(TBCOD>TSTART);
 
@@ -59,7 +63,9 @@ BIT_START=BITCODE(ind_start+1);
 
 ind_stop=find(diff(BITCODE)<=-1);
 STIM_STOP=TBC(ind_stop);
-BIT_STOP=BITCODE(ind_stop); % should be equal to BIT_START
+BIT_STOP=BITCODE(ind_stop);
+
+ % should be equal to BIT_START
 
 %BIT_START=BIT_START(1:13813)
 
@@ -78,7 +84,8 @@ clear BITCODE TBC BCODE TBCOD
 % end
     
 
-for i=unique(sort(BIT_START))%1:max(BIT_START)
+
+for i=unique(sort(BIT_START)) 
 % if chan==1
 % PSTH{i}=zeros(no_noise,num_bin,Trial_Spike_Period{channel}(2)-Trial_Spike_Period{channel}(1)+1);
 % end
@@ -100,7 +107,7 @@ switch BLOCK_PHASE
     case 1
 TIMES=SPIKES.spikes{channel}(SPIKES.spikes{channel}>=Block_1_ST & SPIKES.spikes{channel}<=Block_1_EN);
     case 2
-TIMES=SPIKES.spikes{channel}((SPIKES.spikes{channel})>=(Block_1_EN))-Block_1_EN;
+TIMES=SPIKES.spikes{channel}(SPIKES.spikes{channel}>=Block_2_ST & SPIKES.spikes{channel}<=Block_2_EN);
 end
 
 Spike_Time_Period{chan}(1)=min(SPIKES.spikes{channel});

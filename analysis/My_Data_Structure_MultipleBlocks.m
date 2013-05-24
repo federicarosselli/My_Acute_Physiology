@@ -1,15 +1,14 @@
 function My_Data_Structure_MultipleBlocks (DayOfRecording, Block)
 
 w=cd;
-BLOCKS=Block; %67
+BLOCKS= Block; %67
 bin=25/1000;
 %bin=50/1000;
 
-POST_TIME=2200/1000; 
-PRE_TIME=200/1000;
 
-% DayOfRecording = '18_3_2013';
-AreaOfRecording = 'V1';
+
+% DayOfRecording = '18_3_2  013';
+AreaOfRecording = 'V1b'; %AL %AM
 
 shift_bin=10/1000;
 
@@ -19,11 +18,12 @@ for BLOCK_PHASE=1:2
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCKS),'/SPIKE.mat'])
 
-FOLDER_FROM=FOLDER_FROM12;
 
-mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCKS),'/BL_',num2str(BLOCK_PHASE)])
-    
-mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCKS),'/BL_',num2str(BLOCK_PHASE),'/My_Structure'])
+FOLDER_FROM=FOLDER_FROM12;
+% 
+% mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCKS),'/BL_',num2str(BLOCK_PHASE)])
+%     
+% mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCKS),'/BL_',num2str(BLOCK_PHASE),'/My_Structure/TEST'])
 
 mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCKS),'/BL_',num2str(BLOCK_PHASE),'/My_Structure/', num2str(bin*1000)])
 
@@ -32,24 +32,17 @@ cd(FOLDER_FROM)
 TSTART=0; %sec
 
 
-num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
-
 switch BLOCK_PHASE
     case 1
-BCODE1=BCODE(TBCOD<=TB_1_end);
-TBCOD1=TBCOD(TBCOD<=TB_1_end);
+POST_TIME=500/1000; 
+PRE_TIME=250/1000;
+num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
 
-BITCODE=BCODE1(TBCOD1>TSTART);
-TBC=TBCOD1(TBCOD1>TSTART);
-    case 2
-BCODE2=BCODE(TBCOD>TB_1_end);
-TBCOD2=TBCOD(TBCOD>TB_1_end)-TB_1_end;
+BCODE=BCODE(TBCOD<=TB_1_end);
+TBCOD=TBCOD(TBCOD<=TB_1_end);
 
-BITCODE=BCODE2(TBCOD2>TSTART);
-TBC=TBCOD2(TBCOD2>TSTART);
-end
-
-
+BITCODE=BCODE(TBCOD>TSTART);
+TBC=TBCOD(TBCOD>TSTART);
 
 ind_start=find(diff(BITCODE)>=1);
 STIM_START=TBC(ind_start);
@@ -59,6 +52,34 @@ ind_stop=find(diff(BITCODE)<=-1);
 STIM_STOP=TBC(ind_stop);
 BIT_STOP=BITCODE(ind_stop);
 
+    case 2
+        
+
+POST_TIME=2200/1000; 
+PRE_TIME=200/1000;
+num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
+
+BCODE=BCODE(TBCOD>T_END);
+TBCOD=TBCOD(TBCOD>T_END);
+
+
+BITCODE=BCODE(TBCOD>TSTART);
+TBC=TBCOD(TBCOD>TSTART);
+
+ind_start=find(diff(BITCODE)>=1);
+STIM_START=TBC(ind_start);
+BIT_START=BITCODE(ind_start+1);
+
+ind_stop=find(diff(BITCODE)<=-1);
+STIM_STOP=TBC(ind_stop);
+BIT_STOP=BITCODE(ind_stop);
+
+end
+
+
+
+
+
 
 if unique(BIT_START-BIT_STOP)~=0
     error('check the BIT conversion')
@@ -66,7 +87,7 @@ end
 
 % hist(BIT_START, 270)
 
-clear BITCODE TBC BCODE TBCOD
+clear B1 B2 T1 T2 TBC BCODE TBCOD
 
 NeuronS = 1:size(SPIKES.channel,2);
 BitCodeS = unique(sort(BIT_START));
@@ -79,29 +100,33 @@ PSTH=cell(zeros());
 tic
 
 neurons=0 ;
-for nn=1:2%NeuronS     %% note: in session 10_4_2013 problems with neuron num 12: remove from analysis
+for nn=NeuronS     
     
     
     neurons = neurons+1;
     Shape = SPIKES.shape(nn);
     Channel=GetChannel(neurons,ChannelS);
         
-    First_Spike = min(SPIKES.spikes{nn});
-    Last_Spike = max(SPIKES.spikes{nn});
+%     First_Spike = min(SPIKES.spikes{nn});
+%     Last_Spike = max(SPIKES.spikes{nn});
         
     switch BLOCK_PHASE
         case 1
-    All_Spikes = SPIKES.spikes{nn}(SPIKES.spikes{nn}>=Block_1_ST & SPIKES.spikes{nn}<=Block_1_EN);
+    First_Spike = min(SPIKES.spikes{nn});
+    Last_Spike = max(SPIKES.spikes{nn}); 
+    All_Spikes = SPIKES.spikes{nn}(SPIKES.spikes{nn}>=Block_1_ST & SPIKES.spikes{nn}<=Block_1_EN);  %TB_1_start & SPIKES.spikes{nn}<=TB_1_end);        %Block_1_ST & SPIKES.spikes{nn}<=Block_1_EN);
     n_spikes=[1:length(All_Spikes)-1,1]-1;  
     Mean_Firing_Rate = regress(All_Spikes,n_spikes');
         case 2
-    All_Spikes=SPIKES.spikes{nn}((SPIKES.spikes{nn})>=(Block_1_EN))-Block_1_EN;
+    First_Spike = min(SPIKES.spikes{nn});
+    Last_Spike = max(SPIKES.spikes{nn});
+    All_Spikes=SPIKES.spikes{nn}(SPIKES.spikes{nn}>max([TIMES_en]) & SPIKES.spikes{nn}<=Block_2_EN);        %Block_2_ST & SPIKES.spikes{nn}<=Block_2_EN);       %Block_1_EN)-Block_1_EN;
     n_spikes=[1:length(All_Spikes)-1,1]-1;  
     Mean_Firing_Rate = regress(All_Spikes,n_spikes');
     end
 
     
-    for i=1:2%BitCodeS
+    for i=BitCodeS
 
         
         [TT First_Trial] = min(abs(First_Spike-STIM_START));
@@ -132,6 +157,7 @@ for nn=1:2%NeuronS     %% note: in session 10_4_2013 problems with neuron num 12
             
             if (All_Trial_NumberS(tt)>=First_Trial & All_Trial_NumberS(tt)<=Last_Trial)
             My_Spikes{i,tt0}=SPIKES_TAKEN;  %% spikes per trial (RASTER)
+%             T_num=T_num+1;
 
                 for b=1:num_bin+1
                     PSTH{i,neurons}(T_num,b)=sum(SPIKES_TAKEN>shift_bin*(b-1) & SPIKES_TAKEN<(shift_bin*(b-1)+bin));  

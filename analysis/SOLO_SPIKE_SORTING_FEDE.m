@@ -3,13 +3,13 @@ close all
 clear all
 ss=0;
 FILE_TOO='TEST_REV';
-BLOCK_NUM_SET=[8]
+BLOCK_NUM_SET=[7]
 sub_block=0; %0=full block,1=first half block, 2=second half block
 
 for BLOCK_NUM=BLOCK_NUM_SET
 
 %FOLDER_FROM12=['/zocconasphys1/acute_objects/Sina_Acute1_Rec_20_12_2012/ANALYSED/Block-', num2str(BLOCK_NUM)];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-', num2str(BLOCK_NUM_SET)];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-', num2str(BLOCK_NUM_SET)];
 load([FOLDER_FROM12,'/MATLAB_DATA.mat']);
 
 FOLDER_FROM_REV=FOLDER_FROM12;

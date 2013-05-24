@@ -7,9 +7,9 @@ close all
 clc
 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/TEST/BL_2/My_Structure/25
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
-
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-3/My_Structure/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-67/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/25
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
@@ -25,10 +25,10 @@ mkdir ('Results_Movies');
 
 COLORSET=varycolor(neuronS);
 
-for nn = 1:neuronS
+for nn = 1:5 %neuronS
     countolo = 0;
     
-
+        
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
     load(['NEURON_', num2str(nn),'.mat'])
     

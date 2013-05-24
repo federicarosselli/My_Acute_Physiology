@@ -2,7 +2,7 @@ function My_PSTH_Movies_FEDE %(BIT_Number)
 
 %load Fede_STIM.mat
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/PSTH/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/25
 
 mkdir ('Results_Movies');
 
@@ -14,7 +14,7 @@ close all
 
 %COLORSET=varycolor(length(Fede_STIM));
 
-for nn = 1:37
+for nn = 1:5 %37
     countolo = 0;
     B_Movies_All = [];
     for BIT_Number = 1:270

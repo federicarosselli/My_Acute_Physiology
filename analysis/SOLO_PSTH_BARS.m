@@ -2,11 +2,11 @@ clear all
 close all
 clc
 w=cd;
-blocks=[67];
+blocks=[8];
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED'];
 
 bin=25/1000;
 

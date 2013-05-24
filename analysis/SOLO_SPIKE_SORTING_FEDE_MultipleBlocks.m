@@ -3,15 +3,15 @@ close all
 clear all
 ss=0;
 FILE_TOO='TEST_REV';
-BLOCK_NUM_SET=[5 6]
+BLOCK_NUM_SET1=[5 6]
 sub_block=0; %0=full block,1=first half block, 2=second half block
 
-DateOfRecording = '10_4_2013'
+DateOfRecording = '12_4_2013'
 
 for BLOCK_NUM=1%BLOCK_NUM_SET
 
 %FOLDER_FROM12=['/zocconasphys1/acute_objects/Sina_Acute1_Rec_20_12_2012/ANALYSED/Block-', num2str(BLOCK_NUM)];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/Block-', num2str(1)];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM_SET1(1))];
 load([FOLDER_FROM12,'/MATLAB_DATA.mat']);
 TIMES_1=TIMES;
 Yeneu_1=Yeneu;
@@ -20,7 +20,7 @@ Block_1_EN=TIMES_1{1}(end);
 BCODE_1=BCODE;
 TBCOD_1=TBCOD;
 
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/Block-', num2str(2)];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM_SET1(2))];
 load([FOLDER_FROM12,'/MATLAB_DATA.mat']);
 TIMES_2=TIMES;
 Yeneu_2=Yeneu;
@@ -30,20 +30,26 @@ BCODE_2=BCODE;
 TBCOD_2=TBCOD;
 
 BCODE=[BCODE_1 BCODE_2];
-TBCOD=[TBCOD_1 TBCOD_2+TBCOD_1(end)];
+
 TB_1_end=TBCOD_1(end);
+for ch=1:32
+TIMES_en(ch)=TIMES_1{ch}(end);
+end
+T_END=max([TIMES_en Block_1_EN]);
+
+TBCOD=[TBCOD_1 TBCOD_2+T_END];
 
 for ch=1:32
-TIMES{ch}=[TIMES_1{ch} TIMES_2{ch}+TIMES_1{ch}(end)];
+TIMES{ch}=[TIMES_1{ch} TIMES_2{ch}+T_END];
 Yeneu{ch}=[Yeneu_1{ch} Yeneu_2{ch}];
 end
 
-FOLDER_FROM_REV=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/BlockS-', num2str(12)];
+FOLDER_FROM_REV=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/BlockS-', num2str(56)];
 FOLDER_TO=FOLDER_FROM_REV;
 
 for channel=1:32
 
-clearvars -except TB_1_end Block_1_ST Block_1_EN Block_2_ST Block_2_EN FOLDER_FROM_REV FILE_TOO TIMES Yeneu sub_block M SPIKES ss channel BCODE TBCOD TIME_CU BLOCK_NUM FOLDER_FROM FILE_TO FOLDER_TO BLOCK_NUM_SET sub_block TEND ST
+clearvars -except T_END TIMES_en TB_1_end Block_1_ST Block_1_EN Block_2_ST Block_2_EN FOLDER_FROM_REV FILE_TOO TIMES Yeneu sub_block M SPIKES ss channel BCODE TBCOD TIME_CU BLOCK_NUM FOLDER_FROM FILE_TO FOLDER_TO BLOCK_NUM_SET sub_block TEND ST
 
 channel
 
@@ -136,7 +142,7 @@ end
 
 end
 
-clearvars -except TB_1_end SPIKES BCODE TBCOD FOLDER_TO M sub_block BLOCK_NUM FILE_TOO Block_1_ST Block_1_EN Block_2_ST Block_2_EN
+clearvars -except T_END TIMES_en TB_1_end SPIKES BCODE TBCOD FOLDER_TO M sub_block BLOCK_NUM FILE_TOO Block_1_ST Block_1_EN Block_2_ST Block_2_EN
 save([FOLDER_TO '/SPIKE.mat'],'-v7.3')
 
 

@@ -9,7 +9,7 @@ POST_TIME=2200/1000;
 PRE_TIME=200/1000;
 
 % DayOfRecording = '18_3_2013';
-AreaOfRecording = 'V1';
+AreaOfRecording = 'V1b'; % AL %AM
 
 shift_bin=10/1000;
 
@@ -111,6 +111,7 @@ for nn=NeuronS
             
             if (All_Trial_NumberS(tt)>=First_Trial & All_Trial_NumberS(tt)<=Last_Trial)
             My_Spikes{i,tt0}=SPIKES_TAKEN;  %% spikes per trial (RASTER)
+%             T_num=T_num+1;
 
                 for b=1:num_bin+1
                     PSTH{i,neurons}(T_num,b)=sum(SPIKES_TAKEN>shift_bin*(b-1) & SPIKES_TAKEN<(shift_bin*(b-1)+bin));  
