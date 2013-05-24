@@ -20,8 +20,8 @@ addpath /zocconasphys1/chronic_inv_rec/codes/ReceptiveField
 
 POST_STIM_WINDOW_BAR=[250 500]*0.001;
 WINDOW_BAR=POST_STIM_WINDOW_BAR(2)-POST_STIM_WINDOW_BAR(1);
-% PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/ReceptiveFieldAnalysis/BL_1/PSTH/25/'];
-% mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/ReceptiveFieldAnalysis/BL_1/RFs');
+% PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/PSTH/25/'];
+% mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs');
 
 PATH=('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/PSTH/25/');
 mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/');
@@ -138,13 +138,15 @@ end
         axis equal 
         axis off
         colorbar
-        figure(NN);
+%         figure(NN);
         set(gca,'Units','Normalized','Position',[0.5 0.5 0.5 0.5])
         
         
    end
+%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs/', num2str(NN),'.fig']);
+%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs/', num2str(NN),'.png']);
    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/', num2str(NN),'.fig']);
-%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/ReceptiveFieldAnalysis/BL_1/RFs/', num2str(NN),'.fig']);
+   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/', num2str(NN),'.png']);
    %imwrite(RFcut,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/RFs/', num2str(NN),'.fig']);
 
  [RFo{NN}]=RF;
@@ -161,8 +163,8 @@ clearvars -except RFo fitresulto rsqo NN
 
 %%% note: where this is gonna save depends on the directory ur IN (u must be see ANALYZED in the current folder)
 
-% cd ANALYSED/BlockS-56/ReceptiveFieldAnalysis/BL_1/RFs/
 cd ANALYSED/Block-8/RFs/
+% cd ANALYSED/BlockS-67/BL_1/RFs/
 
 save RFo 
 save fitresulto 

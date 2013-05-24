@@ -1,26 +1,28 @@
 function RF_Track %(BIT_Number)
 
+addpath /zocconasphys1/chronic_inv_rec/codes/ReceptiveField
+
+Cool_RFs
+
 cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/
 
-cd BlockS-12/ReceptiveFieldAnalysis/BL_1/RFs
+cd BlockS-12/BL_1/RFs
 
 load ('RFo.mat')
 RFo_1=RFo;
 files_1 = dir(fullfile('*.fig'));
 neuronS_1 = (numel(files_1));
-cool_RFs_1=[1:neuronS_1]; 
+cool_RFs_1=BlockS_12; 
 dim_1=length(cool_RFs_1);
 
 [m,n]=size(RFo_1);
 [j,k]=size(RFo_1{1});
 margin=0.5;
 
-labels_1={1:dim_1};
+labels_1={cool_RFs_1};
 
 
 clear RFo
-
-cd ..
 
 cd ..
 
@@ -36,17 +38,16 @@ load ('RFo.mat')
 RFo_2=RFo;
 files_2 = dir(fullfile('*.fig'));
 neuronS_2 = (numel(files_2));
-cool_RFs_2=[1:neuronS_2]; 
+cool_RFs_2=Block_3; 
 dim_2=length(cool_RFs_2);
 
-labels_2={1:dim_2};
+labels_2={cool_RFs_2};
 
 clear RFo
 
 cd ..
 
 cd ..
-
 
 
 cd Block-4/RFs
@@ -55,10 +56,10 @@ load ('RFo.mat')
 RFo_3=RFo;
 files_3 = dir(fullfile('*.fig'));
 neuronS_3 = (numel(files_3));
-cool_RFs_3=[1:neuronS_3]; 
+cool_RFs_3=Block_4; 
 dim_3=length(cool_RFs_3);
 
-labels_3={1:dim_3};
+labels_3={cool_RFs_3};
 
 clear RFo
 
@@ -68,17 +69,16 @@ cd ..
 
 
 
-
-cd BlockS-56/ReceptiveFieldAnalysis/BL_1/RFs
+cd BlockS-56/BL_1/RFs
 
 load ('RFo.mat')
 RFo_4=RFo;
 files_4 = dir(fullfile('*.fig'));
 neuronS_4 = (numel(files_4));
-cool_RFs_4=[1:neuronS_4]; 
+cool_RFs_4=BlockS_56; 
 dim_4=length(cool_RFs_4);
 
-labels_4={1:dim_4};
+labels_4={cool_RFs_4};
 
 clear RFo
 
@@ -88,7 +88,6 @@ cd ..
 
 cd ..
 
-cd ..
 
 
 
@@ -100,10 +99,10 @@ load ('RFo.mat')
 RFo_5=RFo;
 files_5 = dir(fullfile('*.fig'));
 neuronS_5 = (numel(files_5));
-cool_RFs_5=[1:neuronS_5]; 
+cool_RFs_5=Block_7; 
 dim_5=length(cool_RFs_5);
 
-labels_5={1:dim_5};
+labels_5={cool_RFs_5};
 
 clear RFo
 
@@ -118,10 +117,10 @@ load ('RFo.mat')
 RFo_6=RFo;
 files_6 = dir(fullfile('*.fig'));
 neuronS_6 = (numel(files_6));
-cool_RFs_6=[1:neuronS_6]; 
+cool_RFs_6=Block_8; 
 dim_6=length(cool_RFs_6);
 
-labels_6={1:dim_6};
+labels_6={cool_RFs_6};
 
 clear RFo
 
@@ -130,14 +129,13 @@ cd ..
 cd ..
 
 
-
 mkdir ('RFTrack');
 
 
 dimS = [dim_1, dim_2, dim_3, dim_4, dim_5, dim_6];
-RFoS = [RFo_1, RFo_2, RFo_3, RFo_4, RFo_5, RFo_6];
-cool_RFsS = [cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5, cool_RFs_6];
-labelS = [labels_1, labels_2, labels_3, labels_4, labels_5, labels_6];
+all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5, RFo_6};
+cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5, cool_RFs_6};
+all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5, labels_6};
 
 
 
@@ -147,9 +145,9 @@ COLORSET=varycolor(6);  % number of blocks
 for z = 1:6 %number of blocks
     
     dim = dimS(z);
-    RFo = RFoS(z);
-    cool_RFs = cool_RFsS(z);
-    label = labelS(z);
+    RFo = all_RFoS.RFs{1,(z)};
+    cool_RFs = cool_RFsS.RFs{1,(z)};
+    label = all_labelS.RFs{1,(z)};
     
     for i=1:dim
         empty_screen=zeros(j,k);
@@ -178,9 +176,11 @@ for z = 1:6 %number of blocks
 
     figure(z);
     plot (falla, fwalla, '-o', 'Color', COLORSET(z,:));
-    set (gca, 'ylim', [0 6], 'xlim', [0 11]);
+    set (gca, 'ylim', [0 9], 'xlim', [0 12]);
     figure (gcf);
-%     text(falla, fwalla, label);
+    text(falla, fwalla, label);
+    
+    clear falla fwalla
 
     
 end;
@@ -196,4 +196,3 @@ end;
 % text(x,y,labels);
 
 
-end
