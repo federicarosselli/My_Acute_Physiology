@@ -14,7 +14,7 @@ shift_bin=10/1000;
 
 FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED'];
 
-for BLOCK_PHASE=1:2
+for BLOCK_PHASE=2 %1:2
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCKS),'/SPIKE.mat'])
 

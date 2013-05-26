@@ -1,14 +1,14 @@
 function My_PSTH_Static_FEDE_BlankTest_NuStructure 
 
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/25
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_4_2013/ANALYSED/BlockS-34/BL_2/My_Structure/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-7/My_Structure/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-mkdir ('Results_Static');
+mkdir ('PSTHS_Static');
 
         % bb = 1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   % bb = bin number;
         % tr = 1:length(Trials{1,1})        % tr = trial number;
@@ -18,7 +18,7 @@ mkdir ('Results_Static');
 COLORSET=varycolor(neuronS);
 
 
-for nn = 3 %:8 %1:neuronS
+for nn = 1:neuronS
     countolo = 0;
     
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
@@ -55,9 +55,11 @@ for nn = 3 %:8 %1:neuronS
             if stim_pres_time <= 1000
             countolo = countolo+1;
                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                        for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
-                        B_static_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                        end
+                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
+                         for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+                            B_static_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+                         end
+                         end
                      end
             end
                  
@@ -94,9 +96,11 @@ for nn = 3 %:8 %1:neuronS
             countolo = countolo+1;
 
                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);                   
-                        for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+                    if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0    
+                    for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
                         B_static(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                        end
+                    end
+                    end
                 end
                 
                 figure(nn)                
@@ -111,7 +115,7 @@ for nn = 3 %:8 %1:neuronS
                 xlabel(['Area ', char(My_Neurons.Area)]) %, ', MeanFiringRate ', num2str(MFR)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
-                ylim([-20 300])
+%                 ylim([-20 300])
                 hold on;
                  
             end
@@ -129,8 +133,8 @@ for nn = 3 %:8 %1:neuronS
            plot(T(1:tm),bubublank(1:tm), '-k', 'LineWidth',2, 'Color', grey)
 %            plot(T,bubublank, '-k', 'LineWidth',3, 'Color', grey)
             ww = cd;
-            saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.jpeg']) 
-            saveas(figure(nn),[ww,'/Results_Static/PSTH_',num2str(nn),'.fig'])  
+            saveas(figure(nn),[ww,'/PSTHS_Static/PSTH_',num2str(nn),'.jpeg']) 
+            saveas(figure(nn),[ww,'/PSTHS_Static/PSTH_',num2str(nn),'.fig'])  
     
             close all
             

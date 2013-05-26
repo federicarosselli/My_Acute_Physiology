@@ -2,17 +2,17 @@ clear all
 close all
 clc
 w=cd;
-BLOCK_NUM1=56;
+BLOCK_NUM1=67;
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED'];
 
 bin=25/1000;
 
 shift_bin=10/1000;  
 
-for BLOCK_PHASE=1  %:2
+for BLOCK_PHASE=2 %1 
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCK_NUM1),'/SPIKE.mat'])
 % FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_13_07_201   2/ANALYSED'];
@@ -21,9 +21,9 @@ load([FOLDER_FROM12,'/BlockS-',num2str(BLOCK_NUM1),'/SPIKE.mat'])
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_13_07_2012/ANALYSED'];
 FOLDER_FROM=FOLDER_FROM12;
 
-mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCK_NUM1),'/ReceptiveFieldAnalysis/BL_',num2str(BLOCK_PHASE),'/PSTH'])
+mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCK_NUM1),'/BL_',num2str(BLOCK_PHASE),'/PSTH'])
 
-mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCK_NUM1),'/ReceptiveFieldAnalysis/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000)])
+mkdir([FOLDER_FROM,'/BlockS-',num2str(BLOCK_NUM1),'/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000)])
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Recording_21_6_2012/ANALYSED'];
 
@@ -41,18 +41,9 @@ switch BLOCK_PHASE
 POST_TIME=500/1000; 
 PRE_TIME=250/1000;
 num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
+
 BCODE=BCODE(TBCOD<=TB_1_end);
 TBCOD=TBCOD(TBCOD<=TB_1_end);
-
-    case 2
-POST_TIME=2200/1000; 
-PRE_TIME=200/1000;
-num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
-BCODE=BCODE(TBCOD>TB_1_end);
-TBCOD=TBCOD(TBCOD>TB_1_end)-TB_1_end;
-
-
-end
 
 BITCODE=BCODE(TBCOD>TSTART);
 TBC=TBCOD(TBCOD>TSTART);
@@ -64,6 +55,30 @@ BIT_START=BITCODE(ind_start+1);
 ind_stop=find(diff(BITCODE)<=-1);
 STIM_STOP=TBC(ind_stop);
 BIT_STOP=BITCODE(ind_stop);
+
+    case 2
+        
+
+POST_TIME=2200/1000; 
+PRE_TIME=200/1000;
+num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
+
+BCODE=BCODE(TBCOD>T_END);
+TBCOD=TBCOD(TBCOD>T_END);
+
+
+BITCODE=BCODE(TBCOD>TSTART);
+TBC=TBCOD(TBCOD>TSTART);
+
+ind_start=find(diff(BITCODE)>=1);
+STIM_START=TBC(ind_start);
+BIT_START=BITCODE(ind_start+1);
+
+ind_stop=find(diff(BITCODE)<=-1);
+STIM_STOP=TBC(ind_stop);
+BIT_STOP=BITCODE(ind_stop);
+
+end
 
  % should be equal to BIT_START
 
@@ -107,7 +122,7 @@ switch BLOCK_PHASE
     case 1
 TIMES=SPIKES.spikes{channel}(SPIKES.spikes{channel}>=Block_1_ST & SPIKES.spikes{channel}<=Block_1_EN);
     case 2
-TIMES=SPIKES.spikes{channel}(SPIKES.spikes{channel}>=Block_2_ST & SPIKES.spikes{channel}<=Block_2_EN);
+TIMES=SPIKES.spikes{channel}(SPIKES.spikes{channel}>max([TIMES_en]) & SPIKES.spikes{channel}<=Block_2_EN);     
 end
 
 Spike_Time_Period{chan}(1)=min(SPIKES.spikes{channel});
@@ -158,11 +173,11 @@ end
 %end
 [i chan]
 w=cd;
-save([w,'/BlockS-',num2str(BLOCK_NUM1),'/ReceptiveFieldAnalysis/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000),'/RASTER_',num2str(i),'_',num2str(chan),'.mat'],'RASTER')
+save([w,'/BlockS-',num2str(BLOCK_NUM1),'/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000),'/RASTER_',num2str(i),'_',num2str(chan),'.mat'],'RASTER')
 clear RASTER
 end
 CHANNELS=SPIKES.channel;
-save([w,'/BlockS-',num2str(BLOCK_NUM1),'/ReceptiveFieldAnalysis/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000),'/',num2str(i),'.mat'],'PSTH','Spike_Time_Period','STIM_START','STIM_STOP','TRIAL_TI','Trial_Spike_Num','Trial_Spike_Period','bin','PRE_TIME','POST_TIME','shift_bin','CHANNELS','-v7.3')
+save([w,'/BlockS-',num2str(BLOCK_NUM1),'/BL_',num2str(BLOCK_PHASE),'/PSTH/',num2str(bin*1000),'/',num2str(i),'.mat'],'PSTH','Spike_Time_Period','STIM_START','STIM_STOP','TRIAL_TI','Trial_Spike_Num','Trial_Spike_Period','bin','PRE_TIME','POST_TIME','shift_bin','CHANNELS','-v7.3')
 clear PSTH RASTER
 end
 end
