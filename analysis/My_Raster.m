@@ -38,7 +38,7 @@ addpath /zocconasphys1/chronic_inv_rec/codes/
 load My_StimS
 
 Cool_Psths
-neuronS = BlockS_56_Movies;   %%% >>>>>>> optimize!!!
+neuronS = BlockS_56;   %%% >>>>>>> optimize!!!
 
 
 cd (my_folder)
@@ -47,7 +47,7 @@ cd (my_folder)
 COLORSET=varycolor(length(neuronS));
 
 
-for nn = neuronS
+for nn = 3 %neuronS
     countolo=0;
         
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
@@ -89,7 +89,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                     
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -135,7 +136,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -209,7 +211,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -276,7 +279,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -350,7 +354,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -385,9 +390,9 @@ for nn = neuronS
                         xlabel(['Clockwise Moving Ent', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 35 && fsz == 35
                         xlabel(['Azimuth Moving Ent', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialAzimuth ', num2str(iaz), ', FinalAzimuth ', num2str(faz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 20 && fsz == 55
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 20 && fsz == 55
                         xlabel(['Expanding Moving Ent', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 55 && fsz == 20
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 55 && fsz == 20
                         xlabel(['Contracting Moving Ent', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                         end
                         
@@ -423,7 +428,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -496,7 +502,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -531,9 +538,9 @@ for nn = neuronS
                         xlabel(['Clockwise Moving Bunny', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60
                         xlabel(['Azimuth Moving Bunny', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialAzimuth ', num2str(iaz), ', FinalAzimuth ', num2str(faz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 20 && fsz == 55
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 20 && fsz == 55
                         xlabel(['Expanding Moving Bunny', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 55 && fsz == 20
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 55 && fsz == 20
                         xlabel(['Contracting Moving Bunny', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                         end
                     end
@@ -568,7 +575,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -580,7 +588,7 @@ for nn = neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
-                    xlabel(['Static Bun ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
+                    xlabel(['Static Bunny ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
 
@@ -593,7 +601,8 @@ for nn = neuronS
             
             end
             
-        end
+            end
+        
         
             
             
@@ -643,7 +652,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -678,9 +688,9 @@ for nn = neuronS
                         xlabel(['Clockwise Moving Orca', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60
                         xlabel(['Azimuth Moving Orca', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialAzimuth ', num2str(iaz), ', FinalAzimuth ', num2str(faz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 20 && fsz == 55
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 20 && fsz == 55
                         xlabel(['Expanding Moving Orca', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 55 && fsz == 20
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 55 && fsz == 20
                         xlabel(['Contracting Moving Orca', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                       end
                         
@@ -716,7 +726,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -788,7 +799,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -823,9 +835,9 @@ for nn = neuronS
                         xlabel(['Clockwise Moving Pingu', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60
                         xlabel(['Azimuth Moving Pingu', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialAzimuth ', num2str(iaz), ', FinalAzimuth ', num2str(faz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 20 && fsz == 55
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 20 && fsz == 55
                         xlabel(['Expanding Moving Pingu', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 55 && fsz == 20
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 55 && fsz == 20
                         xlabel(['Contracting Moving Pingu', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                     end
                       
@@ -861,7 +873,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -926,7 +939,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -991,7 +1005,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1057,7 +1072,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1120,7 +1136,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1186,7 +1203,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1249,7 +1267,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1314,7 +1333,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1377,7 +1397,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1443,7 +1464,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1506,7 +1528,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1572,7 +1595,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1635,7 +1659,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1701,7 +1726,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1764,7 +1790,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1830,7 +1857,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1893,7 +1921,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1959,7 +1988,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2022,7 +2052,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2088,7 +2119,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2151,7 +2183,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2217,7 +2250,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2280,7 +2314,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2346,7 +2381,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2409,7 +2445,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2475,7 +2512,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2538,7 +2576,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2604,7 +2643,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2667,7 +2707,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2733,7 +2774,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2796,7 +2838,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2862,7 +2905,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2925,7 +2969,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
                         
                     subplot(2,1,2)
-                    plot(T(1:tm),M_PSTH{BIT_Number,nn}(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2991,7 +3036,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -3024,9 +3070,9 @@ for nn = neuronS
                         xlabel(['Anti-Clockwise Moving Dots, Pattern 1', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 60 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['Clockwise Moving Dots, Pattern 1', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 180 && fsz == 304
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 180 && fsz == 304
                         xlabel(['Expanding Moving Dots, Pattern 1', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 304 && fsz == 180
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 304 && fsz == 180
                         xlabel(['Contracting Moving Dots, Pattern 1', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                     end
                     end
@@ -3082,7 +3128,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -3115,9 +3162,9 @@ for nn = neuronS
                         xlabel(['Anti-Clockwise Moving Dots, Pattern 2', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 60 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['Clockwise Moving Dots, Pattern 2', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 180 && fsz == 304
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 180 && fsz == 304
                         xlabel(['Expanding Moving Dots, Pattern 2', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 304 && fsz == 180
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 304 && fsz == 180
                         xlabel(['Contracting Moving Dots, Pattern 2', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                     end
                     end
@@ -3172,7 +3219,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -3205,9 +3253,9 @@ for nn = neuronS
                         xlabel(['Anti-Clockwise Moving Dots, Pattern 3', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 60 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['Clockwise Moving Dots, Pattern 3', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 180 && fsz == 304
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 180 && fsz == 304
                         xlabel(['Expanding Moving Dots, Pattern 3', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 304 && fsz == 180
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 304 && fsz == 180
                         xlabel(['Contracting Moving Dots, Pattern 3', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                     end
                     end
@@ -3263,7 +3311,8 @@ for nn = neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
                     subplot(2,1,2)
-                    plot(T,M_PSTH{BIT_Number,nn},'Color', COLORSET(nn,:), 'linewidth',1)   
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -3297,9 +3346,9 @@ for nn = neuronS
                         xlabel(['Anti-Clockwise Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 60 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['Clockwise Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 180 && fsz == 304
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 180 && fsz == 304
                         xlabel(['Expanding Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==-60 && isz == 304 && fsz == 180
+                        elseif iposx == 0 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 304 && fsz == 180
                         xlabel(['Contracting Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
                     end
                     
