@@ -37,17 +37,19 @@ my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(
 addpath /zocconasphys1/chronic_inv_rec/codes/
 load My_StimS
 
-Cool_Psths
-neuronS = BlockS_56;   %%% >>>>>>> optimize!!!
+% Cool_Psths
+% neuronS = BlockS_67;   %%% >>>>>>> optimize!!!
 
 
 cd (my_folder)
 
+files = dir(fullfile('*.mat'));
+neuronS = (numel(files))/2;
 
-COLORSET=varycolor(length(neuronS));
+COLORSET=varycolor(neuronS);
 
 
-for nn = 3 %neuronS
+for nn = 1:neuronS
     countolo=0;
         
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
@@ -56,7 +58,7 @@ for nn = 3 %neuronS
     bin=PsthAndRaster.BinSize;
 
     
-    %%%% BLANKS
+    %%%% Black BLANKS
     %%%%%%%%%%%%%%%%
     
         if object == 0
@@ -101,16 +103,16 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
-                    xlabel(['Long Blank ', num2str(BIT_Number)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
+                    xlabel(['Long BBlank ', num2str(BIT_Number)]);
 
                     end
 
             ww = cd;
-            stringM=strcat('RASTERS/Blanks/', num2str(nn), '/Movies');
+            stringM=strcat('RASTERS/BBlanks/', num2str(nn), '/Movies');
             mkdir(stringM);
-            saveas(gcf,[ww,'/RASTERS/Blanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Blanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.fig'])  
             close
             
             end
@@ -148,16 +150,16 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
-                    xlabel(['Short Blank ', num2str(BIT_Number)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
+                    xlabel(['Short BBlank ', num2str(BIT_Number)]);
 
                     end
 
             ww = cd;
-            stringS=strcat('RASTERS/Blanks/', num2str(nn), '/Static');
+            stringS=strcat('RASTERS/BBlanks/', num2str(nn), '/Static');
             mkdir(stringS);
-            saveas(gcf,[ww,'/RASTERS/Blanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Blanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.fig'])  
             close
             
             end
@@ -165,6 +167,117 @@ for nn = 3 %neuronS
             end
      
      
+            
+            
+   %%%% White BLANKS
+    %%%%%%%%%%%%%%%%
+    
+        elseif object == 9
+        
+        [a b]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==9));
+        selected_bits = a';
+        
+            for BIT_Number = selected_bits
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            
+            if stim_pres_time >= 1000
+            countolo=countolo+1;
+            figure(countolo);
+            N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
+
+                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+                    else
+                    M_PSTH{BIT_Number,nn}(bb)=0;
+                    S_PSTH{BIT_Number,nn}(bb)=0;
+                    end
+                end   
+            
+                T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
+            
+                    for trl=1:size(PsthAndRaster.MySpikes, 2)
+                    
+                    subplot(2,1,2)
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
+                    xlim([-200 2200])
+                    subplot(2,1,1)
+                    plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
+                    xlim([-200 2200])
+                    [BIT_Number nn trl]
+                    hold on
+                    line([0 0], [0 trl], 'Color', 'k','linewidth',2);
+                    hold on
+                    line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
+                    xlim([-200 2200])
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
+                    xlabel(['Long WBlank ', num2str(BIT_Number)]);
+
+                    end
+
+            ww = cd;
+            stringM=strcat('RASTERS/WBlanks/', num2str(nn), '/Movies');
+            mkdir(stringM);
+            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/Movies/R_',num2str(BIT_Number),'.fig'])  
+            close
+            
+            end
+            
+            if stim_pres_time < 1000
+            countolo=countolo+1;
+            figure(countolo);
+            N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
+
+                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+                    else
+                    M_PSTH{BIT_Number,nn}(bb)=0;
+                    S_PSTH{BIT_Number,nn}(bb)=0;
+                    end
+                end   
+                
+            T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));             
+            [int tm]=min(abs(T-450));
+            
+                    for trl=1:size(PsthAndRaster.MySpikes, 2)
+
+                    subplot(2,1,2)
+                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    plot(T(1:tm),b(1:tm),'Color', COLORSET(nn,:), 'linewidth',1)   
+                    xlim([-200 450])
+                    subplot(2,1,1)
+                    plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
+                    xlim([-200 450])
+                    [BIT_Number nn trl]
+                    hold on
+                    line([0 0],[0 trl], 'Color', 'k','linewidth',2)
+                    hold on
+                    line([250 250], [0 trl], 'Color', 'k','linewidth',2);
+                    xlim([-200 450])
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
+                    xlabel(['Short WBlank ', num2str(BIT_Number)]);
+
+                    end
+
+            ww = cd;
+            stringS=strcat('RASTERS/WBlanks/', num2str(nn), '/Static');
+            mkdir(stringS);
+            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/Static/R_',num2str(BIT_Number),'.fig'])  
+            close
+            
+            end
+            
+            end
+     
+              
     
 
     
@@ -223,7 +336,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
                         if iposx == 15 && iposy == 0 && iinp == 0
                         xlabel(['RightLeft Moving Bar ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -291,7 +404,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Bar ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp)]);
 
                     end
@@ -440,7 +553,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Ent ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
@@ -514,7 +627,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
                         if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
                         xlabel(['RightLeft Moving Bunny ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -587,7 +700,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Bunny ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
@@ -664,7 +777,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                       if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
                         xlabel(['RightLeft Moving Orca ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -738,7 +851,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Orca ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
@@ -811,7 +924,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
                         xlabel(['RightLeft Moving Pingu ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -885,7 +998,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Pingu ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
@@ -910,7 +1023,8 @@ for nn = 3 %neuronS
         selected_bits = a';
         
             for BIT_Number = selected_bits;
-
+            
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -951,24 +1065,24 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0  
                         xlabel(['RightLeft Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.03, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1017,7 +1131,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.03, OR 0 ', num2str(BIT_Number)]);
 
                     end
@@ -1044,6 +1158,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3);   
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1084,23 +1199,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.05, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1148,7 +1263,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.05, OR 0 ', num2str(BIT_Number)]);
 
                     end
@@ -1175,6 +1290,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1215,23 +1331,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15
                         xlabel(['UpDown Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.1, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1279,7 +1395,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.1, OR 0 ', num2str(BIT_Number)]);
 
                     end
@@ -1305,6 +1421,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3);  
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1345,23 +1462,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.4, OR 0', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1409,7 +1526,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.4, OR 0 ', num2str(BIT_Number)]);
 
                     end
@@ -1436,6 +1553,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1476,23 +1594,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0
                         xlabel(['RightLeft Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15
                         xlabel(['UpDown Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.03, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1540,7 +1658,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.03, OR 45 ', num2str(BIT_Number)]);
 
                     end
@@ -1567,6 +1685,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1607,23 +1726,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.05, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1671,7 +1790,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.05, OR 45 ', num2str(BIT_Number)]);
 
                     end
@@ -1698,6 +1817,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1738,23 +1858,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0
                         xlabel(['RightLeft Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.1, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1802,7 +1922,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.1, OR 45 ', num2str(BIT_Number)]);
 
                     end
@@ -1829,6 +1949,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -1869,23 +1990,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0
                         xlabel(['LeftRight Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15
                         xlabel(['UpDown Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.4, OR 45', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -1933,7 +2054,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.4, OR 45 ', num2str(BIT_Number)]);
 
                     end
@@ -1960,6 +2081,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2000,23 +2122,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.03, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2064,7 +2186,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.03, OR 90 ', num2str(BIT_Number)]);
 
                     end
@@ -2091,6 +2213,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2131,23 +2254,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.05, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2195,7 +2318,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.05, OR 90 ', num2str(BIT_Number)]);
 
                     end
@@ -2222,6 +2345,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2262,23 +2386,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0
                         xlabel(['RightLeft Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.1, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2326,7 +2450,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.1, OR 90 ', num2str(BIT_Number)]);
 
                     end
@@ -2353,6 +2477,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2393,23 +2518,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0
                         xlabel(['RightLeft Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.4, OR 90', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2457,7 +2582,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.4, OR 90 ', num2str(BIT_Number)]);
 
                     end
@@ -2484,6 +2609,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2524,23 +2650,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.03, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2588,7 +2714,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.03, OR 135 ', num2str(BIT_Number)]);
 
                     end
@@ -2615,6 +2741,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2655,23 +2782,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.05, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2719,7 +2846,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.05, OR 135 ', num2str(BIT_Number)]);
 
                     end
@@ -2746,6 +2873,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2786,23 +2914,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15
                         xlabel(['UpDown Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.1, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2850,7 +2978,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.1, OR 135 ', num2str(BIT_Number)]);
 
                     end
@@ -2877,6 +3005,7 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
@@ -2917,23 +3046,23 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
-                    if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0
+                    if iposx == 15 && iposy == 0 
                         xlabel(['RightLeft Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['LeftRight Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['UpDown Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0 && iaz ==0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['DownUp Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == -7.5 
                         xlabel(['UpRight Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == -15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == -15 && iposy == 7.5 
                         xlabel(['DownRight Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == -7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == -7.5 
                         xlabel(['UpLeft Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
-                        elseif iposx == 15 && iposy == 7.5 && iinp == 0 && iaz ==0
+                        elseif iposx == 15 && iposy == 7.5 
                         xlabel(['DownLeft Moving Grating, SF 0.4, OR 135', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         
                     end
@@ -2981,7 +3110,7 @@ for nn = 3 %neuronS
                     hold on
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]) 
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     xlabel(['Static Grating, SF 0.4, OR 135 ', num2str(BIT_Number)]);
 
                     end
@@ -3008,10 +3137,14 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
+            fsz = Fede_STIM(BIT_Number, 4);     
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
             fposy = Fede_STIM(BIT_Number, 8); 
+            iinp = Fede_STIM(BIT_Number, 9); 
+            finp = Fede_STIM(BIT_Number, 10); 
             
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
@@ -3048,7 +3181,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['RightLeft Moving Dots, Pattern 1', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -3100,10 +3233,14 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
+            fsz = Fede_STIM(BIT_Number, 4);     
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
             fposy = Fede_STIM(BIT_Number, 8); 
+            iinp = Fede_STIM(BIT_Number, 9); 
+            finp = Fede_STIM(BIT_Number, 10); 
             
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
@@ -3140,7 +3277,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['RightLeft Moving Dots, Pattern 2', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -3191,10 +3328,14 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
+            fsz = Fede_STIM(BIT_Number, 4);     
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
             fposy = Fede_STIM(BIT_Number, 8); 
+            iinp = Fede_STIM(BIT_Number, 9); 
+            finp = Fede_STIM(BIT_Number, 10); 
             
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
@@ -3231,7 +3372,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 210.8 && fsz == 210.8
                         xlabel(['RightLeft Moving Dots, Pattern 3', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx)]);
@@ -3283,10 +3424,14 @@ for nn = 3 %neuronS
         
             for BIT_Number = selected_bits;
 
+            isz = Fede_STIM(BIT_Number, 3); 
+            fsz = Fede_STIM(BIT_Number, 4);     
             iposx = Fede_STIM(BIT_Number, 5); 
             fposx = Fede_STIM(BIT_Number, 6); 
             iposy = Fede_STIM(BIT_Number, 7); 
             fposy = Fede_STIM(BIT_Number, 8); 
+            iinp = Fede_STIM(BIT_Number, 9); 
+            finp = Fede_STIM(BIT_Number, 10); 
             
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
@@ -3323,7 +3468,7 @@ for nn = 3 %neuronS
                     hold on
                     line([2000 2000], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 2200])
-                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), 'Area ', char(My_Neurons.Area)]);
+                    title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
                     
                     if iposx == 15 && iposy == 0 && iinp == 0 && iaz ==0 && isz == 210.8 && fsz == 210.8
