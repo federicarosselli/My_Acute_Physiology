@@ -3489,7 +3489,7 @@ for nn = 1:neuronS
                         xlabel(['DownLeft Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialPosx ', num2str(iposx), ', FinalPosx ', num2str(fposx), ', InitialPosy ', num2str(iposy), ', FinalPosy ', num2str(fposy)]);
                         elseif iposx == 0 && iposy == 0 && iinp == -60 && isz == 210.8 && fsz == 210.8
                         xlabel(['Anti-Clockwise Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
-                        elseif iposx == 0 && iposy == 0 && iinp == 60 && iaz ==0 && isz == 210.8 && fsz == 210.8
+                        elseif iposx == 0 && iposy == 0 && iinp == 60 && isz == 210.8 && fsz == 210.8
                         xlabel(['Clockwise Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', InitialInPlane ', num2str(iinp), ', FinalInPlane ', num2str(finp)]);
                         elseif iposx == 0 && iposy == 0 && iinp == 0 && isz == 180 && fsz == 304
                         xlabel(['Expanding Moving Dots, Pattern 4', ', BitCode ', num2str(BIT_Number), ', InitialSize ', num2str(isz), ', FinaSize ', num2str(fsz)]);
