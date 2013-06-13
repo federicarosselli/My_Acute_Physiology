@@ -20,16 +20,21 @@ addpath /zocconasphys1/chronic_inv_rec/codes/ReceptiveField
 
 POST_STIM_WINDOW_BAR=[250 500]*0.001;
 WINDOW_BAR=POST_STIM_WINDOW_BAR(2)-POST_STIM_WINDOW_BAR(1);
-% PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/PSTH/25/'];
-% mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs');
 
-PATH=('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/PSTH/25/');
-mkdir('/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/');
+BLOCK_NUM=12;
+DayOfRecording = '12_6_2013';
+
+
+PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/PSTH/25/'];
+mkdir(['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/RFs']);
+
+% PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM), '/PSTH/25/'];
+% mkdir(['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM),'/RFs/']);
 NOBJ = 0;
 
 global NN
 
-for NN=1:47;
+for NN=1:34;
 
 % NN=NER;
 load STIM_CODE_BAR
@@ -143,10 +148,10 @@ end
         
         
    end
-%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs/', num2str(NN),'.fig']);
-%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_1/RFs/', num2str(NN),'.png']);
-   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/', num2str(NN),'.fig']);
-   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/Block-8/RFs/', num2str(NN),'.png']);
+   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/RFs/', num2str(NN),'.fig']);
+   saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/RFs/', num2str(NN),'.png']);
+%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM), '/RFs/', num2str(NN),'.fig']);
+%    saveas(gcf,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/Block-', num2str(BLOCK_NUM), '/RFs/', num2str(NN),'.png']);
    %imwrite(RFcut,['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/RFs/', num2str(NN),'.fig']);
 
  [RFo{NN}]=RF;
@@ -158,13 +163,13 @@ end
 
 close all
 
-clearvars -except RFo fitresulto rsqo NN
+clearvars -except RFo fitresulto rsqo NN BLOCK_NUM
 
 
 %%% note: where this is gonna save depends on the directory ur IN (u must be see ANALYZED in the current folder)
 
-cd ANALYSED/Block-8/RFs/
-% cd ANALYSED/BlockS-67/BL_1/RFs/
+% cd (['ANALYSED/Block-', num2str(BLOCK_NUM), '/RFs/'])
+cd (['ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/RFs/'])
 
 save RFo 
 save fitresulto 
