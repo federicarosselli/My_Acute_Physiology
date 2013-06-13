@@ -9,12 +9,14 @@ clc
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/TEST/BL_2/My_Structure/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_4_2013/ANALYSED/BlockS-34/BL_2/My_Structure/25
+
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+%% note: no conditions 35 and 36 were presented for this session
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-mkdir ('PSTHS_Movies');
+mkdir ('PSTHS_Movies_T');
 
         % bb = 1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   % bb = bin number;
         % tr = 1:length(Trials{1,1})        % tr = trial number;
@@ -66,14 +68,17 @@ for nn = 1:neuronS
             
             if stim_pres_time >= 1000
             countolo = countolo+1;
-                     for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
-                        if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
-                        for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
-                        B_movies_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                        end
-                        end
-                     end
-                 
+%                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
+%                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
+%                         for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+%                         B_movies_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+%                         end
+%                         end
+%                      end
+                    ps=PsthAndRaster.Psth{BIT_Number,nn};
+                    trr=PsthAndRaster.Trials{BIT_Number,nn};
+                    B_movies_Blanks=ps(trr,:);
+
                 c = mean(B_movies_Blanks);
                 d = c*(1000/25);
                 B_movies_Blanks_All = vertcat(B_movies_Blanks_All, d);
@@ -84,9 +89,9 @@ for nn = 1:neuronS
     
     %
     lulu = [1:2, 5:bitcodes];
+%     lulu_29_5_2013=[1:2, 5:34, 37:bitcodes];
                 
     for BIT_Number = lulu
-
         
         %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
             % such overwriting made possible the computation of only 156 codes (instead
@@ -108,13 +113,16 @@ for nn = 1:neuronS
             
             if stim_pres_time >= 1000
             countolo = countolo+1;
-                    for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);  
-                        if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
-                        for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})         
-                        B_movies(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                        end
-                        end
-                    end
+%                     for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);  
+%                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
+%                         for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})         
+%                         B_movies(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+%                         end
+%                         end
+%                     end
+            ps2=PsthAndRaster.Psth{BIT_Number,nn};
+            trr2=PsthAndRaster.Trials{BIT_Number,nn};
+            B_movies=ps2(trr2,:);
             
                 figure(nn)                
                 alla = mean(B_movies);
@@ -149,8 +157,8 @@ for nn = 1:neuronS
            plot(T,bubublank, '-k', 'LineWidth',2, 'Color', grey)
            
     ww = cd;
-    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.jpeg']) 
-    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.fig'])  
+    saveas(figure(nn),[ww,'/PSTHS_Movies_T/PSTH_',num2str(nn),'.jpeg']) 
+    saveas(figure(nn),[ww,'/PSTHS_Movies_T/PSTH_',num2str(nn),'.fig'])  
     
     close all
     

@@ -1,6 +1,8 @@
 function My_PSTH_Static_FEDE_BlankTest_NuStructure 
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_4_2013/ANALYSED/BlockS-34/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_7_6_2013/ANALYSED/BlockS-78/BL_2/My_Structure/25
+%% note: no conditions 35 and 36 were presented for this sessio
+
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
@@ -31,7 +33,7 @@ for nn = 1:neuronS
     B_static_Blanks = [];
     B_static_Blanks_All = [];
     
-    for BIT_Number = 3:4  %bitcodes for blanks
+    for BIT_Number = 15 %3:4  %bitcodes for blanks
  
 
         %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
@@ -54,22 +56,28 @@ for nn = 1:neuronS
             
             if stim_pres_time <= 1000
             countolo = countolo+1;
-                     for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
-                         for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
-                            B_static_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                         end
-                         end
-                     end
-            end
+%                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                          if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
+%                          for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+%                             B_static_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+%                          end
+%                          end
+%                      end
+
+                    ps=PsthAndRaster.Psth{BIT_Number,nn};
+                    trr=PsthAndRaster.Trials{BIT_Number,nn};
+                    B_static_Blanks=ps(trr,:);
                  
                 c = mean(B_static_Blanks);
                 d = c*(1000/25);
                 B_static_Blanks_All = vertcat(B_static_Blanks_All, d);
                 
+            end 
+                
                 
     end
     lulu = [1:2, 5:bitcodes];
+%     lulu_29_5_2013=[1:2, 5:34, 37:bitcodes];
     
     for BIT_Number = lulu
 
@@ -95,13 +103,18 @@ for nn = 1:neuronS
             if stim_pres_time <= 1000            
             countolo = countolo+1;
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);                   
-                    if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0    
-                    for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
-                        B_static(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
-                    end
-                    end
-                end
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);                   
+%                     if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0    
+%                     for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+%                         B_static(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+%                     end
+%                     end
+%                 end
+                
+                ps2=PsthAndRaster.Psth{BIT_Number,nn};
+                trr2=PsthAndRaster.Trials{BIT_Number,nn};
+                B_static=ps2(trr2,:);
+            
                 
                 figure(nn)                
                 alla = mean(B_static);
