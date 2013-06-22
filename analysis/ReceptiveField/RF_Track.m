@@ -4,74 +4,68 @@ addpath /zocconasphys1/chronic_inv_rec/codes/ReceptiveField
 
 Cool_RFs
 
-%% 10_4_2013
-
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_4_2013/ANALYSED/
-
-cd BlockS-12/BL_1/RFs
-
-load ('RFo.mat')
-RFo_1=RFo;
-files_1 = dir(fullfile('*.fig'));
-neuronS_1 = (numel(files_1));
-cool_RFs_1=BlockS_12; 
-dim_1=length(cool_RFs_1);
-
-[m,n]=size(RFo_1);
-[j,k]=size(RFo_1{1});
-margin=0.5;
-
-labels_1={cool_RFs_1};
-
-
-clear RFo
-
-cd ..
-
-cd ..
-
-cd ..
-
-
-
-cd BlockS-34/BL_1/RFs
-
-load ('RFo.mat')
-RFo_2=RFo;
-files_2 = dir(fullfile('*.fig'));
-neuronS_2 = (numel(files_2));
-cool_RFs_2=BlockS_34; 
-dim_2=length(cool_RFs_2);
-
-labels_2={cool_RFs_2};
-
-clear RFo
-
-cd ..
-
-cd ..
-
-cd ..
-
-
-mkdir ('RFTrack');
-
-
-dimS = [dim_1, dim_2];
-all_RFoS.RFs = {RFo_1, RFo_2};
-cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2};
-all_labelS.RFs = {labels_1, labels_2};
-
-
-
-%% 12_4_2013
+% %% 18_3_2013
 % 
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/
 % 
-% cd BlockS-12/BL_1/RFs
+% cd BlockS-67
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_1=RFo;
+% fitresulto_1=fitresulto;
+% files_1 = dir(fullfile('*.fig'));
+% neuronS_1 = (numel(files_1));
+% cool_RFs_1=BlockS_67; 
+% dim_1=length(cool_RFs_1);
+% 
+% [m,n]=size(RFo_1);
+% [j,k]=size(RFo_1{1});
+% margin=0.5;
+% 
+% labels_1={cool_RFs_1};
+% 
+% DayOfRec = '18/3/2013';
+% Session = 1;
+% 
+% clear RFo
+% clear fitresulto
+% clear SPIKE
+%
+% cd ..
+% 
+% cd ..
+% 
+% cd ..
+% 
+% mkdir ('RFTrack');
+% 
+% 
+% dimS = [dim_1];
+% all_chanS.RFs = {ChannelS_1};
+% all_RFoS.RFs = {RFo_1};
+% all_fits.RFs = {fitresulto_1};
+% cool_RFsS.RFs = {cool_RFs_1};
+% all_labelS.RFs = {labels_1};
+% 
+
+
+%% 10_4_2013
+
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_4_2013/ANALYSED/
+% 
+% cd BlockS-12
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd BL_1/RFs
+% 
+% load ('RFo.mat')
+% RFo_1=RFo;
+% fitresulto_1=fitresulto;
 % files_1 = dir(fullfile('*.fig'));
 % neuronS_1 = (numel(files_1));
 % cool_RFs_1=BlockS_12; 
@@ -82,9 +76,12 @@ all_labelS.RFs = {labels_1, labels_2};
 % margin=0.5;
 % 
 % labels_1={cool_RFs_1};
-% 
+% DayOfRec = '10/4/2013';
+% Session = 2;
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -94,10 +91,92 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-3/RFs
+% cd BlockS-34
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_2=RFo;
+% fitresulto_2=fitresulto;
+% files_2 = dir(fullfile('*.fig'));
+% neuronS_2 = (numel(files_2));
+% cool_RFs_2=BlockS_34; 
+% dim_2=length(cool_RFs_2);
+% 
+% labels_2={cool_RFs_2};
+% 
+% clear RFo
+% clear fitresulto
+% clear SPIKE
+% 
+% cd ..
+% 
+% cd ..
+% 
+% cd ..
+% 
+% 
+% mkdir ('RFTrack');
+% 
+% 
+% dimS = [dim_1, dim_2];
+% all_chanS.RFs = {ChannelS_1, ChannelS_2};
+% all_fits.RFs = {fitresulto_1, fitresulto_2};
+% all_RFoS.RFs = {RFo_1, RFo_2};
+% cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2};
+% all_labelS.RFs = {labels_1, labels_2};
+
+
+
+%% 12_4_2013
+% 
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/
+% 
+% cd BlockS-12
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd BL_1/RFs
+% 
+% load ('RFo.mat')
+% RFo_1=RFo;
+% fitresulto_1=fitresulto;
+% files_1 = dir(fullfile('*.fig'));
+% neuronS_1 = (numel(files_1));
+% cool_RFs_1=BlockS_12; 
+% dim_1=length(cool_RFs_1);
+% 
+% [m,n]=size(RFo_1);
+% [j,k]=size(RFo_1{1});
+% margin=0.5;
+% 
+% labels_1={cool_RFs_1};
+% DayOfRec = '12/4/2013';
+% Session = 3;
+% 
+% clear RFo
+% clear fitresulto
+% clear SPIKE
+% 
+% cd ..
+% 
+% cd ..
+% 
+% cd ..
+% 
+% 
+% 
+% cd Block-3
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+
+% cd RFs
+% 
+% load ('RFo.mat')
+% RFo_2=RFo;
+% fitresulto_2=fitresulto;
 % files_2 = dir(fullfile('*.fig'));
 % neuronS_2 = (numel(files_2));
 % cool_RFs_2=Block_3; 
@@ -106,16 +185,23 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_2={cool_RFs_2};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
 % cd ..
 % 
 % 
-% cd Block-4/RFs
+% cd Block-4
+% load SPIKE
+% ChannelS_3 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_3=RFo;
+% fitresulto_3=fitresulto;
 % files_3 = dir(fullfile('*.fig'));
 % neuronS_3 = (numel(files_3));
 % cool_RFs_3=Block_4; 
@@ -124,6 +210,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_3={cool_RFs_3};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -131,10 +219,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-56/BL_1/RFs
+% cd BlockS-56
+% load SPIKE
+% ChannelS_4 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_4=RFo;
+% fitresulto_4=fitresulto;
 % files_4 = dir(fullfile('*.fig'));
 % neuronS_4 = (numel(files_4));
 % cool_RFs_4=BlockS_56; 
@@ -143,6 +236,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_4={cool_RFs_4};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -152,10 +247,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-7/RFs
+% cd Block-7
+% load SPIKE
+% ChannelS_5 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_5=RFo;
+% fitresulto_5=fitresulto;
 % files_5 = dir(fullfile('*.fig'));
 % neuronS_5 = (numel(files_5));
 % cool_RFs_5=Block_7; 
@@ -164,24 +264,33 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_5={cool_RFs_5};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
 % cd ..
 % 
 % 
-% cd Block-8/RFs
+% cd Block-8
+% load SPIKE
+% ChannelS_6 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_6=RFo;
+% fitresulto_6=fitresulto;
 % files_6 = dir(fullfile('*.fig'));
 % neuronS_6 = (numel(files_6));
-% cool_RFs_6=Block_6; 
+% cool_RFs_6=Block_8; 
 % dim_6=length(cool_RFs_6);
 % 
 % labels_6={cool_RFs_6};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -194,20 +303,27 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % dimS = [dim_1, dim_2, dim_3, dim_4, dim_5, dim_6];
+% all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5, ChannelS_6};
+% all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5, fitresulto_6};
 % all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5, RFo_6};
 % cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5, cool_RFs_6};
 % all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5, labels_6};
 % 
-% 
-% 
+
+
 % 
 %% 29_5_2013
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_29_5_2013/ANALYSED/
 % 
-% cd BlockS-12/BL_1/RFs
+% cd BlockS-12
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_1=RFo;
+% fitresulto_1=fitresulto;
 % files_1 = dir(fullfile('*.fig'));
 % neuronS_1 = (numel(files_1));
 % cool_RFs_1=BlockS_12; 
@@ -218,9 +334,12 @@ all_labelS.RFs = {labels_1, labels_2};
 % margin=0.5;
 % 
 % labels_1={cool_RFs_1};
-% 
+% DayOfRec = '29/5/2013';
+% Session = 4;
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -230,10 +349,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-3/RFs
+% cd Block-3
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_2=RFo;
+% fitresulto_2=fitresulto;
 % files_2 = dir(fullfile('*.fig'));
 % neuronS_2 = (numel(files_2));
 % cool_RFs_2=Block_3; 
@@ -242,16 +366,23 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_2={cool_RFs_2};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
+%
 % cd ..
 % 
 % cd ..
 % 
 % 
-% cd BlockS-45/BL_1/RFs
+% cd BlockS-45
+% load SPIKE
+% ChannelS_3 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_3=RFo;
+% fitresulto_3=fitresulto;
 % files_3 = dir(fullfile('*.fig'));
 % neuronS_3 = (numel(files_3));
 % cool_RFs_3=BlockS_45; 
@@ -260,6 +391,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_3={cool_RFs_3};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -269,10 +402,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-6/RFs
+% cd Block-6
+% load SPIKE
+% ChannelS_4 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_4=RFo;
+% fitresulto_4=fitresulto;
 % files_4 = dir(fullfile('*.fig'));
 % neuronS_4 = (numel(files_4));
 % cool_RFs_4=Block_6; 
@@ -281,6 +419,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_4={cool_RFs_4};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -291,10 +431,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-78/BL_1/RFs
+% cd BlockS-78
+% load SPIKE
+% ChannelS_5 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_5=RFo;
+% fitresulto_5=fitresulto;
 % files_5 = dir(fullfile('*.fig'));
 % neuronS_5 = (numel(files_5));
 % cool_RFs_5=BlockS_78; 
@@ -303,7 +448,9 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_5={cool_RFs_5};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
+%
 % cd ..
 % 
 % cd ..
@@ -315,6 +462,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % dimS = [dim_1, dim_2, dim_3, dim_4, dim_5];
+% all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5};
+% all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5};
 % all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5};
 % cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5};
 % all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5};
@@ -325,10 +474,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_31_5_2013/ANALYSED/
 % 
-% cd BlockS-12/BL_1/RFs
+% cd BlockS-12
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_1=RFo;
+% fitresulto_1=fitresulto;
 % files_1 = dir(fullfile('*.fig'));
 % neuronS_1 = (numel(files_1));
 % cool_RFs_1=BlockS_12; 
@@ -339,9 +493,12 @@ all_labelS.RFs = {labels_1, labels_2};
 % margin=0.5;
 % 
 % labels_1={cool_RFs_1};
-% 
-% 
+% DayOfRec = '31/5/2013';
+% Session = 5;
+%
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -350,10 +507,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % cd ..
 % 
 % 
-% cd Block-3/RFs
+% cd Block-3
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_2=RFo;
+% fitresulto_2=fitresulto;
 % files_2 = dir(fullfile('*.fig'));
 % neuronS_2 = (numel(files_2));
 % cool_RFs_2=Block_3; 
@@ -362,6 +524,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_2={cool_RFs_2};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -369,10 +533,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-4/RFs
+% cd Block-4
+% load SPIKE
+% ChannelS_3 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_3=RFo;
+% fitresulto_3=fitresulto;
 % files_3 = dir(fullfile('*.fig'));
 % neuronS_3 = (numel(files_3));
 % cool_RFs_3=Block_4; 
@@ -381,6 +550,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_3={cool_RFs_3};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -388,10 +559,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-5/RFs
+% cd Block-5
+% load SPIKE
+% ChannelS_4 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_4=RFo;
+% fitresulto_4=fitresulto;
 % files_4 = dir(fullfile('*.fig'));
 % neuronS_4 = (numel(files_4));
 % cool_RFs_4=Block_5; 
@@ -400,6 +576,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_4={cool_RFs_4};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -408,10 +586,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-67/BL_1/RFs
+% cd BlockS-67
+% load SPIKE
+% ChannelS_5 = SPIKES.channel;
+
+% BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_5=RFo;
+% fitresulto_5=fitresulto;
 % files_5 = dir(fullfile('*.fig'));
 % neuronS_5 = (numel(files_5));
 % cool_RFs_5=BlockS_67; 
@@ -420,7 +603,9 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_5={cool_RFs_5};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
+%
 % cd ..
 % 
 % cd ..
@@ -432,6 +617,9 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % dimS = [dim_1, dim_2, dim_3, dim_4, dim_5];
+% 
+% all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5};
+% all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5};
 % all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5};
 % cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5};
 % all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5};
@@ -440,10 +628,15 @@ all_labelS.RFs = {labels_1, labels_2};
 
 %% 7_6_2013
 % 
-% cd Block-1/RFs
+% cd Block-1
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_1=RFo;
+% fitresulto_1=fitresulto;
 % files_1 = dir(fullfile('*.fig'));
 % neuronS_1 = (numel(files_1));
 % cool_RFs_1=Block_1; 
@@ -454,8 +647,12 @@ all_labelS.RFs = {labels_1, labels_2};
 % margin=0.5;
 % 
 % labels_1={cool_RFs_1};
-% 
+% DayOfRec = '7/6/2013';
+% Session = 6;
+%
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -463,10 +660,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-23/BL_1/RFs
+% cd BlockS-23
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+
+% BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_2=RFo;
+% fitresulto_2=fitresulto;
 % files_2 = dir(fullfile('*.fig'));
 % neuronS_2 = (numel(files_2));
 % cool_RFs_2=BlockS_23; 
@@ -477,7 +679,9 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
+%
 % cd ..
 % 
 % cd ..
@@ -485,10 +689,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % cd ..
 % 
 % 
-% cd Block-4/RFs
+% cd Block-4
+% load SPIKE
+% ChannelS_3 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_3=RFo;
+% fitresulto_3=fitresulto;
 % files_3 = dir(fullfile('*.fig'));
 % neuronS_3 = (numel(files_3));
 % cool_RFs_3=Block_4; 
@@ -497,6 +706,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_3={cool_RFs_3};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -504,10 +715,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-5/RFs
+% cd Block-5
+% load SPIKE
+% ChannelS_4 = SPIKES.channel;
+
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_4=RFo;
+% fitresulto_4=fitresulto;
 % files_4 = dir(fullfile('*.fig'));
 % neuronS_4 = (numel(files_4));
 % cool_RFs_4=Block_5; 
@@ -516,6 +732,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_4={cool_RFs_4};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -526,6 +744,7 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % load ('RFo.mat')
 % RFo_5=RFo;
+% fitresulto_5=fitresulto;
 % files_5 = dir(fullfile('*.fig'));
 % neuronS_5 = (numel(files_5));
 % cool_RFs_5=Block_6; 
@@ -534,16 +753,22 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_5={cool_RFs_5};
 % 
 % clear RFo
+% clear fitresulto
 % 
 % cd ..
 % 
 % cd ..
 % 
 % 
-% cd BlockS-78/BL_1/RFs
+% cd BlockS-78
+% load SPIKE
+% ChannelS_6 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_6=RFo;
+% fitresulto_6=fitresulto;
 % files_6 = dir(fullfile('*.fig'));
 % neuronS_6 = (numel(files_6));
 % cool_RFs_6=BlockS_78; 
@@ -552,6 +777,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_6={cool_RFs_6};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -561,10 +788,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-910/BL_1/RFs
+% cd BlockS-910
+% load SPIKE
+% ChannelS_7 = SPIKES.channel;
+
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_7=RFo;
+% fitresulto_7=fitresulto;
 % files_7 = dir(fullfile('*.fig'));
 % neuronS_7 = (numel(files_7));
 % cool_RFs_7=BlockS_910; 
@@ -573,6 +805,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_7={cool_RFs_7};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -585,139 +819,177 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % dimS = [dim_1, dim_2, dim_3, dim_4, dim_5, dim_6, dim_7];
+% all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5, ChannelS_6, ChannelS_7};
+% all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5, fitresulto_6, fitresulto_7};
 % all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5, RFo_6, RFo_7};
 % cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5, cool_RFs_6, cool_RFs_7};
 % all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5, labels_6, labels_7};
 % 
 % 
-%% 12_6_2013
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_6_2013/ANALYSED/
-% 
-% cd BlockS-12/BL_1/RFs
-% 
-% load ('RFo.mat')
-% RFo_1=RFo;
-% files_1 = dir(fullfile('*.fig'));
-% neuronS_1 = (numel(files_1));
-% cool_RFs_1=BlockS_12; 
-% dim_1=length(cool_RFs_1);
-% 
-% [m,n]=size(RFo_1);
-% [j,k]=size(RFo_1{1});
-% margin=0.5;
-% 
-% labels_1={cool_RFs_1};
-% 
-% 
-% clear RFo
-% 
-% cd ..
-% 
-% cd ..
-% 
-% cd ..
-% 
-% 
-% 
-% cd Block-3/RFs
-% 
-% load ('RFo.mat')
-% RFo_2=RFo;
-% files_2 = dir(fullfile('*.fig'));
-% neuronS_2 = (numel(files_2));
-% cool_RFs_2=Block_3; 
-% dim_2=length(cool_RFs_2);
-% 
-% labels_2={cool_RFs_2};
-% 
-% clear RFo
-% 
-% cd ..
-% 
-% cd ..
-% 
-% 
-% cd BlockS-45/BL_1/RFs
-% 
-% load ('RFo.mat')
-% RFo_3=RFo;
-% files_3 = dir(fullfile('*.fig'));
-% neuronS_3 = (numel(files_3));
-% cool_RFs_3=BlockS_45; 
-% dim_3=length(cool_RFs_3);
-% 
-% labels_3={cool_RFs_3};
-% 
-% clear RFo
-% 
-% cd ..
-% 
-% cd ..
-% 
-% cd ..
-% 
-% 
-% 
-% cd Block-6/RFs
-% 
-% load ('RFo.mat')
-% RFo_4=RFo;
-% files_4 = dir(fullfile('*.fig'));
-% neuronS_4 = (numel(files_4));
-% cool_RFs_4=Block_6; 
-% dim_4=length(cool_RFs_4);
-% 
-% labels_4={cool_RFs_4};
-% 
-% clear RFo
-% 
-% cd ..
-% 
-% cd ..
-% 
-% 
-% 
-% 
-% 
-% 
-% cd BlockS-78/BL_1/RFs
-% 
-% load ('RFo.mat')
-% RFo_5=RFo;
-% files_5 = dir(fullfile('*.fig'));
-% neuronS_5 = (numel(files_5));
-% cool_RFs_5=BlockS_78; 
-% dim_5=length(cool_RFs_5);
-% 
-% labels_5={cool_RFs_5};
-% 
-% clear RFo
-% 
-% cd ..
-% 
-% cd ..
-% 
-% cd ..
-% 
-% 
-% mkdir ('RFTrack');
-% 
-% 
-% dimS = [dim_1, dim_2, dim_3, dim_4, dim_5];
-% all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5};
-% cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5};
-% all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5};
-% 
-% 
+% 12_6_2013
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_6_2013/ANALYSED/
+
+cd BlockS-12
+load SPIKE
+ChannelS_1 = SPIKES.channel;
+cd BL_1/RFs
+
+load ('RFo.mat')
+RFo_1=RFo;
+fitresulto_1=fitresulto;
+files_1 = dir(fullfile('*.fig'));
+neuronS_1 = (numel(files_1));
+cool_RFs_1=BlockS_12; 
+dim_1=length(cool_RFs_1);
+
+[m,n]=size(RFo_1);
+[j,k]=size(RFo_1{1});
+margin=0.5;
+
+labels_1={cool_RFs_1};
+DayOfRec = '12/6/2013';
+Session = 7;
+
+clear RFo
+clear fitresulto
+clear SPIKE
+
+cd ..
+
+cd ..
+
+cd ..
 
 
-%% 18_6_2013
+
+cd Block-3
+load SPIKE
+ChannelS_2 = SPIKES.channel;
+cd RFs
+
+load ('RFo.mat')
+RFo_2=RFo;
+fitresulto_2=fitresulto;
+files_2 = dir(fullfile('*.fig'));
+neuronS_2 = (numel(files_2));
+cool_RFs_2=Block_3; 
+dim_2=length(cool_RFs_2);
+
+labels_2={cool_RFs_2};
+
+clear RFo
+clear fitresulto
+clear SPIKE
+
+cd ..
+
+cd ..
+
+
+cd BlockS-45
+load SPIKE
+ChannelS_3 = SPIKES.channel;
+cd BL_1/RFs
+
+load ('RFo.mat')
+RFo_3=RFo;
+fitresulto_3=fitresulto;
+files_3 = dir(fullfile('*.fig'));
+neuronS_3 = (numel(files_3));
+cool_RFs_3=BlockS_45; 
+dim_3=length(cool_RFs_3);
+
+labels_3={cool_RFs_3};
+
+clear RFo
+clear fitresulto
+clear SPIKE
+
+cd ..
+
+cd ..
+
+cd ..
+
+
+
+cd Block-6
+load SPIKE
+ChannelS_4 = SPIKES.channel;
+cd RFs
+
+load ('RFo.mat')
+RFo_4=RFo;
+fitresulto_4=fitresulto;
+files_4 = dir(fullfile('*.fig'));
+neuronS_4 = (numel(files_4));
+cool_RFs_4=Block_6; 
+dim_4=length(cool_RFs_4);
+
+labels_4={cool_RFs_4};
+
+clear RFo
+clear fitresulto
+clear SPIKE
+
+cd ..
+
+cd ..
+
+
+
+
+
+
+cd BlockS-78
+load SPIKE
+ChannelS_5 = SPIKES.channel;
+cd BL_1/RFs
+
+load ('RFo.mat')
+RFo_5=RFo;
+fitresulto_5=fitresulto;
+files_5 = dir(fullfile('*.fig'));
+neuronS_5 = (numel(files_5));
+cool_RFs_5=BlockS_78; 
+dim_5=length(cool_RFs_5);
+
+labels_5={cool_RFs_5};
+
+clear RFo
+clear fitresulto
+clear SPIKE
+
+cd ..
+
+cd ..
+
+cd ..
+
+
+mkdir ('RFTrack');
+
+all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5};
+dimS = [dim_1, dim_2, dim_3, dim_4, dim_5];
+all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5};
+all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5};
+cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5};
+all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5};
+
+
+
+
+% %% 18_6_2013
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_6_2013/ANALYSED/
 % 
-% cd BlockS-12/BL_1/RFs
+% cd BlockS-12
+% load SPIKE
+% ChannelS_1 = SPIKES.channel;
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_1=RFo;
+% fitresulto_1=fitresulto;
 % files_1 = dir(fullfile('*.fig'));
 % neuronS_1 = (numel(files_1));
 % cool_RFs_1=BlockS_12; 
@@ -728,9 +1000,12 @@ all_labelS.RFs = {labels_1, labels_2};
 % margin=0.5;
 % 
 % labels_1={cool_RFs_1};
-% 
+% DayOfRec = '18/6/2013';
+% Session = 8;
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
@@ -740,10 +1015,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-3/RFs
+% cd Block-3
+% load SPIKE
+% ChannelS_2 = SPIKES.channel;
+% 
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_2=RFo;
+% fitresulto_2=fitresulto;
 % files_2 = dir(fullfile('*.fig'));
 % neuronS_2 = (numel(files_2));
 % cool_RFs_2=Block_3; 
@@ -752,16 +1032,23 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_2={cool_RFs_2};
 % 
 % clear RFo
+% clear fitresulto
+% clear SPIKE
 % 
 % cd ..
 % 
 % cd ..
 % 
 % 
-% cd BlockS-45/BL_1/RFs
+% cd BlockS-45
+% load SPIKE
+% ChannelS_3 = SPIKES.channel;
+% 
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_3=RFo;
+% fitresulto_3=fitresulto;
 % files_3 = dir(fullfile('*.fig'));
 % neuronS_3 = (numel(files_3));
 % cool_RFs_3=BlockS_45; 
@@ -770,7 +1057,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_3={cool_RFs_3};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
 % cd ..
 % 
 % cd ..
@@ -779,10 +1067,14 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd Block-6/RFs
+% cd Block-6
+% load SPIKE
+% ChannelS_4 = SPIKES.channel;
+% cd RFs
 % 
 % load ('RFo.mat')
 % RFo_4=RFo;
+% fitresulto_4=fitresulto;
 % files_4 = dir(fullfile('*.fig'));
 % neuronS_4 = (numel(files_4));
 % cool_RFs_4=Block_6; 
@@ -791,7 +1083,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_4={cool_RFs_4};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
 % cd ..
 % 
 % cd ..
@@ -801,10 +1094,15 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % 
 % 
-% cd BlockS-78/BL_1/RFs
+% cd BlockS-78
+% load SPIKE
+% ChannelS_5 = SPIKES.channel;
+% 
+% cd BL_1/RFs
 % 
 % load ('RFo.mat')
 % RFo_5=RFo;
+% fitresulto_5=fitresulto;
 % files_5 = dir(fullfile('*.fig'));
 % neuronS_5 = (numel(files_5));
 % cool_RFs_5=BlockS_78; 
@@ -813,7 +1111,8 @@ all_labelS.RFs = {labels_1, labels_2};
 % labels_5={cool_RFs_5};
 % 
 % clear RFo
-% 
+% clear fitresulto
+% clear SPIKE
 % cd ..
 % 
 % cd ..
@@ -823,68 +1122,58 @@ all_labelS.RFs = {labels_1, labels_2};
 % 
 % mkdir ('RFTrack');
 % 
-% 
+% all_chanS.RFs = {ChannelS_1, ChannelS_2, ChannelS_3, ChannelS_4, ChannelS_5};
 % dimS = [dim_1, dim_2, dim_3, dim_4, dim_5];
+% all_fits.RFs = {fitresulto_1, fitresulto_2, fitresulto_3, fitresulto_4, fitresulto_5};
 % all_RFoS.RFs = {RFo_1, RFo_2, RFo_3, RFo_4, RFo_5};
 % cool_RFsS.RFs = {cool_RFs_1, cool_RFs_2, cool_RFs_3, cool_RFs_4, cool_RFs_5};
 % all_labelS.RFs = {labels_1, labels_2, labels_3, labels_4, labels_5};
-% 
-% 
 
-COLORSET=varycolor(2);  % number of blocks
 
-for z = 1:2 %number of blocks
+
+COLORSET=varycolor(numel(dimS));  % number of blocks
+
+for z = 5 %1:numel(dimS) %number of blocks
     
     dim = dimS(z);
     RFo = all_RFoS.RFs{1,(z)};
+    chan = all_chanS.RFs{1, (z)};
+    fitresulto = all_fits.RFs{1,(z)};
     cool_RFs = cool_RFsS.RFs{1,(z)};
     label = all_labelS.RFs{1,(z)};
+    labell = label{1};
     
-    for i=1:dim
-        empty_screen=zeros(j,k);
-        alla=0;
-        walla=0;
-        tmpRF=RFo{cool_RFs(i)};
-        tmpMax=max(tmpRF(:));
-        %tmpA=tmpRF> margin*tmpMax;
-        tmpA=tmpRF==tmpMax;
-    %     index=find(tmpA);
-    %     x(i)=ceil(index(1)/j);
-    %     
-    %     y(i)=index(1)-(x(i)-1)*j;
-        empty_screen = empty_screen(i) + tmpA;
-
-    %     labels{i}= cool_RFs(i); % Note the {}
-
-        [alla walla]=ind2sub(size(empty_screen), find(empty_screen==1));
+    all_x = [];
+    all_y = [];
+    rfs=0;
+    
+    for i=1:dim    
+        rfs = rfs+1;
+        Ch=GetChannel(rfs,chan);
+        my_label{i} = Ch;
+%         my_label{i} = Ch(i);
+        tmpRF_x=fitresulto{cool_RFs(i)}.x0;
+        tmpRF_y=fitresulto{cool_RFs(i)}.y0;
         
-        falla(i) = alla (1);
-        fwalla(i) = walla(1);
 
-    %     plot (falla(i), fwalla(i), '-o', 'Color', COLORSET(i,:));
-    %     set (gca, 'ylim', [0 9], 'xlim', [0 12]);
-    %     hold on;
+          all_x = [all_x, tmpRF_x];
+          all_y = [all_y, tmpRF_y];
+        
+        
     end
-
-    figure(z);
-    plot (fwalla, falla, '-o', 'Color', COLORSET(z,:));
-    set (gca, 'ylim', [0 6], 'xlim', [0 11]);
-    figure (gcf);
-    text(fwalla, falla, label);
-    
-    clear falla fwalla
-
+        figure(z)
+        plot (all_x, all_y, '-o', 'Color', COLORSET(z,:));
+        set (gca, 'ylim', [-1 11], 'xlim', [-1 15]);
+        figure (gcf);
+        text(all_x, all_y, my_label);
+        title([char(DayOfRec), ', Block ', num2str(z)]);
+        
+        
     
 end;
-% 
-% plot (falla, fwalla, '-o', 'Color', COLORSET(i,:));
-% set (gca, 'ylim', [0 9], 'xlim', [0 12]);
-% figure (gcf);
-% text(falla, fwalla, a);
 
-
-% figure;
-% surf(empty_screen,'DisplayName','empty_screen');figure(gcf)
-% text(x,y,labels);
+cd RFTrack
+saveas(gcf,[num2str(Session), '.fig']);
+saveas(gcf,[num2str(Session), '.png']);
 
 
