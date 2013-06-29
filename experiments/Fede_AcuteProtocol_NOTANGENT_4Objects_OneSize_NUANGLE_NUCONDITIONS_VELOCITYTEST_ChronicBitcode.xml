@@ -257,7 +257,7 @@
     <experiment tag="MyExperiment" full_name="My Experiment" description="">
         <protocol tag="Motion and Shape Screening" full_name="Protocol 1" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles">
             <block tag="Basic Block" description="" interruptible="YES" selection="sequential" nsamples="10000" sampling_method="cycles" full_name="fullname_~ELEMENTCOUNT~">
-                <list tag="TrialRandomization" full_name="fullname_1" description="" interruptible="YES" selection="random_without_replacement" nsamples="1" sampling_method="cycles">
+                <list tag="TrialRandomization" full_name="fullname_1" description="" interruptible="YES" selection="sequential" nsamples="1" sampling_method="cycles">
                     <range_replicator tag="Velocity Replicator" from="0" to="1" step="1" variable="Velocity_Idx">
                         <range_replicator tag="Moving Gratings X Axes" from="0" to="3" step="1" variable="g_index">
                             <task_system tag="Moving Grating XL" description="" interruptible="YES" full_name="fullname_~ELEMENTCOUNT~">
@@ -1764,7 +1764,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="193+(Velocity_Idx*8)"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="249+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -1950,7 +1950,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="194+(Velocity_Idx*8)"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="250+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -2136,7 +2136,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="195+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="251+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -2322,7 +2322,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="196+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="252+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -2508,7 +2508,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="197+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="253+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -2695,7 +2695,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="198+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="254+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -2882,7 +2882,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="199+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="255+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -3069,7 +3069,7 @@
                             <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="200+Velocity_Idx*8"></action>
+                                <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="256+(Velocity_Idx*8)"></action>
                                 <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                     <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                 </action>
@@ -3257,7 +3257,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="209+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="265+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -3442,7 +3442,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="217+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="273+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -3627,7 +3627,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="225+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="281+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -3812,7 +3812,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="233+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="289+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -3997,7 +3997,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="241+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="297+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -4183,7 +4183,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="249+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="305+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -4369,7 +4369,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="257+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="313+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -4555,7 +4555,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="265+Velocity_Idx+(ImageIndex*4)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="321+Velocity_Idx+(ImageIndex*4)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -4743,7 +4743,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="273+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="329+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -4928,7 +4928,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="277+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="333+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -5113,7 +5113,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="281+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="337+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -5298,7 +5298,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="285+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="341+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -5483,7 +5483,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="289+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="345+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -5669,7 +5669,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="293+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="349+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -5855,7 +5855,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="297+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="353+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
@@ -6041,7 +6041,7 @@
                                 <task_system_state tag="Convert Dec to Bin Stage 1" interruptible="YES">
                                     <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                     <action type="assignment" tag="Initialize num_bit" variable="num_bit" value="1+num_bit"></action>
-                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="301+Velocity_Idx+(dots_index*2)"></action>
+                                    <action type="assignment" tag="Assign Bicode value" variable="bitcode_val" value="357+Velocity_Idx+(dots_index*2)"></action>
                                     <action type="if" tag="assign the first dec number to index" condition="num_bit==1">
                                         <action type="assignment" tag="Assign ImageIndex to Dec_Num" variable="dec_num" value="bitcode_val"></action>
                                     </action>
