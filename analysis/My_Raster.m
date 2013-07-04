@@ -76,16 +76,21 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-            
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+%             
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -122,16 +127,21 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
                 
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));             
             [int tm]=min(abs(T-450));
             
@@ -151,7 +161,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Short BBlank ', num2str(BIT_Number)]);
+                    xlabel(['Short BBlank ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -187,16 +197,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-            
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -233,15 +247,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));             
             [int tm]=min(abs(T-450));
@@ -262,7 +281,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Short WBlank ', num2str(BIT_Number)]);
+                    xlabel(['Short WBlank ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -308,15 +327,21 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
 
             
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
@@ -377,15 +402,21 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -405,7 +436,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Bar ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp)]);
+                    xlabel(['Static Bar ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp)]);
 
                     end
 
@@ -452,16 +483,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -525,16 +560,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -554,7 +593,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Ent ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
+                    xlabel(['Static Ent ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
 
@@ -600,16 +639,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -672,16 +715,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));   
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -701,7 +748,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Bunny ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
+                    xlabel(['Static Bunny ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
 
@@ -750,16 +797,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -823,16 +874,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+    %                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+    %                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+    %                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+    %                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+    %                     else
+    %                     M_PSTH{BIT_Number,nn}(bb)=0;
+    %                     S_PSTH{BIT_Number,nn}(bb)=0;
+    %                     end
+    %                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -852,7 +907,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Orca ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
+                    xlabel(['Static Orca ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
 
@@ -897,16 +952,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -970,16 +1029,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -999,7 +1062,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Pingu ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
+                    xlabel(['Static Pingu ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(iinp), ', Azimuth ', num2str(iaz)]);
 
                     end
 
@@ -1038,16 +1101,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1103,16 +1170,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1132,7 +1203,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.03, OR 0 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.03, OR 0 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1172,16 +1243,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1235,16 +1310,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1264,7 +1343,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.05, OR 0 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.05, OR 0 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1304,16 +1383,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1367,16 +1450,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1396,7 +1483,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.1, OR 0 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.1, OR 0 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1435,16 +1522,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1498,16 +1589,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1527,7 +1622,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.4, OR 0 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.4, OR 0 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1567,16 +1662,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1630,16 +1729,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1659,7 +1762,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.03, OR 45 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.03, OR 45 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1699,16 +1802,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1762,16 +1869,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1791,8 +1902,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.05, OR 45 ', num2str(BIT_Number)]);
-
+                    xlabel(['Static Grating, SF 0.05, OR 45 ', ', BitCode ', num2str(BIT_Number)]);
                     end
 
             ww = cd;
@@ -1831,16 +1941,21 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
 
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -1894,16 +2009,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -1923,7 +2042,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.1, OR 45 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.1, OR 45 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -1963,16 +2082,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2026,16 +2149,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2055,7 +2182,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.4, OR 45 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.4, OR 45 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2095,16 +2222,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2158,16 +2289,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2187,7 +2322,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.03, OR 90 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.03, OR 90 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2227,16 +2362,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2290,16 +2429,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2319,7 +2462,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.05, OR 90 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.05, OR 90 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2359,16 +2502,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2422,16 +2569,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2451,7 +2602,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.1, OR 90 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.1, OR 90 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2491,16 +2642,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2554,16 +2709,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2583,7 +2742,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.4, OR 90 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.4, OR 90 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2623,16 +2782,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2686,16 +2849,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2715,7 +2882,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.03, OR 135 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.03, OR 135 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2755,16 +2922,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2818,16 +2989,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -2847,7 +3022,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.05, OR 135 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.05, OR 135 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -2887,16 +3062,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+    %                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+    %                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+    %                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+    %                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+    %                     else
+    %                     M_PSTH{BIT_Number,nn}(bb)=0;
+    %                     S_PSTH{BIT_Number,nn}(bb)=0;
+    %                     end
+    %                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -2950,15 +3129,15 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
                 
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
@@ -2979,7 +3158,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.1, OR 135 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.1, OR 135 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -3019,16 +3198,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -3082,16 +3265,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-                
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+            ps=PsthAndRaster.Psth{BIT_Number,nn};
+            trr=PsthAndRaster.Trials{BIT_Number,nn};
+            M=ps(trr,:);
+            M_PSTH{BIT_Number,nn}=mean(M);
+            S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
             T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
             [int tm]=min(abs(T-450));
             
@@ -3111,7 +3298,7 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Grating, SF 0.4, OR 135 ', num2str(BIT_Number)]);
+                    xlabel(['Static Grating, SF 0.4, OR 135 ', ', BitCode ', num2str(BIT_Number)]);
 
                     end
 
@@ -3154,16 +3341,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));    
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -3250,16 +3441,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -3345,16 +3540,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
@@ -3441,16 +3640,20 @@ for nn = 1:neuronS
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
-                for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
-                    if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
-                    M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
-                    S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
-                    else
-                    M_PSTH{BIT_Number,nn}(bb)=0;
-                    S_PSTH{BIT_Number,nn}(bb)=0;
-                    end
-                end   
-
+%                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
+%                     if numel(PsthAndRaster.Trials{BIT_Number,nn})~=0
+%                     M_PSTH{BIT_Number,nn}(bb)=mean(N_PSTH(:,bb))/(bin);
+%                     S_PSTH{BIT_Number,nn}(bb)=std(N_PSTH(:,bb))/(sqrt(numel(PsthAndRaster.Trials{BIT_Number,nn}))*bin);
+%                     else
+%                     M_PSTH{BIT_Number,nn}(bb)=0;
+%                     S_PSTH{BIT_Number,nn}(bb)=0;
+%                     end
+%                 end   
+                ps=PsthAndRaster.Psth{BIT_Number,nn};
+                trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps(trr,:);
+                M_PSTH{BIT_Number,nn}=mean(M);
+                S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
             
                     for trl=1:size(PsthAndRaster.MySpikes, 2)

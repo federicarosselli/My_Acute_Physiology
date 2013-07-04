@@ -85,7 +85,7 @@
             <variable tag="g_pos_x" scope="global" logging="when_changed" default_value="0" type="integer" groups="Gratings"></variable>
             <variable tag="g_pos_y" scope="global" logging="when_changed" default_value="0" type="integer" groups="Gratings"></variable>
             <variable tag="g_rotation" scope="global" logging="when_changed" default_value="0" type="integer" groups="Gratings"></variable>
-            <variable tag="g_size" scope="global" logging="when_changed" default_value="228" type="integer" groups="Gratings"></variable>
+            <variable tag="g_size" scope="global" logging="when_changed" default_value="400" type="integer" groups="Gratings"></variable>
             <variable tag="g_index" full_name="fullname9" default_value="0" scope="LOCAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO" groups="Gratings"></variable>
             <variable tag="grating_idx" full_name="fullname9" default_value="0" scope="LOCAL" type="integer" editable="NEVER" logging="WHEN_CHANGED" persistant="NO" groups="Gratings"></variable>
         </folder>
@@ -96,8 +96,8 @@
             <variable tag="barposX_step" scope="global" logging="when_changed" default_value="0.25" type="float" groups="Bars" persistant="1"></variable>
             <variable tag="sin_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
             <variable tag="cos_ang" scope="global" logging="when_changed" default_value="0" type="float"></variable>
-            <variable tag="set_bar_size_x" scope="global" logging="when_changed" default_value="23" type="float" groups="Bars"></variable>
-            <variable tag="set_bar_size_y" scope="global" logging="when_changed" default_value="5" type="float" groups="Bars"></variable>
+            <variable tag="set_bar_size_x" scope="global" logging="when_changed" default_value="22" type="float" groups="Bars"></variable>
+            <variable tag="set_bar_size_y" scope="global" logging="when_changed" default_value="5.4" type="float" groups="Bars"></variable>
             <variable tag="x_pos" scope="global" logging="when_changed" default_value="0" type="float" groups="stim_properties"></variable>
             <variable tag="y_pos" scope="global" logging="when_changed" default_value="0" type="float" groups="stim_properties"></variable>
             <variable tag="Grid_x_pos" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
@@ -111,7 +111,7 @@
         </folder>
         <folder tag="Objects">
             <variable tag="blank_size" scope="global" logging="when_changed" default_value="120" type="integer" groups="Objects"></variable>
-            <variable tag="set_size" scope="global" logging="when_changed" default_value="23" type="float" groups="Objects"></variable>
+            <variable tag="set_size" scope="global" logging="when_changed" default_value="22" type="float" groups="Objects"></variable>
             <variable tag="InPlaneRot_Index" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
             <variable tag="InDepthRot_Index" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
             <variable tag="Position_Index_V" scope="local" logging="when_changed" default_value="0" type="integer"></variable>
@@ -4862,6 +4862,7 @@
                                 <transition type="direct" tag="Always Go to initialize" target="Initialize Parameters"></transition>
                             </task_system_state>
                             <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                <action type="assignment" tag="set g pos x" variable="g_pos_x" value="10"></action>
                                 <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
@@ -5045,6 +5046,7 @@
                                 <transition type="direct" tag="Always Go to initialize" target="Initialize Parameters"></transition>
                             </task_system_state>
                             <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                <action type="assignment" tag="set g pos x" variable="g_pos_x" value="10"></action>
                                 <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
@@ -5228,6 +5230,7 @@
                                 <transition type="direct" tag="Always Go to initialize" target="Initialize Parameters"></transition>
                             </task_system_state>
                             <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                <action type="assignment" tag="set g pos x" variable="g_pos_x" value="10"></action>
                                 <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>
@@ -5411,6 +5414,7 @@
                                 <transition type="direct" tag="Always Go to initialize" target="Initialize Parameters"></transition>
                             </task_system_state>
                             <task_system_state tag="Initialize Parameters" interruptible="YES">
+                                <action type="assignment" tag="set g pos x" variable="g_pos_x" value="10"></action>
                                 <action tag="Queue background" type="queue_stimulus" stimulus="BlankScreen" full_name=""></action>
                                 <action_marker _unmoveable="1" tag="Actions"></action_marker>
                                 <transition_marker _unmoveable="1" tag="Transitions"></transition_marker>

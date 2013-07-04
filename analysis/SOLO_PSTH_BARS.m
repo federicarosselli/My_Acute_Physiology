@@ -2,11 +2,11 @@ clear all
 close all
 clc
 w=cd;
-blocks=[8];
+blocks=[3];
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_2_7_2013/ANALYSED'];
 
 bin=25/1000;
 
@@ -54,6 +54,12 @@ STIM_STOP=TBC(ind_stop);
 BIT_STOP=BITCODE(ind_stop); % should be equal to BIT_START
 
 %BIT_START=BIT_START(1:13813)
+
+%%% note: for session 7_6_2013, block 5, the bitcode in position 1959 of
+%%% BIT_STOP was misaligned:
+
+% BIT_STOP(BIT_STOP(1, 1))=[];
+
 
 if unique(BIT_START-BIT_STOP)~=0
     error('check the BIT convertion')

@@ -8,7 +8,7 @@ bin=25/1000;
 
 
 % DayOfRecording = '18_3_2  013';
-AreaOfRecording = 'V1b'; %AL %AM
+AreaOfRecording = 'AL'; %AL %AM
 
 shift_bin=10/1000;
 
@@ -77,7 +77,10 @@ BIT_STOP=BITCODE(ind_stop);
 end
 
 
+%%% note: for session 7_6_2013, blockS 910, the bitcode in position 1959 of
+%%% BIT_STOP was misaligned:
 
+% BIT_STOP(BIT_STOP(1, 1959))=[];
 
 
 

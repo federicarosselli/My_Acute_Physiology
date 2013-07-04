@@ -10,13 +10,13 @@ clc
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
-%% note: no conditions 35 and 36 were presented for this session
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_6_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+%% note: 29_5_2013: no conditions 35 and 36 were presented for this session
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-mkdir ('PSTHS_Movies_T');
+mkdir ('PSTHS_Movies');
 
         % bb = 1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   % bb = bin number;
         % tr = 1:length(Trials{1,1})        % tr = trial number;
@@ -42,9 +42,54 @@ for nn = 1:neuronS
     B_movies_All = [];
     B_movies_Blanks = [];
     B_movies_Blanks_All = [];
+    B_movies_WBlanks = [];
+    B_movies_WBlanks_All = [];
     % Blanks
     
-    for BIT_Number = 3:4 %bitcodes for black blanks
+   for BIT_Number = 1:3 %bitcodes for white blanks %1:2 old experiment
+        
+        
+        
+        %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
+            % such overwriting made possible the computation of only 156 codes (instead
+            % of 174) for this session. codes from 137 (included) to 156 were therefore
+            % excluded from this analysis
+
+                
+            %% to get the pres_time in that condition
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            
+            % %% Uncomment for test hist
+            % if STIM_STOP(1) > STIM_START(1)
+            % stim_pres_times = abs(STIM_START - STIM_STOP);
+            % end
+            % figure;
+            % hist (stim_pres_times)
+            
+            if stim_pres_time >= 1000
+            countolo = countolo+1;
+%                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
+%                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
+%                         for tr=1:numel(PsthAndRaster.Trials{BIT_Number,nn})
+%                         B_movies_Blanks(tr,bb)=PsthAndRaster.Psth{BIT_Number,nn}(PsthAndRaster.Trials{BIT_Number,nn}(tr),bb);
+%                         end
+%                         end
+%                      end
+                    ps=PsthAndRaster.Psth{BIT_Number,nn};
+                    trr=PsthAndRaster.Trials{BIT_Number,nn};
+                    B_movies_WBlanks=ps(trr,:);
+
+                c = mean(B_movies_WBlanks);
+                d = c*(1000/25);
+                B_movies_WBlanks_All = vertcat(B_movies_WBlanks_All, d);
+                
+                
+            end
+    end 
+    
+    for BIT_Number = 4:6 %bitcodes for black blanks %3:4 old experiment
         
         
         
@@ -88,10 +133,10 @@ for nn = 1:neuronS
     end
     
     %
-    lulu = [1:2, 5:bitcodes];
-%     lulu_29_5_2013=[1:2, 5:34, 37:bitcodes];
+    lulu = [7:bitcodes];   %[5:bitcodes] old experiment
+%     lulu_29_5_2013=[5:34, 37:bitcodes];
                 
-    for BIT_Number = lulu
+    for BIT_Number = lulu %lulu_29_5_2013
         
         %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
             % such overwriting made possible the computation of only 156 codes (instead
@@ -150,15 +195,16 @@ for nn = 1:neuronS
            %[int tm]=min(abs(T-700));
 %            bubu = mean(B_Movies_All,1);
            bubublank = mean(B_movies_Blanks_All,1);
-           
+           bubublank2 = mean(B_movies_WBlanks_All,1);
            grey=[0.5, 0.5, 0.5];
-%            plot(T,bubu, '-k', 'LineWidth',3, 'Color', grey)
-%            hold on;
            plot(T,bubublank, '-k', 'LineWidth',2, 'Color', grey)
+           hold on;
+           grey2=[0.65, 0.65, 0.65];
+           plot(T,bubublank2, '-k', 'LineWidth',2, 'Color', grey2)
            
     ww = cd;
-    saveas(figure(nn),[ww,'/PSTHS_Movies_T/PSTH_',num2str(nn),'.jpeg']) 
-    saveas(figure(nn),[ww,'/PSTHS_Movies_T/PSTH_',num2str(nn),'.fig'])  
+    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.jpeg']) 
+    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.fig'])  
     
     close all
     

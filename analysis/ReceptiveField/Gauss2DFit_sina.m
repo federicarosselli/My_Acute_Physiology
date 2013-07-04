@@ -90,6 +90,7 @@ legend( h, mystr, 'im vs. X, Y',  'Location', 'NorthEast' );
 xlabel( 'X' );
 ylabel( 'Y' );
 zlabel( 'im' );
+title(['Neuron ', num2str(NN)])        
 grid on
 colormap(jet);
 subplot(122)

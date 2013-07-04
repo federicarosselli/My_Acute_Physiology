@@ -2,17 +2,17 @@ clear all
 close all
 clc
 w=cd;
-BLOCK_NUM1=67;
+BLOCK_NUM1=45;
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_2_7_2013/ANALYSED'];
 
 bin=25/1000;
 
 shift_bin=10/1000;  
 
-for BLOCK_PHASE=2 %1 
+for BLOCK_PHASE=1 %1 
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCK_NUM1),'/SPIKE.mat'])
 % FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_13_07_201   2/ANALYSED'];

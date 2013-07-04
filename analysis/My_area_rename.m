@@ -7,7 +7,7 @@ for pappa = 1:neuronS
     
     load (['NEURON_', num2str(pappa), '.mat'])
     
-    My_Neurons.Area=char('AL(V1b?)');
+    My_Neurons.Area=char('AL');
     
     save (['NEURON_', num2str(pappa), '.mat'], 'My_Neurons')
     

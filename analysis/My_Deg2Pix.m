@@ -6,7 +6,8 @@ function My_Deg2Pix (my_deg_h, my_deg_v)
 screen_res = [1920.0, 1080.0];  %% in pixels
 %screen_res = [300, 400]; 
 %screen_res = [3840, 2160];
-screen_size = [47.7, 26.9];
+% screen_size = [47.7, 26.9];
+screen_size = [93, 52];
 %screen_size = [103.8, 58.8]; %% in cm, accordin to the setup variable for tg screen
 
 d = 30; %% distance from screen in cm

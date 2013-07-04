@@ -3,10 +3,10 @@ close all
 clear all
 ss=0;
 FILE_TOO='TEST_REV';
-BLOCK_NUM_SET1=[5 6]
+BLOCK_NUM_SET1=[6 7]
 sub_block=0; %0=full block,1=first half block, 2=second half block
 
-DateOfRecording = '12_4_2013'
+DateOfRecording = '2_7_2013'
 
 for BLOCK_NUM=1%BLOCK_NUM_SET
 
@@ -44,7 +44,7 @@ TIMES{ch}=[TIMES_1{ch} TIMES_2{ch}+T_END];
 Yeneu{ch}=[Yeneu_1{ch} Yeneu_2{ch}];
 end
 
-FOLDER_FROM_REV=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/BlockS-', num2str(56)];
+FOLDER_FROM_REV=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DateOfRecording), '/ANALYSED/BlockS-', num2str(67)];
 FOLDER_TO=FOLDER_FROM_REV;
 
 for channel=1:32

@@ -7,10 +7,10 @@
        p4 =   -0.008323  ;
        p5 =      0.6728;
        
-cd blanks
+cd Dots_Chronic_Linearized
 
-for i=1:2
-         %I=double(imread([num2str(i) '.jpg'],'jpg'));
+for i=1:3
+%          I=double(imread([num2str(i) '.jpg'],'jpg'));
         I=double((imread([num2str(i) '.png'],'png')));
           Ip=LinEstimBrigh13(I);
          Ig=GammaCorrectionFunc(I);
@@ -37,3 +37,7 @@ for i=1:2
          axis equal
          imwrite(uint8(ILinv),[num2str(i) '.png'])
 end
+
+close all
+
+cd ..
