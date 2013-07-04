@@ -22,7 +22,7 @@ POST_STIM_WINDOW_BAR=[250 500]*0.001;
 WINDOW_BAR=POST_STIM_WINDOW_BAR(2)-POST_STIM_WINDOW_BAR(1);
 
 BLOCK_NUM=3;
-DayOfRecording = '31_5_2013';
+DayOfRecording = '2_7_2013';
 
 
 % PATH=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(BLOCK_NUM), '/BL_1/PSTH/25/'];
@@ -34,7 +34,7 @@ NOBJ = 0;
 
 global NN
 
-for NN=1:38;
+for NN=1:37;
 
 % NN=NER;
 load STIM_CODE_BAR
