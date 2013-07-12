@@ -35,7 +35,8 @@ files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
 COLORSET=varycolor(neuronS);
-    all_peaks = cell(zeros());
+all_peaks = cell(zeros());
+all_time_series = cell(zeros());
 
 for nn = 1:neuronS
     countolo=0;
@@ -54,7 +55,7 @@ for nn = 1:neuronS
     
         if object == 0
         
-        stringBB=strcat('RASTERS/BBlanks/', num2str(nn));
+        stringBB=strcat('RASTERS/', num2str(nn), '/BBlanks/');
         mkdir(stringBB);
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==0));
         selected_bits = a';
@@ -85,6 +86,7 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     %aku = find(blin==maxb);
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -104,8 +106,8 @@ for nn = 1:neuronS
 
                     end
 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.fig'])   
             
             close
             
@@ -131,6 +133,7 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
 %                     aku = {max(b)}
                     aku = find(b==maxb);
                     plot(T, b,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -150,8 +153,8 @@ for nn = 1:neuronS
 
                     end
 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.fig'])   
             close
             
             end
@@ -177,6 +180,7 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
 %                     aku = {max(blin)}
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -197,8 +201,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/BBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/BBlanks/R_',num2str(BIT_Number),'.fig'])   
             close
             
             end
@@ -212,7 +216,7 @@ for nn = 1:neuronS
         elseif object == 9
          
         
-        stringWB=strcat('RASTERS/WBlanks/', num2str(nn));
+        stringWB=strcat('RASTERS/', num2str(nn), '/WBlanks/');
         mkdir(stringWB);
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==9));
         selected_bits = a';
@@ -243,9 +247,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));    
+                    text(Tlin(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -262,8 +267,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.fig'])   
             close
             
             end
@@ -287,9 +292,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));  
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -306,8 +312,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.fig']) 
             close
             
             end
@@ -335,9 +341,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));      
+                    text(Tlin(aku(1)), maxb, num2str(maxb));      
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -354,8 +361,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/WBlanks/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/WBlanks/R_',num2str(BIT_Number),'.fig'])   
             close
             
             end
@@ -370,7 +377,7 @@ for nn = 1:neuronS
     
         elseif object == -1
             
-        stringB=strcat('RASTERS/Bars/', num2str(nn));
+        stringB=strcat('RASTERS/', num2str(nn), '/Bars/');
         mkdir(stringB);
         
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==-1));
@@ -413,9 +420,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));    
+                    text(Tlin(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 1000])  
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -428,21 +436,21 @@ for nn = 1:neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['FAST RightLeft Moving Bar ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['FAST LeftRight Moving Bar ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['FAST UpDown Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['FAST DownUp Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpRight Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['FAST DownRight Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpLeft Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['FAST DownLeft Moving Bar', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -450,8 +458,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.fig'])   
             close
             
             end
@@ -477,9 +485,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -492,21 +501,21 @@ for nn = 1:neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['SLOW RightLeft Moving Bar ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['SLOW LeftRight Moving Bar ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['SLOW UpDown Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['SLOW DownUp Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpRight Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['SLOW DownRight Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpLeft Moving Bar', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['SLOW DownLeft Moving Bar', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -514,8 +523,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.fig'])  
             close
             
             end
@@ -542,9 +551,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));       
+                    text(Tlin(aku(1)), maxb, num2str(maxb));       
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -561,8 +571,8 @@ for nn = 1:neuronS
                     end
 
             
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Bars/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Bars/R_',num2str(BIT_Number),'.fig'])  
             close
             
             end
@@ -575,7 +585,7 @@ for nn = 1:neuronS
     
         elseif object == 1
             
-        stringO=strcat('RASTERS/Objects/', num2str(nn));
+        stringO=strcat('RASTERS/', num2str(nn), '/Objects/');
         mkdir(stringO);
         
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==1));
@@ -618,9 +628,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -633,21 +644,21 @@ for nn = 1:neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['FAST RightLeft Moving Ent ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['FAST LeftRight Moving Ent ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['FAST UpDown Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['FAST DownUp Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpRight Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['FAST DownRight Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpLeft Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['FAST DownLeft Moving Ent', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -655,8 +666,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -680,9 +691,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));     
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -695,21 +707,21 @@ for nn = 1:neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['SLOW RightLeft Moving Ent ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['SLOW LeftRight Moving Ent ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['SLOW UpDown Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['SLOW DownUp Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpRight Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['SLOW DownRight Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpLeft Moving Ent', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['SLOW DownLeft Moving Ent', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -717,8 +729,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -745,9 +757,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));         
+                    text(Tlin(aku(1)), maxb, num2str(maxb));         
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -759,13 +772,13 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Ent ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp)]);
+                    xlabel(['Static Ent ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp), ', InDepth ', num2str(az)]);
 
                     end
 
             
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig']) 
             close
             
             end
@@ -824,9 +837,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -839,21 +853,21 @@ for nn = 1:neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['FAST RightLeft Moving Bunny ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['FAST LeftRight Moving Bunny ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['FAST UpDown Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['FAST DownUp Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpRight Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['FAST DownRight Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpLeft Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['FAST DownLeft Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -861,8 +875,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -886,9 +900,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));     
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -901,21 +916,21 @@ for nn = 1:neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['SLOW RightLeft Moving Bunny ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['SLOW LeftRight Moving Bunny ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['SLOW UpDown Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['SLOW DownUp Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpRight Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['SLOW DownRight Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpLeft Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['SLOW DownLeft Moving Bunny', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -923,8 +938,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -951,9 +966,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -965,13 +981,13 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Bunny ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp)]);
+                    xlabel(['Static Bunny ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp), ', InDepth ', num2str(az)]);
 
                     end
 
             
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1028,9 +1044,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1043,21 +1060,21 @@ for nn = 1:neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['FAST RightLeft Moving Orca ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['FAST LeftRight Moving Orca ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['FAST UpDown Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['FAST DownUp Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpRight Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['FAST DownRight Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpLeft Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['FAST DownLeft Moving Orca', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -1065,8 +1082,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1092,9 +1109,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1107,21 +1125,21 @@ for nn = 1:neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['SLOW RightLeft Moving Orca ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['SLOW LeftRight Moving Orca ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['SLOW UpDown Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['SLOW DownUp Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpRight Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['SLOW DownRight Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpLeft Moving Orca', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['SLOW DownLeft Moving Orca', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -1129,8 +1147,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1157,9 +1175,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1171,13 +1190,13 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Orca ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp)]);
+                    xlabel(['Static Orca ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp), ', InDepth ', num2str(az)]);
 
                     end
 
             
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig']) 
             close
             
             end
@@ -1233,9 +1252,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1248,21 +1268,21 @@ for nn = 1:neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['FAST RightLeft Moving Pingu ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['FAST LeftRight Moving Pingu ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['FAST UpDown Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['FAST DownUp Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpRight Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['FAST DownRight Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['FAST UpLeft Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['FAST DownLeft Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -1270,8 +1290,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1296,9 +1316,11 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
+                    all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1311,21 +1333,21 @@ for nn = 1:neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && iinp == 0
+                        if iposx == 15 && iposy == 0 && inp == 0
                         xlabel(['SLOW RightLeft Moving Pingu ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && iinp == 0
+                        elseif iposx == -15 && iposy == 0 && inp == 0
                         xlabel(['SLOW LeftRight Moving Pingu ', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && iinp == 0
+                        elseif iposx == 0 && iposy == 15 && inp == 0
                         xlabel(['SLOW UpDown Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && iinp == 0
+                        elseif iposx == 0 && iposy == -15 && inp == 0
                         xlabel(['SLOW DownUp Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpRight Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && iinp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
                         xlabel(['SLOW DownRight Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && iinp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
                         xlabel(['SLOW UpLeft Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && iinp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
                         xlabel(['SLOW DownLeft Moving Pingu', ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -1333,8 +1355,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1361,9 +1383,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1375,13 +1398,13 @@ for nn = 1:neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Pingu ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp)]);
+                    xlabel(['Static Pingu ', ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp), ', InDepth ', num2str(az)]);
 
                     end
 
             
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Objects/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Objects/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1396,7 +1419,7 @@ for nn = 1:neuronS
     elseif object == 111
         
 
-        stringG=strcat('RASTERS/Gratings/', num2str(nn));
+        stringG=strcat('RASTERS/', num2str(nn), 'Gratings/');
         mkdir(stringG);
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==111));
         selected_bits = a';
@@ -1436,9 +1459,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1474,8 +1498,8 @@ for nn = 1:neuronS
                     end
 
           
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1499,9 +1523,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));     
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1536,8 +1561,8 @@ for nn = 1:neuronS
                     
                     end
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1564,9 +1589,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1583,8 +1609,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])  
             close
             
             end
@@ -1638,9 +1664,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1701,9 +1728,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1766,9 +1794,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1841,9 +1870,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1879,8 +1909,8 @@ for nn = 1:neuronS
                     end
 
           
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1904,9 +1934,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));      
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1941,8 +1972,8 @@ for nn = 1:neuronS
                     
                     end
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -1969,9 +2000,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -1988,8 +2020,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -2042,10 +2074,11 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
+                    all_time_series{BIT_Number, nn}=b;
                     all_peaks{BIT_Number, nn}=maxb;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2081,8 +2114,8 @@ for nn = 1:neuronS
                     end
 
           
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -2105,10 +2138,11 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
+                    all_time_series{BIT_Number, nn}=b;
                     all_peaks{BIT_Number, nn}=maxb;
                     aku = find(b==maxb);                   
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));    
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2143,8 +2177,8 @@ for nn = 1:neuronS
                     
                     end
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -2171,9 +2205,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));          
+                    text(Tlin(aku(1)), maxb, num2str(maxb));          
                     xlim([-200 450])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2190,8 +2225,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Gratings/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Gratings/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -2206,7 +2241,7 @@ for nn = 1:neuronS
     elseif object == 11
 
     
-        stringD=strcat('RASTERS/Dots/', num2str(nn));
+        stringD=strcat('RASTERS/', num2str(nn), '/Dots/');
         mkdir(stringD);
         [a z]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==11));
         selected_bits = a';
@@ -2247,9 +2282,10 @@ for nn = 1:neuronS
                     blin = b(1:tm);
                     maxb = max(blin);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
-                    text(T(aku(1)), maxb, num2str(maxb));   
+                    text(Tlin(aku(1)), maxb, num2str(maxb));   
                     xlim([-200 1000])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2285,8 +2321,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Dots/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Dots/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Dots/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Dots/R_',num2str(BIT_Number),'.fig'])
             close
             
             end
@@ -2312,9 +2348,10 @@ for nn = 1:neuronS
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
                     all_peaks{BIT_Number, nn}=maxb;
+                    all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)
-                    text(max(b), max(b), aku)  
+                    text(T(aku(1)), maxb, num2str(maxb));     
                     xlim([-200 2200])
                     subplot(2,1,1)
                     plot(PsthAndRaster.MySpikes{BIT_Number,trl}*1000-PRE_TIME*1000,ones(size(PsthAndRaster.MySpikes{BIT_Number,trl}),1)*trl,'.', 'Color', COLORSET(nn,:))
@@ -2350,8 +2387,8 @@ for nn = 1:neuronS
                     end
 
 
-            saveas(gcf,[ww,'/RASTERS/Dots/', num2str(nn), '/R_',num2str(BIT_Number),'.png']) 
-            saveas(gcf,[ww,'/RASTERS/Dots/', num2str(nn), '/R_',num2str(BIT_Number),'.fig'])  
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Dots/R_',num2str(BIT_Number),'.png']) 
+            saveas(gcf,[ww,'/RASTERS/', num2str(nn), '/Dots/R_',num2str(BIT_Number),'.fig']) 
             close
             
             end
@@ -2360,10 +2397,11 @@ for nn = 1:neuronS
 
         end
 
-        save([ww,'/RASTERS/All_Peaks.mat'], 'all_peaks', '-v7.3');
+        save([ww,'/RASTERS/PeaksnTimes.mat'], 'all_peaks', 'all_time_series', '-v7.3');
+        clearvars -except all_peaks all_time_series COLORSET Fede_STIM_NU files neuronS nn object
+
 end
   
-clearvars -except COLORSET Fede_STIM_NU files neuronS nn object
 
     
         
