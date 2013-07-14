@@ -10,7 +10,7 @@ clc
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_6_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
 %% note: 29_5_2013: no conditions 35 and 36 were presented for this session
 
 files = dir(fullfile('*.mat'));
@@ -35,7 +35,7 @@ for nn = 1:neuronS
     load(['NEURON_', num2str(nn),'.mat'])
     
     cucu = My_Neurons.MeanFiringRate;
-%     MFR = cucu*(1000/25);
+    MFR = cucu*(1000/25);
     bitcodes = PsthAndRaster.BitCodes;
     
     B_movies = [];
@@ -52,7 +52,7 @@ for nn = 1:neuronS
         
         %% n.b. for the first session (19_12_12) some bitcodes were overwritten (137:156). 
             % such overwriting made possible the computation of only 156 codes (instead
-            % of 174) for this session. codes from 137 (included) to 156 were therefore
+            % of 174) for this session. , ', MeanFiringRate ', num2str(MFR)codes from 137 (included) to 156 were therefore
             % excluded from this analysis
 
                 
@@ -68,7 +68,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -111,7 +111,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -156,7 +156,7 @@ for nn = 1:neuronS
 %             figure;
 %             hist (stim_pres_all, 50)
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo = countolo+1;
 %                     for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);  
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -176,7 +176,7 @@ for nn = 1:neuronS
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
                 plot(T,b, 'Color', COLORSET(nn,:))
                 title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', All Moving Conditions, n= ', num2str(countolo), '/', num2str(PsthAndRaster.BitCodes)]) 
-                xlabel(['Area ', char(My_Neurons.Area)]) %, ', MeanFiringRate ', num2str(MFR)])
+                xlabel(['Area ', char(My_Neurons.Area)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
 %                 ylim([-20 300])

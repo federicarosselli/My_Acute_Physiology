@@ -1,6 +1,6 @@
 function My_PSTH_Static_FEDE_BlankTest_NuStructure 
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_6_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
 %% note: no conditions 35 and 36 were presented for this sessio
 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
@@ -27,6 +27,8 @@ for nn = 1:neuronS
     load(['NEURON_', num2str(nn),'.mat'])
     
     bitcodes = PsthAndRaster.BitCodes;
+    cucu = My_Neurons.MeanFiringRate;
+    MFR = cucu*(1000/25);
     
     B_static = [];
     B_static_All = [];
@@ -34,6 +36,9 @@ for nn = 1:neuronS
     B_static_Blanks_All = [];
     B_static_WBlanks = [];
     B_static_WBlanks_All = [];
+    aku_fore = [];
+    baku_fore = [];
+    cuku_fore = [];
     
     for BIT_Number = 1:3  %bitcodes for white blanks %1:2 old experiment
  
@@ -56,7 +61,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
 %                          if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -71,6 +76,7 @@ for nn = 1:neuronS
                     B_static_WBlanks=ps(trr,:);
                  
                 c = mean(B_static_WBlanks);
+                aku_fore = [aku_fore, c];
                 d = c*(1000/25);
                 B_static_WBlanks_All = vertcat(B_static_WBlanks_All, d);
                 
@@ -78,6 +84,7 @@ for nn = 1:neuronS
                 
                 
     end
+    
     
     for BIT_Number = 4:6  %bitcodes for blanks %3:4 old experiment
  
@@ -100,7 +107,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   
 %                          if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -116,12 +123,16 @@ for nn = 1:neuronS
                  
                 c = mean(B_static_Blanks);
                 d = c*(1000/25);
+                baku_fore = [baku_fore, d];
                 B_static_Blanks_All = vertcat(B_static_Blanks_All, d);
                 
             end 
                 
                 
     end
+    
+    
+
     lulu = [7:bitcodes];  %[5:bitcodes];
 %     lulu_29_5_2013=[5:34, 37:bitcodes];
     
@@ -146,7 +157,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time <= 1000            
+            if stim_pres_time < 500            
             countolo = countolo+1;
 
 %                 for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);                   
@@ -165,13 +176,15 @@ for nn = 1:neuronS
                 figure(nn)                
                 alla = mean(B_static);
                 b = alla*(1000/25);
+                cuku_fore = [cuku_fore, b];
+                
                 B_static_All = vertcat(B_static_All, b);
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2)); %-200,2200,
                 [int tm]=min(abs(T-450));  %450));
                 plot(T(1:tm),b(1:tm), 'Color', COLORSET(nn,:))
 %                 plot(T,b, 'Color', COLORSET(nn,:))
                 title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', All Static Conditions, n= ', num2str(countolo), '/', num2str(PsthAndRaster.BitCodes)]) 
-                xlabel(['Area ', char(My_Neurons.Area)]) %, ', MeanFiringRate ', num2str(MFR)])
+                xlabel(['Area ', char(My_Neurons.Area)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
 %                 ylim([-20 300])
@@ -181,7 +194,7 @@ for nn = 1:neuronS
       
     end
        
-    
+           
            T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));%-200,2200,
            [int tm]=min(abs(T-450));  %450));
 %            bubu = mean(B_static_All,1);

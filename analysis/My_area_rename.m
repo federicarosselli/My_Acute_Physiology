@@ -1,9 +1,9 @@
-cd '/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25'
+cd '/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-34/BL_2/My_Structure/25'
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-for pappa = 1:neuronS
+for pappa = 1:23 %1:neuronS
     
     load (['NEURON_', num2str(pappa), '.mat'])
     

@@ -10,13 +10,13 @@ clc
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_2_7_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
 %% note: 29_5_2013: no conditions 35 and 36 were presented for this session
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-mkdir ('PSTHS_Movies');
+mkdir ('PSTHS_FASTMovies');
 
         % bb = 1:size(PsthAndRaster.Psth{BIT_Number,nn},2);   % bb = bin number;
         % tr = 1:length(Trials{1,1})        % tr = trial number;
@@ -35,7 +35,7 @@ for nn = 1:neuronS
     load(['NEURON_', num2str(nn),'.mat'])
     
     cucu = My_Neurons.MeanFiringRate;
-%     MFR = cucu*(1000/25);
+    MFR = cucu*(1000/25);
     bitcodes = PsthAndRaster.BitCodes;
     
     B_fastmovies = [];
@@ -68,7 +68,7 @@ for nn = 1:neuronS
             % figure;
             % hist (stim_pres_times)
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -83,6 +83,7 @@ for nn = 1:neuronS
 
                 c = mean(B_fastmovies_WBlanks);
                 d = c*(1000/25);
+                
                 B_fastmovies_WBlanks_All = vertcat(B_fastmovies_WBlanks_All, d);
                 
                 
@@ -111,7 +112,7 @@ for nn = 1:neuronS
 %             figure;
 %             hist (stim_pres_times)
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo = countolo+1;
 %                      for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -156,7 +157,7 @@ for nn = 1:neuronS
 %             figure;
 %             hist (stim_pres_all, 50)
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo = countolo+1;
 %                     for bb=1:size(PsthAndRaster.Psth{BIT_Number,nn},2);  
 %                         if numel(PsthAndRaster.Psth{BIT_Number,nn})~=0
@@ -178,7 +179,7 @@ for nn = 1:neuronS
                 plot(T(1:tm),b(1:tm), 'Color', COLORSET(nn,:))
 %                 plot(T,b, 'Color', COLORSET(nn,:))
                 title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', All FAST Moving Conditions, n= ', num2str(countolo), '/', num2str(PsthAndRaster.BitCodes)]) 
-                xlabel(['Area ', char(My_Neurons.Area)]) %, ', MeanFiringRate ', num2str(MFR)])
+                xlabel(['Area ', char(My_Neurons.Area)])
                 axis tight
                 %xlim([-200 stim_pres_time+200])
 %                 ylim([-20 300])
@@ -188,11 +189,10 @@ for nn = 1:neuronS
             
             
             
-     end
-          
-     
-    
-           
+    end
+  
+      uuu = mean(B_fastmovies_All)
+      
            T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
            [int tm]=min(abs(T-1000));
 %            bubu = mean(B_Movies_All,1);
@@ -205,12 +205,12 @@ for nn = 1:neuronS
            plot(T(1:tm),bubublank2(1:tm), '-k', 'LineWidth',2, 'Color', grey2)
            
     ww = cd;
-    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.jpeg']) 
-    saveas(figure(nn),[ww,'/PSTHS_Movies/PSTH_',num2str(nn),'.fig'])  
+    saveas(figure(nn),[ww,'/PSTHS_FASTMovies/PSTH_',num2str(nn),'.jpeg']) 
+    saveas(figure(nn),[ww,'/PSTHS_FASTMovies/PSTH_',num2str(nn),'.fig'])  
     
     close all
     
-    clear B_fastmovies B_fastmovies_All B_fastmovies_Blanks B_fastmovies_Blanks_All
+    clear B_fastmovies B_fastmovies_All B_fastmovies_Blanks B_fastmovies_Blanks_All cucu MFR
     
     
 % Uncomment for Each Neuron for that Condition

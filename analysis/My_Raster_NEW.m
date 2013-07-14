@@ -35,8 +35,8 @@ files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
 COLORSET=varycolor(neuronS);
-all_peaks = cell(zeros());
-all_time_series = cell(zeros());
+% all_peaks = cell(zeros());
+% all_time_series = cell(zeros());
 
 for nn = 1:neuronS
     countolo=0;
@@ -65,7 +65,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -85,8 +85,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     %aku = find(blin==maxb);
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -114,7 +114,7 @@ for nn = 1:neuronS
             end
             
                 
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -132,8 +132,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
 %                     aku = {max(b)}
                     aku = find(b==maxb);
                     plot(T, b,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -159,7 +159,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -179,8 +179,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
 %                     aku = {max(blin)}
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
@@ -226,7 +226,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -246,8 +246,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));    
@@ -274,7 +274,7 @@ for nn = 1:neuronS
             end
             
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -291,8 +291,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
                     text(T(aku(1)), maxb, num2str(maxb));  
@@ -318,7 +318,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -340,8 +340,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));      
@@ -398,7 +398,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -419,8 +419,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));    
@@ -464,7 +464,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -484,8 +484,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(T(aku(1)), maxb, num2str(maxb));    
@@ -529,7 +529,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -550,8 +550,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));       
@@ -606,7 +606,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -627,8 +627,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -672,7 +672,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -690,8 +690,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(T(aku(1)), maxb, num2str(maxb));     
@@ -735,7 +735,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -756,8 +756,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));         
@@ -815,7 +815,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -836,8 +836,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -881,7 +881,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -899,8 +899,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(T(aku(1)), maxb, num2str(maxb));     
@@ -944,7 +944,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -965,8 +965,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1022,7 +1022,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1043,8 +1043,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1088,7 +1088,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1108,8 +1108,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
                     text(T(aku(1)), maxb, num2str(maxb));    
@@ -1153,7 +1153,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1174,8 +1174,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1230,7 +1230,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1251,8 +1251,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1296,7 +1296,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1316,8 +1316,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
                     text(T(aku(1)), maxb, num2str(maxb));    
@@ -1361,7 +1361,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1382,8 +1382,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1419,7 +1419,7 @@ for nn = 1:neuronS
     elseif object == 111
         
 
-        stringG=strcat('RASTERS/', num2str(nn), 'Gratings/');
+        stringG=strcat('RASTERS/', num2str(nn), '/Gratings/');
         mkdir(stringG);
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==111));
         selected_bits = a';
@@ -1438,7 +1438,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1458,8 +1458,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1505,7 +1505,7 @@ for nn = 1:neuronS
             end
                 
                 
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1522,8 +1522,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1) 
                     text(T(aku(1)), maxb, num2str(maxb));     
@@ -1567,7 +1567,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1588,8 +1588,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1643,7 +1643,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1663,8 +1663,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1710,7 +1710,7 @@ for nn = 1:neuronS
             end
                 
                 
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1727,8 +1727,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(T(aku(1)), maxb, num2str(maxb));    
@@ -1772,7 +1772,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1793,8 +1793,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1849,7 +1849,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1869,8 +1869,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -1916,7 +1916,7 @@ for nn = 1:neuronS
             end
                 
                 
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1933,8 +1933,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)   
                     text(T(aku(1)), maxb, num2str(maxb));      
@@ -1978,7 +1978,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -1999,8 +1999,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -2054,7 +2054,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -2074,8 +2074,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_time_series{BIT_Number, nn}=b;
-                    all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -2121,7 +2121,7 @@ for nn = 1:neuronS
             end
                 
                 
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -2138,8 +2138,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_time_series{BIT_Number, nn}=b;
-                    all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
                     aku = find(b==maxb);                   
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)
                     text(T(aku(1)), maxb, num2str(maxb));    
@@ -2183,7 +2183,7 @@ for nn = 1:neuronS
             
             end
             
-            if stim_pres_time <= 500
+            if stim_pres_time < 500
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -2204,8 +2204,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));          
@@ -2243,7 +2243,7 @@ for nn = 1:neuronS
     
         stringD=strcat('RASTERS/', num2str(nn), '/Dots/');
         mkdir(stringD);
-        [a z]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==11));
+        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==11));
         selected_bits = a';
         
             for BIT_Number = selected_bits;
@@ -2259,7 +2259,7 @@ for nn = 1:neuronS
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
             
-            if stim_pres_time >= 500 && stim_pres_time <= 1000
+            if stim_pres_time > 500 && stim_pres_time < 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -2281,8 +2281,8 @@ for nn = 1:neuronS
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(blin==maxb);
                     plot(Tlin, blin,'Color', COLORSET(nn,:), 'linewidth',1)  
                     text(Tlin(aku(1)), maxb, num2str(maxb));   
@@ -2328,7 +2328,7 @@ for nn = 1:neuronS
             end
             
             
-            if stim_pres_time >= 1000
+            if stim_pres_time > 1000
             countolo=countolo+1;
             figure(countolo);
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
@@ -2347,8 +2347,8 @@ for nn = 1:neuronS
                     subplot(2,1,2)
                     b = M_PSTH{BIT_Number,nn}*(1000/25);
                     maxb = max(b);
-                    all_peaks{BIT_Number, nn}=maxb;
-                    all_time_series{BIT_Number, nn}=b;
+                    % all_peaks{BIT_Number, nn}=maxb;
+                    % all_time_series{BIT_Number, nn}=b;
                     aku = find(b==maxb);
                     plot(T,b,'Color', COLORSET(nn,:), 'linewidth',1)
                     text(T(aku(1)), maxb, num2str(maxb));     
@@ -2397,8 +2397,8 @@ for nn = 1:neuronS
 
         end
 
-        save([ww,'/RASTERS/PeaksnTimes.mat'], 'all_peaks', 'all_time_series', '-v7.3');
-        clearvars -except all_peaks all_time_series COLORSET Fede_STIM_NU files neuronS nn object
+%         save([ww,'/RASTERS/PeaksnTimes.mat'], '% all_peaks', '% all_time_series', '-v7.3');
+        clearvars -except COLORSET Fede_STIM_NU files neuronS nn object % all_peaks % all_time_series 
 
 end
   
