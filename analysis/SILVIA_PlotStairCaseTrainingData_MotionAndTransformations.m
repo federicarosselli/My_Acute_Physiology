@@ -341,10 +341,10 @@ Shapes_Fail_Stim1R = S1R_N_failure
 
 else
 
-Perf_Stim1R = 0
-Shapes_Tot_Stim1R = 0
-Shapes_Succ_Stim1R = 0
-Shapes_Fail_Stim1R = 0
+Perf_Stim1R = NaN
+Shapes_Tot_Stim1R = NaN
+Shapes_Succ_Stim1R = NaN
+Shapes_Fail_Stim1R = NaN
 end
 
 clear I
@@ -373,10 +373,10 @@ Shapes_Fail_Stim2R = S2R_N_failure
 
 else
 
-Perf_Stim2R = 0
-Shapes_Tot_Stim2R = 0
-Shapes_Succ_Stim2R = 0
-Shapes_Fail_Stim2R = 0
+Perf_Stim2R = NaN
+Shapes_Tot_Stim2R = NaN
+Shapes_Succ_Stim2R = NaN
+Shapes_Fail_Stim2R = NaN
 
 end
 
@@ -405,10 +405,10 @@ Shapes_Fail_Stim1L = S1L_N_failure
 
 else
 
-Perf_Stim1L = 0
-Shapes_Tot_Stim1L = 0
-Shapes_Succ_Stim1L = 0
-Shapes_Fail_Stim1L = 0
+Perf_Stim1L = NaN
+Shapes_Tot_Stim1L = NaN
+Shapes_Succ_Stim1L = NaN
+Shapes_Fail_Stim1L = NaN
 
 end
 
@@ -437,10 +437,10 @@ Shapes_Fail_Stim2L = S2L_N_failure
 
 else
 
-Perf_Stim2L = 0
-Shapes_Tot_Stim2L = 0
-Shapes_Succ_Stim2L = 0
-Shapes_Fail_Stim2L = 0
+Perf_Stim2L = NaN
+Shapes_Tot_Stim2L = NaN
+Shapes_Succ_Stim2L = NaN
+Shapes_Fail_Stim2L = NaN
 
 end
 
