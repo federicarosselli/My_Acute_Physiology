@@ -161,7 +161,7 @@ title (RatName, 'fontsize', 14);
 
 subplot(2,2,4); bar(Rot.RangeRot, Rot_Perf_Sess, 'facecolor',[1 0 1]);
 hold on;
-set (gca, 'ylim', [30 100], 'xlim', [-50 50], 'xtick', [-75:15:75]);
+set (gca, 'ylim', [30 100], 'xlim', [-50 50], 'xtick', [-45:15:45]);
 % x_lim = get(gca, 'xlim');
 % plot( x_lim, [50 50], '--k' );
 % text(Rot.RangeRot, Rot_Perf_Sess+3, N_leg_All);

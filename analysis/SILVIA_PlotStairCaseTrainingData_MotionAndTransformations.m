@@ -320,7 +320,7 @@ end;
 
 % ***** STIM 1 R *******
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 1 & stim_pos_x ~= 0);
+    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S1R_N_correct = length( find(success(I)==1) );
     Pre_S1R_N_failure = length( find(failure(I)==1) );
     Pre_S1R_N_tot = Pre_S1R_N_correct + Pre_S1R_N_failure;
@@ -343,7 +343,7 @@ clear I
     
 % ***** STIM 2 R *******
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 2 & stim_pos_x ~= 0);
+    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S2R_N_correct = length( find(success(I)==1) );
     Pre_S2R_N_failure = length( find(failure(I)==1) );
     Pre_S2R_N_tot = Pre_S2R_N_correct + Pre_S2R_N_failure;
@@ -365,7 +365,7 @@ clear I
     
 % ***** STIM 1 L *******
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1 & stim_pos_x ~= 0);
+    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S1L_N_correct = length( find(success(I)==1) );
     Pre_S1L_N_failure = length( find(failure(I)==1) );
     Pre_S1L_N_tot = Pre_S1L_N_correct + Pre_S1L_N_failure;
@@ -387,7 +387,7 @@ clear I
     
 % ***** STIM 2 L *******
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 2 & stim_pos_x ~= 0);
+    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S2L_N_correct = length( find(success(I)==1) );
     Pre_S2L_N_failure = length( find(failure(I)==1) );
     Pre_S2L_N_tot = Pre_S2L_N_correct + Pre_S2L_N_failure;
@@ -571,10 +571,17 @@ if FlagSave
     Idot = findstr( '.', FileName );
     File2Save = [FileName(1:Idot-5), 'summ.mat'];
 %     save( File2Save, 'StairLimit_type', 'I_type', 'success_type', 'failure_type', 'Size', 'Pos', 'Rot', 'RotDep' );
-    save( File2Save, 'Size', 'Pos', 'Rot', 'RotDep', 'Perf_Stim1R', 'Shapes_Tot_Stim1R', 'Shapes_Succ_Stim1R', 'Shapes_Fail_Stim1R', ...
-        'Perf_Stim2R', 'Shapes_Tot_Stim2R', 'Shapes_Succ_Stim2R', 'Shapes_Fail_Stim2R', ...
-        'Perf_Stim1L', 'Shapes_Tot_Stim1L', 'Shapes_Succ_Stim1L', 'Shapes_Fail_Stim1L',...
-        'Perf_Stim2L', 'Shapes_Tot_Stim2L', 'Shapes_Succ_Stim2L', 'Shapes_Fail_Stim2L');
+    save( File2Save, 'Size', 'Pos', 'Rot', 'RotDep', ...
+        'Perf_Stim1R', 'Shapes_Succ_Stim1R', 'Shapes_Fail_Stim1R', ...
+        'Perf_Stim2R', 'Shapes_Succ_Stim2R', 'Shapes_Fail_Stim2R', ...
+        'Perf_Stim1L', 'Shapes_Succ_Stim1L', 'Shapes_Fail_Stim1L',...
+        'Perf_Stim2L', 'Shapes_Succ_Stim2L', 'Shapes_Fail_Stim2L',...        
+        'Perf_Stim1_R_M', 'Shapes_Succ_Stim1R_M', 'Shapes_Fail_Stim1R_M', ...
+        'Perf_Stim2_R_M', 'Shapes_Succ_Stim2R_M', 'Shapes_Fail_Stim2R_M', ...
+        'Perf_Stim1_L_M', 'Shapes_Succ_Stim1L_M', 'Shapes_Fail_Stim1L_M',...
+        'Perf_Stim2_L_M', 'Shapes_Succ_Stim2L_M', 'Shapes_Fail_Stim2L_M', ...
+        'Perf_Dots', 'Perf_DotL','Perf_DotR', 'Dots_Succ_DotR', 'Dots_Succ_DotL','Dots_Fail_DotR', 'Dots_Fail_DotL', ...
+        'Perf_G','Perf_GL','Perf_GR', 'G_Succ_GL', 'G_Succ_GR', 'G_Fail_GL', 'G_Fail_GR');
 end;
 
 

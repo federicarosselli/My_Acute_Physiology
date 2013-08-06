@@ -68,10 +68,13 @@ G_Fail_GR_All = [];
 for i=suffix
     if i<10
     FileName = [prefix1, num2str(i),'_summ.mat'];
+
     else
         FileName = [prefix2, num2str(i),'_summ.mat'];
+
     end;
     load ( FileName );
+
     
         if exist ('Perf_Shapes')
             Perf_Shapes_All = [Perf_Shapes_All, Perf_Shapes]; 
@@ -313,6 +316,7 @@ end;
 
 % shapes
 sessionS = 1:length(Perf_Shapes_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Shapes_All, 'facecolor',[.2 .2 .2]);
 hold on;
@@ -321,9 +325,11 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Shapes', 'fontsize', 12);
 title (RatName, 'fontsize', 14);
+end
 
 %moving shapes 1
 sessionS = 1:length(Perf_MovingShapes_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_MovingShapes_All, 'facecolor',[.4 .4 .4]);
 hold on;
@@ -332,9 +338,11 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Moving Shapes 1', 'fontsize', 12);
 title (RatName, 'fontsize', 14);
+end
 
 %moving shapes 2
 sessionS = 1:length(Perf_MovingShapes_M_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_MovingShapes_M_All, 'facecolor',[.6 .6 .6]);
 hold on;
@@ -343,9 +351,11 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Moving Shapes 2', 'fontsize', 12);
 title (RatName, 'fontsize', 14);
+end
 
 % dots
 sessionS = 1:length(Perf_Dots_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Dots_All, 'facecolor',[.8 .8 .8]);
 hold on;
@@ -354,9 +364,11 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Dots', 'fontsize', 12);
 title (RatName, 'fontsize', 14);
+end
 
 %gratings
 sessionS = 1:length(Perf_G_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_G_All, 'facecolor',[1 1 1]);
 hold on;
@@ -365,10 +377,12 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Gratings', 'fontsize', 12);
 title (RatName, 'fontsize', 14);
+end
 
 
 % Ent All Together
 sessionS = 1:length(Perf_Stim1_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Stim1_All, 'facecolor',[1 0 0]);
 hold on;
@@ -377,6 +391,7 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Stim 1', 'fontsize', 12);
 title (RatName, 'fontsize', 12);
+end
 
 sessionS = 1:length(Perf_Stim1L_All);
 if ~isempty(sessionS)
@@ -419,6 +434,7 @@ end
 
 % Bunny All Together
 sessionS = 1:length(Perf_Stim2_All);
+if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Stim2_All, 'facecolor',[1 0 0]);
 hold on;
@@ -427,7 +443,7 @@ xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
 legend('Stim 2', 'fontsize', 12);
 title (RatName, 'fontsize', 12);
-
+end
 
 sessionS = 1:length(Perf_Stim2L_All);
 if ~isempty(sessionS)
