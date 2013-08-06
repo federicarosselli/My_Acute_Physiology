@@ -319,6 +319,7 @@ end;
 % ##################################
 
 % ***** STIM 1 R *******
+if ~isnan(stim_id)
 
     I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S1R_N_correct = length( find(success(I)==1) );
@@ -338,10 +339,19 @@ Shapes_Tot_Stim1R = S1R_N_tot
 Shapes_Succ_Stim1R = S1R_N_correct
 Shapes_Fail_Stim1R = S1R_N_failure
 
+else
+
+Perf_Stim1R = 0
+Shapes_Tot_Stim1R = 0
+Shapes_Succ_Stim1R = 0
+Shapes_Fail_Stim1R = 0
+end
+
 clear I
     
     
 % ***** STIM 2 R *******
+if ~isnan(stim_id)
 
     I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S2R_N_correct = length( find(success(I)==1) );
@@ -361,9 +371,19 @@ Shapes_Tot_Stim2R = S2R_N_tot
 Shapes_Succ_Stim2R = S2R_N_correct
 Shapes_Fail_Stim2R = S2R_N_failure
 
+else
+
+Perf_Stim2R = 0
+Shapes_Tot_Stim2R = 0
+Shapes_Succ_Stim2R = 0
+Shapes_Fail_Stim2R = 0
+
+end
+
 clear I
     
 % ***** STIM 1 L *******
+if ~isnan(stim_id)
 
     I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S1L_N_correct = length( find(success(I)==1) );
@@ -383,9 +403,19 @@ Shapes_Tot_Stim1L = S1L_N_tot
 Shapes_Succ_Stim1L = S1L_N_correct
 Shapes_Fail_Stim1L = S1L_N_failure
 
+else
+
+Perf_Stim1L = 0
+Shapes_Tot_Stim1L = 0
+Shapes_Succ_Stim1L = 0
+Shapes_Fail_Stim1L = 0
+
+end
+
 clear I
     
 % ***** STIM 2 L *******
+if ~isnan(stim_id)
 
     I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S2L_N_correct = length( find(success(I)==1) );
@@ -404,6 +434,15 @@ Perf_Stim2L = S2L_Perc_correct
 Shapes_Tot_Stim2L = S2L_N_tot
 Shapes_Succ_Stim2L = S2L_N_correct
 Shapes_Fail_Stim2L = S2L_N_failure
+
+else
+
+Perf_Stim2L = 0
+Shapes_Tot_Stim2L = 0
+Shapes_Succ_Stim2L = 0
+Shapes_Fail_Stim2L = 0
+
+end
 
 clear I
 
