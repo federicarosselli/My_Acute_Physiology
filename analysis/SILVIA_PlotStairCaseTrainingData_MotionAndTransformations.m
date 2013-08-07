@@ -325,11 +325,11 @@ if ~isnan(stim_id)
     Pre_S1R_N_correct = length( find(success(I)==1) );
     Pre_S1R_N_failure = length( find(failure(I)==1) );
     Pre_S1R_N_tot = Pre_S1R_N_correct + Pre_S1R_N_failure;
-    S1R_N_correct = abs(Pre_S1R_N_correct - Shapes_Succ_Stim1R_M);
-    S1R_N_failure = abs(Pre_S1R_N_failure - Shapes_Fail_Stim1R_M);
+    S1R_N_correct = Pre_S1R_N_correct - Shapes_Succ_Stim1R_M;
+    S1R_N_failure = Pre_S1R_N_failure - Shapes_Fail_Stim1R_M;
     S1R_N_tot = S1R_N_correct +  S1R_N_failure;
     if S1R_N_tot ~= 0
-        S1R_Perc_correct = S1R_N_correct / S1R_N_tot;
+        S1R_Perc_correct = S1R_N_correct*100 / S1R_N_tot;
     else
         S1R_Perc_correct = nan;
     end;
@@ -357,11 +357,11 @@ if ~isnan(stim_id)
     Pre_S2R_N_correct = length( find(success(I)==1) );
     Pre_S2R_N_failure = length( find(failure(I)==1) );
     Pre_S2R_N_tot = Pre_S2R_N_correct + Pre_S2R_N_failure;
-    S2R_N_correct = abs(Pre_S2R_N_correct - Shapes_Succ_Stim2R_M);
-    S2R_N_failure = abs(Pre_S2R_N_failure - Shapes_Fail_Stim2R_M);
+    S2R_N_correct = Pre_S2R_N_correct - Shapes_Succ_Stim2R_M;
+    S2R_N_failure = Pre_S2R_N_failure - Shapes_Fail_Stim2R_M;
     S2R_N_tot = S2R_N_correct + S2R_N_failure;
     if S2R_N_tot ~= 0
-        S2R_Perc_correct = S2R_N_correct / S2R_N_tot;
+        S2R_Perc_correct = S2R_N_correct*100 / S2R_N_tot;
     else
         S2R_Perc_correct = nan;
     end;
@@ -385,15 +385,15 @@ clear I
 % ***** STIM 1 L *******
 if ~isnan(stim_id)
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
+    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1); % & stim_pos_x(1:length(stim_shape)) ~= 0);
     Pre_S1L_N_correct = length( find(success(I)==1) );
     Pre_S1L_N_failure = length( find(failure(I)==1) );
     Pre_S1L_N_tot = Pre_S1L_N_correct + Pre_S1L_N_failure;
-    S1L_N_correct = abs(Pre_S1L_N_correct - Shapes_Succ_Stim1L_M);
-    S1L_N_failure = abs(Pre_S1L_N_failure - Shapes_Fail_Stim1L_M);
+    S1L_N_correct = Pre_S1L_N_correct - Shapes_Succ_Stim1L_M;
+    S1L_N_failure = Pre_S1L_N_failure - Shapes_Fail_Stim1L_M;
     S1L_N_tot = S1L_N_correct + S1L_N_failure;
     if S1L_N_tot ~= 0
-        S1L_Perc_correct = S1L_N_correct / S1L_N_tot;
+        S1L_Perc_correct = S1L_N_correct*100 / S1L_N_tot;
     else
         S1L_Perc_correct = nan;
     end;
@@ -421,11 +421,11 @@ if ~isnan(stim_id)
     Pre_S2L_N_correct = length( find(success(I)==1) );
     Pre_S2L_N_failure = length( find(failure(I)==1) );
     Pre_S2L_N_tot = Pre_S2L_N_correct + Pre_S2L_N_failure;
-    S2L_N_correct = abs(Pre_S2L_N_correct - Shapes_Succ_Stim2L_M);
-    S2L_N_failure = abs(Pre_S2L_N_failure - Shapes_Fail_Stim2L_M);
+    S2L_N_correct = Pre_S2L_N_correct - Shapes_Succ_Stim2L_M;
+    S2L_N_failure = Pre_S2L_N_failure - Shapes_Fail_Stim2L_M;
     S2L_N_tot = S2L_N_correct + S2L_N_failure;
     if S2L_N_tot ~= 0
-        S2L_Perc_correct = S2L_N_correct / S2L_N_tot;
+        S2L_Perc_correct = S2L_N_correct*100 / S2L_N_tot;
     else
         S2L_Perc_correct = nan;
     end;
@@ -447,6 +447,49 @@ end
 clear I
 
 
+All_Succs = Shapes_Succ_Stim1R + Shapes_Succ_Stim2R + Shapes_Succ_Stim1L + Shapes_Succ_Stim2L;
+All_Fails = Shapes_Fail_Stim1R + Shapes_Fail_Stim2R + Shapes_Fail_Stim1L + Shapes_Fail_Stim2L;
+Perf_MovingShapes = All_Succs*100/(All_Succs+All_Fails);
+Moving_Shapes_Tot = All_Succs+All_Fails;
+
+
+%% DEFAULT
+
+I = find( stim_size(1:length(stim_shape)) == 35 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) == 0);
+    S1_N_correct = length( find(success(I)==1) );
+    S1_N_failure = length( find(failure(I)==1) );
+    S1_N_tot = S1_N_correct + S1_N_failure;
+    if S1_N_tot ~= 0
+        S1_Perc_correct = S1_N_correct*100 / S1_N_tot;
+    else
+        S1_Perc_correct = nan;
+    end;
+
+Perf_Stim1 = S1_Perc_correct
+Shapes_Tot_Stim1 = S1_N_tot
+Shapes_Succ_Stim1 = S1_N_correct
+Shapes_Fail_Stim1 = S1_N_failure
+
+
+I = find( stim_size(1:length(stim_shape)) == 35 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) == 0);
+    S2_N_correct = length( find(success(I)==1) );
+    S2_N_failure = length( find(failure(I)==1) );
+    S2_N_tot = S2_N_correct + S2_N_failure;
+    if S2_N_tot ~= 0
+        S2_Perc_correct = S2_N_correct*100 / S2_N_tot;
+    else
+        S2_Perc_correct = nan;
+    end;
+
+Perf_Stim2 = S2_Perc_correct
+Shapes_Tot_Stim2 = S2_N_tot
+Shapes_Succ_Stim2 = S2_N_correct
+Shapes_Fail_Stim2 = S2_N_failure
+
+
+
+clear I
+
 % ***** SIZE *******
 i=1;
 RangeSize = 15:10:35;
@@ -458,7 +501,7 @@ for s = RangeSize
     N_tot(i) = N_correct(i) + N_failure(i);
     if N_tot(i) ~= 0
         N_leg{i} = num2str(N_tot(i));
-        Perc_correct(i) = N_correct(i) / N_tot(i);
+        Perc_correct(i) = N_correct(i)*100 / N_tot(i);
     else
         N_leg{i} = '';
         Perc_correct(i) = nan;
@@ -471,8 +514,8 @@ bar( RangeSize, Perc_correct );
 hold on;
 text( RangeSize, Perc_correct-0.1, N_leg, 'Color', 'r' );
 x_lim = get(gca, 'xlim');
-plot( x_lim, [0.5 0.5], '--k' );
-set(gca, 'ylim', [0 1.2], 'xlim', [10 40], 'xtick', [15:10:35]);                     %% 'ylim', [0 1], 'XDir', 'reverse');
+plot( x_lim, [50 50], '--k' );
+set(gca, 'ylim', [0 120], 'xlim', [10 40], 'xtick', [15:10:35]);                     %% 'ylim', [0 1], 'XDir', 'reverse');
 xlabel('Size');
 ylabel('Fraction Correct');
 title([FileName, '; Perf_{tot} = ', num2str(TotPerf,4), '%; n_{tot} = ', num2str(Ntrials), ' (', num2str(PercTrialsNoBiasControl,3), '% used)' ])
@@ -499,7 +542,7 @@ for p = RangePos
     N_tot(i) = N_correct(i) + N_failure(i);
     if N_tot(i) ~= 0
         N_leg{i} = num2str(N_tot(i));
-        Perc_correct(i) = N_correct(i) / N_tot(i);
+        Perc_correct(i) = N_correct(i)*100 / N_tot(i);
     else
         N_leg{i} = '';
         Perc_correct(i) = nan;
@@ -512,8 +555,8 @@ bar( RangePos, Perc_correct );
 hold on;
 text( RangePos, Perc_correct+0.1, N_leg );
 x_lim = get(gca, 'xlim');
-plot( x_lim, [0.5 0.5], '--k' );
-set(gca, 'ylim', [0 1.2], 'xlim', [-20 20], 'xtick', [-18:6:18]);                                                   %%gca, 'ylim', [0 1.2] );
+plot( x_lim, [50 50], '--k' );
+set(gca, 'ylim', [0 120], 'xlim', [-20 20], 'xtick', [-18:6:18]);                                                   %%gca, 'ylim', [0 1.2] );
 xlabel('Horizontal Position');
 ylabel('Fraction Correct');
 
@@ -537,7 +580,7 @@ for r = RangeRot
     N_tot(i) = N_correct(i) + N_failure(i);
     if N_tot(i) ~= 0
         N_leg{i} = num2str(N_tot(i));
-        Perc_correct(i) = N_correct(i) / N_tot(i);
+        Perc_correct(i) = N_correct(i)*100 / N_tot(i);
     else
         N_leg{i} = '';
         Perc_correct(i) = nan;
@@ -550,8 +593,8 @@ bar( RangeRot, Perc_correct );
 hold on;
 text( RangeRot, Perc_correct+0.1, N_leg );
 x_lim = get(gca, 'xlim');
-plot( x_lim, [0.5 0.5], '--k' );
-set(gca, 'ylim', [0 1.2], 'xlim', [-50 50], 'xtick', [-75:15:75]);                                %%gca, 'ylim', [0 1.2] );
+plot( x_lim, [50 50], '--k' );
+set(gca, 'ylim', [0 120], 'xlim', [-50 50], 'xtick', [-75:15:75]);                                %%gca, 'ylim', [0 1.2] );
 xlabel('Rotation in Plane');
 ylabel('Fraction Correct');
 
@@ -575,7 +618,7 @@ for r = RangeRotDep
     N_tot(i) = N_correct(i) + N_failure(i);
     if N_tot(i) ~= 0
         N_leg{i} = num2str(N_tot(i));
-        Perc_correct(i) = N_correct(i) / N_tot(i);
+        Perc_correct(i) = N_correct(i)*100 / N_tot(i);
     else
         N_leg{i} = '';
         Perc_correct(i) = nan;
@@ -588,8 +631,8 @@ bar( RangeRotDep, Perc_correct );
 hold on;
 text( RangeRotDep, Perc_correct+0.1, N_leg );
 x_lim = get(gca, 'xlim');
-plot( x_lim, [0.5 0.5], '--k' );
-set(gca, 'ylim', [0 1.2], 'xlim', [-70 70], 'xtick', [-60:20:60]);                                          %%gca, 'ylim', [0 1.2] );
+plot( x_lim, [50 50], '--k' );
+set(gca, 'ylim', [0 120], 'xlim', [-70 70], 'xtick', [-60:20:60]);                                          %%gca, 'ylim', [0 1.2] );
 xlabel('Rotation in Depth');
 ylabel('Fraction Correct');
 
@@ -611,16 +654,21 @@ if FlagSave
     File2Save = [FileName(1:Idot-5), 'summ.mat'];
 %     save( File2Save, 'StairLimit_type', 'I_type', 'success_type', 'failure_type', 'Size', 'Pos', 'Rot', 'RotDep' );
     save( File2Save, 'Size', 'Pos', 'Rot', 'RotDep', ...
-        'Perf_Stim1R', 'Shapes_Succ_Stim1R', 'Shapes_Fail_Stim1R', ...
+        'Perf_Shapes', 'Perf_Stim1', 'Shapes_Succ_Stim1', 'Shapes_Fail_Stim1', ...
+        'Perf_Stim2', 'Shapes_Succ_Stim2', 'Shapes_Fail_Stim2', ...
+        'Perf_MovingShapes', 'Perf_Stim1R', 'Shapes_Succ_Stim1R', 'Shapes_Fail_Stim1R', ...
         'Perf_Stim2R', 'Shapes_Succ_Stim2R', 'Shapes_Fail_Stim2R', ...
         'Perf_Stim1L', 'Shapes_Succ_Stim1L', 'Shapes_Fail_Stim1L',...
         'Perf_Stim2L', 'Shapes_Succ_Stim2L', 'Shapes_Fail_Stim2L',...        
-        'Perf_Stim1_R_M', 'Shapes_Succ_Stim1R_M', 'Shapes_Fail_Stim1R_M', ...
+        'Perf_MovingShapes_M', 'Perf_Stim1_R_M', 'Shapes_Succ_Stim1R_M', 'Shapes_Fail_Stim1R_M', ...
         'Perf_Stim2_R_M', 'Shapes_Succ_Stim2R_M', 'Shapes_Fail_Stim2R_M', ...
         'Perf_Stim1_L_M', 'Shapes_Succ_Stim1L_M', 'Shapes_Fail_Stim1L_M',...
         'Perf_Stim2_L_M', 'Shapes_Succ_Stim2L_M', 'Shapes_Fail_Stim2L_M', ...
         'Perf_Dots', 'Perf_DotL','Perf_DotR', 'Dots_Succ_DotR', 'Dots_Succ_DotL','Dots_Fail_DotR', 'Dots_Fail_DotL', ...
-        'Perf_G','Perf_GL','Perf_GR', 'G_Succ_GL', 'G_Succ_GR', 'G_Fail_GL', 'G_Fail_GR');
+        'Perf_G','Perf_GL','Perf_GR', 'G_Succ_GL', 'G_Succ_GR', 'G_Fail_GL', 'G_Fail_GR',...
+        'Shapes_Tot', 'Moving_Shapes_Tot', 'Moving_Shapes_Tot_M', 'G_Tot', 'Dots_Tot');
+    
+    
 end;
 
 

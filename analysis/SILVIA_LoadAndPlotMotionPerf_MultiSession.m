@@ -76,123 +76,123 @@ for i=suffix
     load ( FileName );
 
     
-        if exist ('Perf_Shapes')
+        if ~isnan (Perf_Shapes)
             Perf_Shapes_All = [Perf_Shapes_All, Perf_Shapes]; 
         else
             Perf_Shapes_All = [];
         end
         
-        if exist ('Perf_MovingShapes')
+        if ~isnan (Perf_MovingShapes)
             Perf_MovingShapes_All = [Perf_MovingShapes_All, Perf_MovingShapes]; 
         else
             Perf_MovingShapes_All = [];
         end
         
-        if exist ('Perf_MovingShapes_M')
+        if ~isnan (Perf_MovingShapes_M)
             Perf_MovingShapes_M_All = [Perf_MovingShapes_M_All, Perf_MovingShapes_M]; 
         else
             Perf_MovingShapes_M_All = [];
         end
         
         
-        if exist ('Perf_Dots')
+        if ~isnan (Perf_Dots)
             Perf_Dots_All = [Perf_Dots_All, Perf_Dots];
         else
             Perf_Dots_All = [];
         end
         
-        if exist ('Perf_G')
+        if ~isnan (Perf_G)
             Perf_G_All = [Perf_G_All, Perf_G];
         else
             Perf_G_All = [];
         end
         
-        if exist ('Perf_Stim1')
+        if ~isnan (Perf_Stim1)
             Perf_Stim1_All = [Perf_Stim1_All, Perf_Stim1];
         else
             Perf_Stim1_All = [];
         end
         
-        if exist ('Perf_Stim2')
+        if ~isnan (Perf_Stim2)
             Perf_Stim2_All = [Perf_Stim2_All, Perf_Stim2];
         else
             Perf_Stim2_All = [];
         end
         
-        if exist ('Perf_Stim1_L')
-            Perf_Stim1L_All = [Perf_Stim1L_All, Perf_Stim1_L];
+        if ~isnan (Perf_Stim1L)
+            Perf_Stim1L_All = [Perf_Stim1L_All, Perf_Stim1L];
         else
             Perf_Stim1L_All = [];
         end
         
-        if exist ('Perf_Stim2_L')
-            Perf_Stim2L_All = [Perf_Stim2L_All, Perf_Stim2_L];
+        if ~isnan (Perf_Stim2L)
+            Perf_Stim2L_All = [Perf_Stim2L_All, Perf_Stim2L];
         else
             Perf_Stim2L_All = [];
         end
         
-        if exist ('Perf_Stim1_R')
-            Perf_Stim1R_All = [Perf_Stim1R_All, Perf_Stim1_R];
+        if ~isnan (Perf_Stim1R)
+            Perf_Stim1R_All = [Perf_Stim1R_All, Perf_Stim1R];
         else
             Perf_Stim1R_All = [];
         end
         
-        if exist ('Perf_Stim2_R')
-            Perf_Stim2R_All = [Perf_Stim2R_All, Perf_Stim2_R];
+        if ~isnan (Perf_Stim2R)
+            Perf_Stim2R_All = [Perf_Stim2R_All, Perf_Stim2R];
         else
             Perf_Stim2R_All = [];
         end
         
-        if exist ('Perf_Stim1_L_M')
+        if ~isnan (Perf_Stim1_L_M)
             Perf_Stim1L_M_All = [Perf_Stim1L_M_All, Perf_Stim1_L_M];
         else
             Perf_Stim1L_M_All = [];
         end
         
-        if exist ('Perf_Stim2_L_M')
+        if ~isnan (Perf_Stim2_L_M)
             Perf_Stim2L_M_All = [Perf_Stim2L_M_All, Perf_Stim2_L_M];
         else
             Perf_Stim2L_M_All = [];
         end
         
-        if exist ('Perf_Stim1_R_M')
+        if ~isnan (Perf_Stim1_R_M)
             Perf_Stim1R_M_All = [Perf_Stim1R_M_All, Perf_Stim1_R_M];
         else
             Perf_Stim1R_M_All = [];
         end
         
-        if exist ('Perf_Stim2_R_M')
+        if ~isnan (Perf_Stim2_R_M)
             Perf_Stim2R_M_All = [Perf_Stim2R_M_All, Perf_Stim2_R_M];
         else
             Perf_Stim2R_M_All = [];
         end
         
-        if exist ('Perf_DotL')
+        if ~isnan (Perf_DotL)
             Perf_DotL_All = [Perf_DotL_All, Perf_DotL];
         else
             Perf_DotL_All = [];
         end
         
-        if exist ('Perf_DotR')
+        if ~isnan (Perf_DotR)
             Perf_DotR_All = [Perf_DotR_All, Perf_DotR]; 
         else
             Perf_DotR_All =[];
         end
         
-        if exist ('Perf_GL')    
+        if ~isnan (Perf_GL)    
             Perf_GL_All = [Perf_GL_All, Perf_GL];
         else
             Perf_GL_All = [];
         end
         
-        if exist ('Perf_GR')
+        if ~isnan (Perf_GR)
             Perf_GR_All = [Perf_GR_All, Perf_GR]; 
         else
             Perf_GR_All = [];
         end
     
         
-        if exist ('Shapes_Succ_Stim1')
+        if ~isnan (Shapes_Succ_Stim1)
             Shapes_Succ_Stim1_All = [Shapes_Succ_Stim1_All, Shapes_Succ_Stim1];
             Shapes_Fail_Stim1_All = [Shapes_Fail_Stim1_All, Shapes_Fail_Stim1];
         else
@@ -200,7 +200,7 @@ for i=suffix
             Shapes_Fail_Stim1_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim2')
+        if ~isnan (Shapes_Succ_Stim2)
             Shapes_Succ_Stim2_All = [Shapes_Succ_Stim2_All, Shapes_Succ_Stim2];
             Shapes_Fail_Stim2_All = [Shapes_Fail_Stim2_All, Shapes_Fail_Stim2];
         else
@@ -209,7 +209,7 @@ for i=suffix
         end
         
         
-        if exist ('Shapes_Succ_Stim1L')   
+        if ~isnan (Shapes_Succ_Stim1L)   
             Shapes_Succ_Stim1L_All = [Shapes_Succ_Stim1L_All, Shapes_Succ_Stim1L];
             Shapes_Fail_Stim1L_All = [Shapes_Fail_Stim1L_All, Shapes_Fail_Stim1L];
         else
@@ -217,7 +217,7 @@ for i=suffix
             Shapes_Fail_Stim1L_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim2L')   
+        if ~isnan (Shapes_Succ_Stim2L)   
             Shapes_Succ_Stim2L_All = [Shapes_Succ_Stim2L_All, Shapes_Succ_Stim2L];
             Shapes_Fail_Stim2L_All = [Shapes_Fail_Stim2L_All, Shapes_Fail_Stim2L];
         else
@@ -225,7 +225,7 @@ for i=suffix
             Shapes_Fail_Stim2L_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim1R')    
+        if ~isnan (Shapes_Succ_Stim1R)    
             Shapes_Succ_Stim1R_All = [Shapes_Succ_Stim1R_All, Shapes_Succ_Stim1R];
             Shapes_Fail_Stim1R_All = [Shapes_Fail_Stim1R_All, Shapes_Fail_Stim1R];
         else
@@ -233,7 +233,7 @@ for i=suffix
             Shapes_Fail_Stim1R_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim2R')    
+        if ~isnan (Shapes_Succ_Stim2R)    
             Shapes_Succ_Stim2R_All = [Shapes_Succ_Stim2R_All, Shapes_Succ_Stim2R];
             Shapes_Fail_Stim2R_All = [Shapes_Fail_Stim2R_All, Shapes_Fail_Stim2R];
         else
@@ -241,7 +241,7 @@ for i=suffix
             Shapes_Fail_Stim2R_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim1L_M')   
+        if ~isnan (Shapes_Succ_Stim1L_M)   
             Shapes_Succ_Stim1L_M_All = [Shapes_Succ_Stim1L_M_All, Shapes_Succ_Stim1L_M];
             Shapes_Fail_Stim1L_M_All = [Shapes_Fail_Stim1L_M_All, Shapes_Fail_Stim1L_M];
         else
@@ -249,7 +249,7 @@ for i=suffix
             Shapes_Fail_Stim1L_M_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim2L_M')   
+        if ~isnan (Shapes_Succ_Stim2L_M)   
             Shapes_Succ_Stim2L_M_All = [Shapes_Succ_Stim2L_M_All, Shapes_Succ_Stim2L_M];
             Shapes_Fail_Stim2L_M_All = [Shapes_Fail_Stim2L_M_All, Shapes_Fail_Stim2L_M];
         else
@@ -257,7 +257,7 @@ for i=suffix
             Shapes_Fail_Stim2L_M_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim1R_M')   
+        if ~isnan (Shapes_Succ_Stim1R_M)   
             Shapes_Succ_Stim1R_M_All = [Shapes_Succ_Stim1R_M_All, Shapes_Succ_Stim1R_M];
             Shapes_Fail_Stim1R_M_All = [Shapes_Fail_Stim1R_M_All, Shapes_Fail_Stim1R_M];
         else
@@ -265,7 +265,7 @@ for i=suffix
             Shapes_Fail_Stim1R_M_All = [];
         end
         
-        if exist ('Shapes_Succ_Stim2R_M')   
+        if ~isnan (Shapes_Succ_Stim2R_M)   
             Shapes_Succ_Stim2R_M_All = [Shapes_Succ_Stim2R_M_All, Shapes_Succ_Stim2R_M];
             Shapes_Fail_Stim2R_M_All = [Shapes_Fail_Stim2R_M_All, Shapes_Fail_Stim2R_M];
         else
@@ -273,7 +273,7 @@ for i=suffix
             Shapes_Fail_Stim2R_M_All = [];
         end
         
-        if exist ('Dots_Succ_DotL')   
+        if ~isnan (Dots_Succ_DotL)   
             Dots_Succ_DotL_All = [Dots_Succ_DotL_All, Dots_Succ_DotL];
             Dots_Fail_DotL_All = [Dots_Fail_DotL_All, Dots_Fail_DotL];
         else
@@ -281,7 +281,7 @@ for i=suffix
             Dots_Fail_DotL_All = [];
         end
         
-        if exist ('Dots_Succ_DotR')   
+        if ~isnan (Dots_Succ_DotR)   
             Dots_Succ_DotR_All = [Dots_Succ_DotR_All, Dots_Succ_DotR];
             Dots_Fail_DotR_All = [Dots_Fail_DotR_All, Dots_Fail_DotR];
         else
@@ -289,7 +289,7 @@ for i=suffix
             Dots_Fail_DotR_All = [];
         end
         
-        if exist ('G_Succ_GL')   
+        if ~isnan (G_Succ_GL)   
             G_Succ_GL_All = [G_Succ_GL_All, G_Succ_GL];
             G_Fail_GL_All = [G_Fail_GL_All, G_Fail_GL];
         else
@@ -297,7 +297,7 @@ for i=suffix
             G_Fail_GL_All = [];
         end
         
-        if exist ('G_Succ_GR')   
+        if ~isnan (G_Succ_GR)   
             G_Succ_GR_All = [G_Succ_GR_All, G_Succ_GR];
             G_Fail_GR_All = [G_Fail_GR_All, G_Fail_GR];
         else
@@ -320,10 +320,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Shapes_All, 'facecolor',[.2 .2 .2]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Shapes', 'fontsize', 12);
+legend('Shapes');
 title (RatName, 'fontsize', 14);
 end
 
@@ -333,10 +335,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_MovingShapes_All, 'facecolor',[.4 .4 .4]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Moving Shapes 1', 'fontsize', 12);
+legend('Moving Shapes 1');
 title (RatName, 'fontsize', 14);
 end
 
@@ -346,10 +350,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_MovingShapes_M_All, 'facecolor',[.6 .6 .6]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Moving Shapes 2', 'fontsize', 12);
+legend('Moving Shapes 2');
 title (RatName, 'fontsize', 14);
 end
 
@@ -359,10 +365,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Dots_All, 'facecolor',[.8 .8 .8]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Dots', 'fontsize', 12);
+legend('Dots');
 title (RatName, 'fontsize', 14);
 end
 
@@ -372,10 +380,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_G_All, 'facecolor',[1 1 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Gratings', 'fontsize', 12);
+legend('Gratings');
 title (RatName, 'fontsize', 14);
 end
 
@@ -386,10 +396,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Stim1_All, 'facecolor',[1 0 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim 1', 'fontsize', 12);
+legend('Stim 1');
 title (RatName, 'fontsize', 12);
 end
 
@@ -398,37 +410,52 @@ if ~isempty(sessionS)
 figure;
 subplot(2,2,1); bar(sessionS, Perf_Stim1L_All, 'facecolor',[1 .8 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim1 L', 'fontsize', 12);
+legend('Stim1 L');
 title (RatName, 'fontsize', 12);
+end
 
+sessionS = 1:length(Perf_Stim1R_All);
+if ~isempty(sessionS)
 subplot(2,2,2); bar(sessionS, Perf_Stim1R_All, 'facecolor',[0 0 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim1 R', 'fontsize', 12);
+legend('Stim1 R');
 title (RatName, 'fontsize', 12);
+end
 
-
+sessionS = 1:length(Perf_Stim1L_M_All);
+if ~isempty(sessionS)
 subplot(2,2,3); bar(sessionS, Perf_Stim1L_M_All, 'facecolor',[1 .8 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim1 LM', 'fontsize', 12);
+legend('Stim1 LM');
 title (RatName, 'fontsize', 12);
+end
 
+sessionS = 1:length(Perf_Stim1R_M_All);
+if ~isempty(sessionS)
 subplot(2,2,4); bar(sessionS, Perf_Stim1R_M_All, 'facecolor',[0 0 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim1 RM', 'fontsize', 12);
+legend('Stim1 RM');
 title (RatName, 'fontsize', 12);
-
 end
 
 
@@ -438,10 +465,12 @@ if ~isempty(sessionS)
 figure;
 bar(sessionS, Perf_Stim2_All, 'facecolor',[1 0 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim 2', 'fontsize', 12);
+legend('Stim 2');
 title (RatName, 'fontsize', 12);
 end
 
@@ -450,37 +479,52 @@ if ~isempty(sessionS)
 figure;
 subplot(2,2,1); bar(sessionS, Perf_Stim2L_All, 'facecolor',[1 .8 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim2 L', 'fontsize', 12);
+legend('Stim2 L');
 title (RatName, 'fontsize', 12);
+end
 
+sessionS = 1:length(Perf_Stim2R_All);
+if ~isempty(sessionS)
 subplot(2,2,2); bar(sessionS, Perf_Stim2R_All, 'facecolor',[0 0 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim2 R', 'fontsize', 12);
+legend('Stim2 R');
 title (RatName, 'fontsize', 12);
+end
 
-
+sessionS = 1:length(Perf_Stim2L_M_All);
+if ~isempty(sessionS)
 subplot(2,2,3); bar(sessionS, Perf_Stim2L_M_All, 'facecolor',[1 .8 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim2 LM', 'fontsize', 12);
+legend('Stim2 LM');
 title (RatName, 'fontsize', 12);
+end
 
+sessionS = 1:length(Perf_Stim2R_M_All);
+if ~isempty(sessionS)
 subplot(2,2,4); bar(sessionS, Perf_Stim2R_M_All, 'facecolor',[0 0 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Stim2 RM', 'fontsize', 12);
+legend('Stim2 RM');
 title (RatName, 'fontsize', 12);
-
 end
 
 % Dots n Gratings
@@ -489,19 +533,23 @@ if ~isempty(sessionS)
 figure;
 subplot(2,2,1); bar(sessionS, Perf_DotL_All, 'facecolor',[1 0 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Dots L', 'fontsize', 12);
+legend('Dots L');
 title (RatName, 'fontsize', 12);
 
 
 subplot(2,2,2); bar(sessionS, Perf_DotR_All, 'facecolor',[1 .8 0]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Dots R', 'fontsize', 12);
+legend('Dots R');
 title (RatName, 'fontsize', 12);
 end
 
@@ -510,19 +558,23 @@ sessionS = 1:length(Perf_GL_All);
 if ~isempty(sessionS)
 subplot(2,2,3); bar(sessionS, Perf_GL_All, 'facecolor',[0 0 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Gratings L', 'fontsize', 12);
+legend('Gratings L');
 title (RatName, 'fontsize', 12);
 
 
 subplot(2,2,4); bar(sessionS, Perf_GR_All, 'facecolor',[0 .8 1]);
 hold on;
-set (gca, 'ylim', [0 100]);
+x_lim = get(gca, 'xlim');
+plot( x_lim, [50 50], '--k' );
+set (gca, 'ylim', [0 120]);
 xlabel('Session #', 'fontsize', 12);
 ylabel('Performance', 'fontsize', 12);
-legend('Gratings R', 'fontsize', 12);
+legend('Gratings R');
 title (RatName, 'fontsize', 12);
 end
 
