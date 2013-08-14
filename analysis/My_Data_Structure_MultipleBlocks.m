@@ -2,13 +2,13 @@ function My_Data_Structure_MultipleBlocks (DayOfRecording, Block)
 
 w=cd;
 BLOCKS= Block; %67
-bin=25/1000;
+bin=50/1000;
 %bin=50/1000;
 
 
 
 % DayOfRecording = '18_3_2  013';
-AreaOfRecording = 'AL'; %AL %AM
+AreaOfRecording = 'V1b'; %AL %AM
 
 shift_bin=10/1000;
 

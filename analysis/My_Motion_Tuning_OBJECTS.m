@@ -1,12 +1,12 @@
 
-%%%%%% OBJECTS TUNING
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%% ORIENTATION TUNING OBJECTS N GRATINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all
 clc
 close all
 
-DayOfRecording = '19_7_2013';
+DayOfRecording = '2_7_2013';
 Block=12;
 
 my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(Block), '/BL_2/My_Structure/25'];
@@ -27,15 +27,18 @@ neuronS = (numel(files))/2;
 object = [1, 2, 3, 4];
 % object = [-1, 0, 1, 2, 3, 4, 9, 11, 22, 111, 222, 333, 444];
 % COLORSET=varycolor(object);
+T1_All = [];
+T2_All = [];
+global nn
+global my_bits
 
 
-
-for nn = 1:neuronS
+for nn = 1 %:neuronS
     countolo=0;
     
     % spike countin window >>>>>> optimize
-    T1= 50 ;
-    T2 = 200;
+%     T1= 0 ;
+%     T2 = 300;
         
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
     load(['NEURON_', num2str(nn),'.mat'])
@@ -43,6 +46,7 @@ for nn = 1:neuronS
 contami = 0;
 
 %% Fast Motion Tuning
+
 
 for ob = object
     
@@ -67,16 +71,24 @@ for ob = object
             stringS=strcat('TUNING/', num2str(nn), '/', char(stimidentity));
             mkdir(stringS);
 
-        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,12)==0.763100000000000));       
+        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,11)==0.763100000000000));       
         selected_bits = a';       
-        motion_values = Fede_STIM_NU(selected_bits,13);
+        motion_values = Fede_STIM_NU(selected_bits,12);
 %         motion_set=sort(unique(Fede_STIM_NU(selected_bits,13)));   %%% 13th column = direction of motion
  
+        for my_bits = selected_bits;
+            [T1, T2]=My_Window_NEW;
+            T1_All = [T1_All, T1];
+            T2_All = [T2_All, T2];
+        end
+        
         for z = 1:numel(motion_values)  
             
         I=motion_values(z);
         stim = selected_bits(z);
         sp_tr=[];
+        T1=T1_All(z);
+        T2=T2_All(z);
 
             for oi=1:size(PsthAndRaster.MySpikes, 2)
             sp_tr(oi)=sum(PsthAndRaster.MySpikes{stim,oi}>(T1/1000+PRE_TIME) & PsthAndRaster.MySpikes{stim,oi}<(T2/1000+PRE_TIME));
@@ -202,11 +214,13 @@ end
             saveas(gcf,[ww,'/TUNING/', num2str(nn), '/', char(stimidentity), '/fT_', char(stimidentity),'.fig'])  
             close
 
-            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss
+            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss motion_values
 
 
 %% Slow Motion Tuning
 
+
+    
 contami = 0;
 
 for ob = object
@@ -232,9 +246,9 @@ for ob = object
             stringS=strcat('TUNING/', num2str(nn), '/', char(stimidentity));
             mkdir(stringS);
 
-        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,12)==1.984000000000000));       
+        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,11)==1.984000000000000));       
         selected_bits = a';       
-        
+        motion_values = Fede_STIM_NU(selected_bits,12);
  
         for z = 1:numel(motion_values)  
             
@@ -365,7 +379,7 @@ end
             close
 
             
-            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss
+            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss motion_values
             
             
             
@@ -373,4 +387,4 @@ end
 
             
 
-save([ww,'/TUNING/Objects_Tuning.mat'], 'TUN', 'TUN_BBl', 'TUN_WBl', '-v7.3');
+save([ww,'/TUNING/MovingObjects_Tuning.mat'], 'TUN', 'TUN_BBl', 'TUN_WBl', '-v7.3');

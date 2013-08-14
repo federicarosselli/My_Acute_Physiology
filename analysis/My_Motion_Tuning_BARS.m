@@ -27,25 +27,35 @@ neuronS = (numel(files))/2;
 object = [-1];
 % object = [-1, 0, 1, 2, 3, 4, 9, 11, 22, 111, 222, 333, 444];
 % COLORSET=varycolor(object);
-
 COLORSET=varycolor(neuronS);
 
-for nn = 1:neuronS
+T1_All = [];
+T2_All = [];
+
+global nn
+global my_bits
+
+
+for nn = 1 %:neuronS
     countolo=0;
     
     % spike countin window >>>>>> optimize
-    T1= 50 ;
-    T2 = 200;
+%     T1= 50 ;
+%     T2 = 250;
         
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
     load(['NEURON_', num2str(nn),'.mat'])
-
+    
+contami2 = 0;
 contami = 0;
 
 %% Fast Motion Tuning
 
+
 for ob = object
-    
+
+        contami2 = contami2+1;
+
 
         if ob == 0
                 stimidentity = 'BBlank';
@@ -65,11 +75,17 @@ for ob = object
             stringS=strcat('TUNING/', num2str(nn), '/', char(stimidentity));
             mkdir(stringS);
 
-        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,12)==0.763100000000000));       
+        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,11)==0.763100000000000));       
         selected_bits = a';       
-        motion_values = Fede_STIM_NU(selected_bits,13);
+        motion_values = Fede_STIM_NU(selected_bits,12);
 %         motion_set=sort(unique(Fede_STIM_NU(selected_bits,13)));   %%% 13th column = direction of motion
  
+        for my_bits = selected_bits;
+            [T1, T2]=My_Window;
+            T1_All = [T1_All, T1];
+            T2_All = [T2_All, T2];
+        end
+        
         for z = 1:numel(motion_values)  
             
         I=motion_values(z);
@@ -80,6 +96,7 @@ for ob = object
             sp_tr(oi)=sum(PsthAndRaster.MySpikes{stim,oi}>(T1/1000+PRE_TIME) & PsthAndRaster.MySpikes{stim,oi}<(T2/1000+PRE_TIME));
             end
             sp_tr
+            
             TUN.Fast.Me{nn}(z)=mean(sp_tr)/(T2-T1)*1000;
             TUN.Fast.St{nn}(z)=std(sp_tr)/(T2-T1)*1000;
             TUN.Fast.Se{nn}(z)=std(sp_tr)/sqrt(numel(sp_tr))/(T2-T1)*1000;
@@ -126,8 +143,8 @@ for ob = object
            wbl = [bbb(end), bbb(end), bbb(end), bbb(end), bbb(end), bbb(end), bbb(end), bbb(end)]; 
            
            
-%        %% plot    
-% 
+       %% plot    
+
 % %             subplot(2,1,1) 
 %             %figure(objs)
 %             title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
@@ -150,18 +167,16 @@ for ob = object
 %             hold on
 %             ordered_bbb=sortGivenOrder(bbb(1:numel(motion_values)));
 %             ordered_sss=sortGivenOrder(sss(1:numel(motion_values)));
-%             her=errorbar(ordered_values,ordered_bbb,ordered_sss,'-O','Color', COLORSET(nn,:), 'linewidth', 1.5)
+%             her{ob}=errorbar(ordered_values,ordered_bbb,ordered_sss,'-O','color',COLORSET(contami,:), 'linewidth', 1.5);
 % %             her{ob}=errorbar(motion_values,bbb(1:numel(motion_values)),sss(1:numel(motion_values)),'-O','color',COLORSET(contami,:)) %,)
 %             xlim([min(motion_values)-3 max(motion_values)+3])
 %             set(gca, 'XTick', [motion_set'])
-%             legend(her, 'Bar')
              
-
               ordered_values=sortGivenOrder(motion_values);
               ordered_bbb=sortGivenOrder(bbb(1:numel(motion_values)));
               ordered_sss=sortGivenOrder(sss(1:numel(motion_values)));
               rad_ordered_values = ordered_values .* pi/180;
-              
+
 
               contami = contami+1;
               grey=[0.4, 0.4, 0.4];
@@ -178,40 +193,40 @@ for ob = object
               wa = polar(rad_ordered_values, wbl);
               set(wa, 'color', grey2, 'linewidth', 2)
               hold on;
-              
+              legend(ha, 'Bar')
               ja = polar(rad_ordered_values, bbl);
               set(ja, 'color', grey, 'linewidth', 2)
 %               hold on;
               view(90, -90);
-              legend(ha, 'Bar')
+              
               title(['Fast Motion Tuning', 'Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
 
               clear all_bbs my_ref my_ref_vect ra ja wa
            
             
         
-
-            
-
-           
+end
             
         
-end
+
 
  
             saveas(gcf,[ww,'/TUNING/', num2str(nn), '/', char(stimidentity), '/fT_', char(stimidentity),'.png']) 
             saveas(gcf,[ww,'/TUNING/', num2str(nn), '/', char(stimidentity), '/fT_', char(stimidentity),'.fig'])  
             close
 
-            clear all_bbs my_ref my_ref_vect ra ha ja wa bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss
+            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss motion_values
 
 
 %% Slow Motion Tuning
 
+
 contami = 0;
+contami2 = 0;
 
 for ob = object
     
+        contami2 = contami2+1;
 
 
         if ob == 0
@@ -232,9 +247,9 @@ for ob = object
             stringS=strcat('TUNING/', num2str(nn), '/', char(stimidentity));
             mkdir(stringS);
 
-        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,12)==1.984000000000000));       
+        [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob & Fede_STIM_NU(1:342,11)==1.984000000000000));       
         selected_bits = a';       
-        
+        motion_values = Fede_STIM_NU(selected_bits,12);
  
         for z = 1:numel(motion_values)  
             
@@ -314,11 +329,10 @@ for ob = object
 %             hold on
 %             ordered_bbb=sortGivenOrder(bbb(1:numel(motion_values)));
 %             ordered_sss=sortGivenOrder(sss(1:numel(motion_values)));
-%             her=errorbar(ordered_values,ordered_bbb,ordered_sss,'-O','Color', COLORSET(nn,:), 'linewidth', 1.5)
+%             her{ob}=errorbar(ordered_values,ordered_bbb,ordered_sss,'-O','color',COLORSET(contami,:), 'linewidth', 1.5);
 % %             her{ob}=errorbar(motion_values,bbb(1:numel(motion_values)),sss(1:numel(motion_values)),'-O','color',COLORSET(contami,:)) %,)
 %             xlim([min(motion_values)-3 max(motion_values)+3])
 %             set(gca, 'XTick', [motion_set'])
-%             legend(her, 'Bar')
 
 
               ordered_values=sortGivenOrder(motion_values);
@@ -326,6 +340,9 @@ for ob = object
               ordered_sss=sortGivenOrder(sss(1:numel(motion_values)));
               rad_ordered_values = ordered_values .* pi/180;
               
+
+
+
 
               contami = contami+1;
               grey=[0.4, 0.4, 0.4];
@@ -342,31 +359,30 @@ for ob = object
               wa = polar(rad_ordered_values, wbl);
               set(wa, 'color', grey2, 'linewidth', 2)
               hold on;
-              
+              legend(ha, 'Bar')
               ja = polar(rad_ordered_values, bbl);
               set(ja, 'color', grey, 'linewidth', 2)
 %               hold on;
               view(90, -90);
               
               title(['Slow Motion Tuning', 'Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-              legend(ha, 'Bar')
+
               clear all_bbs my_ref my_ref_vect ra ja wa
            
-            
-        
 end
-
+            
  
             saveas(gcf,[ww,'/TUNING/', num2str(nn), '/', char(stimidentity), '/slT_', char(stimidentity),'.png']) 
             saveas(gcf,[ww,'/TUNING/', num2str(nn), '/', char(stimidentity), '/slT_', char(stimidentity),'.fig'])  
             close
 
             
-            clear all_bbs my_ref my_ref_vect ra ha ja wa bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss
+            clear ha bbb sss selected_bits Y bbl wbl ordered_values ordered_bbb ordered_sss motion_values
+            
             
             
 end
 
             
 
-save([ww,'/TUNING/Bars_Tuning.mat'], 'TUN', 'TUN_BBl', 'TUN_WBl', '-v7.3');
+save([ww,'/TUNING/MovingBars_Tuning.mat'], 'TUN', 'TUN_BBl', 'TUN_WBl', '-v7.3');
