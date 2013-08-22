@@ -321,7 +321,7 @@ end;
 % ***** STIM 1 R *******
 if ~isnan(stim_id)
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) ~= 0);
+    I = find( stim_id == 0 & stim_shape == 1);  
     Pre_S1R_N_correct = length( find(success(I)==1) );
     Pre_S1R_N_failure = length( find(failure(I)==1) );
     Pre_S1R_N_tot = Pre_S1R_N_correct + Pre_S1R_N_failure;
@@ -353,7 +353,7 @@ clear I
 % ***** STIM 2 R *******
 if ~isnan(stim_id)
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 0 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
+    I = find( stim_id == 0 & stim_shape == 2);
     Pre_S2R_N_correct = length( find(success(I)==1) );
     Pre_S2R_N_failure = length( find(failure(I)==1) );
     Pre_S2R_N_tot = Pre_S2R_N_correct + Pre_S2R_N_failure;
@@ -385,7 +385,7 @@ clear I
 % ***** STIM 1 L *******
 if ~isnan(stim_id)
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 1); % & stim_pos_x(1:length(stim_shape)) ~= 0);
+    I = find( stim_id == 1 & stim_shape == 1);
     Pre_S1L_N_correct = length( find(success(I)==1) );
     Pre_S1L_N_failure = length( find(failure(I)==1) );
     Pre_S1L_N_tot = Pre_S1L_N_correct + Pre_S1L_N_failure;
@@ -417,7 +417,7 @@ clear I
 % ***** STIM 2 L *******
 if ~isnan(stim_id)
 
-    I = find( stim_size(1:length(stim_shape)) == 35 & stim_id(1:length(stim_shape)) == 1 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) ~= 0);
+    I = find( stim_id == 1 & stim_shape == 2);
     Pre_S2L_N_correct = length( find(success(I)==1) );
     Pre_S2L_N_failure = length( find(failure(I)==1) );
     Pre_S2L_N_tot = Pre_S2L_N_correct + Pre_S2L_N_failure;
@@ -454,8 +454,11 @@ Moving_Shapes_Tot = All_Succs+All_Fails;
 
 
 %% DEFAULT
-
-I = find( stim_size(1:length(stim_shape)) == 35 & stim_shape == 1 & stim_pos_x(1:length(stim_shape)) == 0);
+if isnan (Perf_Stim1)
+I = find( stim_size == 35 & stim_shape == 1 & stim_pos_x == 0);
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     S1_N_correct = length( find(success(I)==1) );
     S1_N_failure = length( find(failure(I)==1) );
     S1_N_tot = S1_N_correct + S1_N_failure;
@@ -471,7 +474,10 @@ Shapes_Succ_Stim1 = S1_N_correct
 Shapes_Fail_Stim1 = S1_N_failure
 
 
-I = find( stim_size(1:length(stim_shape)) == 35 & stim_shape == 2 & stim_pos_x(1:length(stim_shape)) == 0);
+I = find( stim_size == 35 & stim_shape == 2 & stim_pos_x == 0);
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     S2_N_correct = length( find(success(I)==1) );
     S2_N_failure = length( find(failure(I)==1) );
     S2_N_tot = S2_N_correct + S2_N_failure;
@@ -487,6 +493,12 @@ Shapes_Succ_Stim2 = S2_N_correct
 Shapes_Fail_Stim2 = S2_N_failure
 
 
+All_Succs = Shapes_Succ_Stim1 + Shapes_Succ_Stim2;
+All_Fails = Shapes_Fail_Stim1 + Shapes_Fail_Stim2;
+Perf_Shapes = All_Succs*100/(All_Succs+All_Fails);
+Shapes_Tot = All_Succs+All_Fails;
+
+end
 
 clear I
 
@@ -496,6 +508,9 @@ RangeSize = 15:10:35;
 for s = RangeSize
     I = find( stim_size == s & stim_pos_x == PosH_default & stim_pos_y == PosV_default & ...
         stim_rot == Rot_default & stim_rot_depth == RotDep_default & FlagBothStimsON == 1 );
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     N_correct(i) = length( find(success(I)==1) );
     N_failure(i) = length( find(failure(I)==1) );
     N_tot(i) = N_correct(i) + N_failure(i);
@@ -527,7 +542,8 @@ Size.N_correct = N_correct;
 Size.N_failure = N_failure;
 Size.N_leg = N_leg;
 Size.RangeSize = RangeSize;
-clear Perc_correct, N_leg; 
+
+clear Perc_correct N_tot N_correct N_failure N_leg
 
 
 
@@ -537,6 +553,9 @@ RangePos = -18:6:18;
 for p = RangePos
     I = find( stim_size == Size_default_for_StairPosition & stim_pos_x == p & ...
         stim_pos_y == PosV_default & stim_rot == Rot_default & stim_rot_depth == RotDep_default & FlagBothStimsON == 1 );
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     N_correct(i) = length( find(success(I)==1) );
     N_failure(i) = length( find(failure(I)==1) );
     N_tot(i) = N_correct(i) + N_failure(i);
@@ -568,13 +587,18 @@ Pos.N_failure = N_failure;
 Pos.N_leg = N_leg;
 Pos.RangePos = RangePos;
 
+clear Perc_correct N_tot N_correct N_failure N_leg
+
 
 % ***** ROTATION IN PLANE *******
 i=1;
 RangeRot = -45:15:45;
 for r = RangeRot
-    I = find( stim_size == Size_default_for_StairRotation_InPlane & stim_pos_x == PosH_default & ...
+        I = find( stim_size == Size_default_for_StairRotation_InPlane & stim_pos_x == PosH_default & ...
         stim_pos_y == PosV_default_InPlane & stim_rot == r & stim_rot_depth == RotDep_default & FlagBothStimsON == 1 );
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     N_correct(i) = length( find(success(I)==1) );
     N_failure(i) = length( find(failure(I)==1) );
     N_tot(i) = N_correct(i) + N_failure(i);
@@ -606,6 +630,8 @@ Rot.N_failure = N_failure;
 Rot.N_leg = N_leg;
 Rot.RangeRot = RangeRot;
 
+clear Perc_correct N_tot N_correct N_failure N_leg
+
 
 % ***** ROTATION IN DEPTH *******
 i=1;
@@ -613,6 +639,9 @@ RangeRotDep = -60:20:60;
 for r = RangeRotDep
     I = find( stim_size == Size_default_for_StairRotation & stim_pos_x == PosH_default & ...
         stim_pos_y == PosV_default & stim_rot == Rot_default & stim_rot_depth == r & FlagBothStimsON == 1 );
+    if length(I) > Ntrials
+        I = I(1:Ntrials);
+    end
     N_correct(i) = length( find(success(I)==1) );
     N_failure(i) = length( find(failure(I)==1) );
     N_tot(i) = N_correct(i) + N_failure(i);
@@ -643,6 +672,8 @@ RotDep.N_correct = N_correct;
 RotDep.N_failure = N_failure;
 RotDep.N_leg = N_leg;
 RotDep.RangeRot = RangeRotDep;
+
+clear Perc_correct N_tot N_correct N_failure N_leg
 
 
 
