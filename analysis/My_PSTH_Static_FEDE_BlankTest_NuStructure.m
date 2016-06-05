@@ -1,9 +1,9 @@
 function My_PSTH_Static_FEDE_BlankTest_NuStructure 
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_2_7_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
 %% note: no conditions 35 and 36 were presented for this sessio
 
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_19_7_2013/ANALYSED/Block-2/My_Structure/25
 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_12_4_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
 

@@ -18,12 +18,17 @@ function My_Raster_NEW_PEAKSNTIMES (DayOfRecording, Block)
 % object = 11 (dots pattern 1)
 % object = 22 (dots pattern 2)
 
+my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(Block), '/BL_2/My_Structure/1'];
 
-my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(Block), '/BL_2/My_Structure/50'];
+% my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(Block), '/BL_2/My_Structure/25'];
+% my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED/BlockS-', num2str(Block), '/BL_2/My_Structure/50'];
 % my_folder = ['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', , char(DayOfRecording), '/ANALYSED/Block-' , num2str(Block), '/My_Structure/25'];
 
 addpath /zocconasphys1/chronic_inv_rec/codes/
 load My_StimS_NUANGLE_NUCONDITIONS
+
+bitcodes = [168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200, 202, 204, 206, ...
+    208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230];
 
 % Cool_Psths
 % neuronS = BlockS_67;   %%% >>>>>>> optimize!!!
@@ -38,8 +43,8 @@ neuronS = (numel(files))/2;
 COLORSET=varycolor(neuronS);
 all_peaks = cell(zeros());
 all_time_series = cell(zeros());
-object = [-1, 0, 1, 2, 3, 4, 9, 11, 22, 111, 222, 333, 444];
 % object = [-1, 0, 1, 2, 3, 4, 9, 11, 22, 111, 222, 333, 444];
+object = [111, 222, 333, 444];
 
 for nn = 1:neuronS
     countolo=0;
@@ -58,7 +63,7 @@ for nn = 1:neuronS
         [a z]=ind2sub(size(Fede_STIM_NU), find(Fede_STIM_NU(1:342,2)==ob));
         selected_bits = a';
         
-            for BIT_Number = selected_bits
+            for BIT_Number = bitcodes %selected_bits
 
             a = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
@@ -69,8 +74,8 @@ for nn = 1:neuronS
             N_PSTH=PsthAndRaster.Psth{BIT_Number,nn};
 
                 ps=PsthAndRaster.Psth{BIT_Number,nn};
-                trr=PsthAndRaster.Trials{BIT_Number,nn};
-                M=ps(trr,:);
+%                 trr=PsthAndRaster.Trials{BIT_Number,nn};
+                M=ps; %(trr,:);
                 M_PSTH{BIT_Number,nn}=mean(M);
                 S_PSTH{BIT_Number,nn}=std(M)/sqrt(size(M,1));
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
@@ -79,7 +84,9 @@ for nn = 1:neuronS
                     for trl=1:size(PsthAndRaster.MySpikes, 2)
 
 
-                    b = M_PSTH{BIT_Number,nn}*(1000/25);
+%                     b = M_PSTH{BIT_Number,nn}*(1000/25);
+                    b = M_PSTH{BIT_Number,nn}*(1000/1);
+                    
                     Tlin = T(1:tm);
                     blin = b(1:tm);
                     maxb = max(blin);
@@ -163,7 +170,7 @@ for nn = 1:neuronS
         end
         
        save([ww,'/RASTERS/PeaksnTimes.mat'], 'all_peaks', 'all_time_series', '-v7.3');
-       clearvars -except all_peaks all_time_series Fede_STIM_NU files neuronS nn obj object
+       clearvars -except all_peaks all_time_series Fede_STIM_NU files neuronS nn obj object bitcodes
         
 end
             

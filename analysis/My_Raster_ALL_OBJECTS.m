@@ -49,7 +49,7 @@ S_PSTH = cell(zeros());
 
 
 
-for nn = 3:4 %neuronS
+for nn = 1:neuronS
     countolo=0;
         
     load(['PSTH_RASTER_', num2str(nn),'.mat'])
@@ -96,9 +96,8 @@ for nn = 3:4 %neuronS
             fposx = Fede_STIM_NU(BIT_Number, 6); 
             iposy = Fede_STIM_NU(BIT_Number, 7); 
             fposy = Fede_STIM_NU(BIT_Number, 8); 
-            inp = Fede_STIM_NU(BIT_Number, 9); 
-            az = Fede_STIM_NU(BIT_Number, 10); 
-            ori = Fede_STIM_NU(BIT_Number, 11); 
+            az = Fede_STIM_NU(BIT_Number, 9); 
+            ori = Fede_STIM_NU(BIT_Number, 10); 
 
             te = PsthAndRaster.Trials{BIT_Number,nn}(1);
             stim_pres_time = (STIM_STOP(te)-STIM_START(te))*1000;
@@ -157,21 +156,21 @@ for nn = 3:4 %neuronS
                     xlim([-200 1000])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && inp == 0
+                        if iposx == 15 && iposy == 0
                         xlabel(['FAST RightLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && inp == 0
+                        elseif iposx == -15 && iposy == 0
                         xlabel(['FAST LeftRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && inp == 0
+                        elseif iposx == 0 && iposy == 15
                         xlabel(['FAST UpDown Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && inp == 0
+                        elseif iposx == 0 && iposy == -15
                         xlabel(['FAST DownUp Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
+                        elseif iposx == -10.6 && iposy == -10.6
                         xlabel(['FAST UpRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
+                        elseif iposx == -10.6 && iposy == 10.6
                         xlabel(['FAST DownRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
+                        elseif iposx == 10.6 && iposy == -10.6
                         xlabel(['FAST UpLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6
                         xlabel(['FAST DownLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -235,21 +234,21 @@ for nn = 3:4 %neuronS
                     xlim([-200 2200])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
                     
-                        if iposx == 15 && iposy == 0 && inp == 0
+                        if iposx == 15 && iposy == 0 
                         xlabel(['SLOW RightLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -15 && iposy == 0 && inp == 0
+                        elseif iposx == -15 && iposy == 0 
                         xlabel(['SLOW LeftRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == 15 && inp == 0
+                        elseif iposx == 0 && iposy == 15 
                         xlabel(['SLOW UpDown Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 0 && iposy == -15 && inp == 0
+                        elseif iposx == 0 && iposy == -15 
                         xlabel(['SLOW DownUp Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == -10.6 && inp == 0
+                        elseif iposx == -10.6 && iposy == -10.6 
                         xlabel(['SLOW UpRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == -10.6 && iposy == 10.6 && inp == 0
+                        elseif iposx == -10.6 && iposy == 10.6 
                         xlabel(['SLOW DownRight Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == -10.6 && inp == 0
+                        elseif iposx == 10.6 && iposy == -10.6 
                         xlabel(['SLOW UpLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
-                        elseif iposx == 10.6 && iposy == 10.6 && inp == 0  
+                        elseif iposx == 10.6 && iposy == 10.6 
                         xlabel(['SLOW DownLeft Moving Object ', num2str(ob), ', BitCode ', num2str(BIT_Number)]);
                         end
                         
@@ -314,7 +313,7 @@ for nn = 3:4 %neuronS
                     line([250 250], [0 trl], 'Color', 'k','linewidth',2);
                     xlim([-200 450])
                     title(['Neuron ', num2str(nn), ', Channel ',num2str(My_Neurons.Channel), ', Area ', char(My_Neurons.Area)]);
-                    xlabel(['Static Object ',num2str(ob), ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', InPlane ', num2str(inp), ', InDepth ', num2str(az)]);
+                    xlabel(['Static Object ',num2str(ob), ', BitCode ', num2str(BIT_Number), ', Size ', num2str(isz), ', Posx ', num2str(iposx), ', Posy ', num2str(iposy), ', Orientation ', num2str(ori), ', InDepth ', num2str(az)]);
 
                     end
 
@@ -330,5 +329,5 @@ for nn = 3:4 %neuronS
         end
 end
             
-save([ww,'/RASTERS/Objects_Rasters.mat'], 'M_PSTH', 'S_PSTH','-v7.3');            
+save([ww,'/RASTERS/', char(stimidentity), '_Rasters.mat'], 'M_PSTH', 'S_PSTH','-v7.3');            
     

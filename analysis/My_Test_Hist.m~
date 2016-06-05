@@ -1,0 +1,151 @@
+%% tests time hist for moving stimuli
+
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/25
+
+addpath /zocconasphys1/chronic_inv_rec/codes/
+load My_StimS
+
+      
+
+%COLORSET=varycolor(length(Fede_STIM));
+
+
+COLORSET=varycolor(neuronS);
+stim_pres_times_bars = [];
+stim_pres_times_obj = [];
+stim_pres_times_g = [];
+stim_pres_times_d = [];
+
+stim_pres_all_bars = [];
+stim_pres_all_obj = [];
+stim_pres_all_g = [];
+stim_pres_all_d = [];
+
+for nn = 1 %neuronS
+    countolo = 0;
+        
+    load(['PSTH_RASTER_', num2str(nn),'.mat'])
+    load(['NEURON_', num2str(nn),'.mat'])
+    
+    cucu = My_Neurons.MeanFiringRate;
+%     MFR = cucu*(1000/25);
+    bitcodes = PsthAndRaster.BitCodes;
+    
+    %% stimcodes
+    % bars = -1
+    % objects = 1 2 3 4
+    % gratings = 111 121 131 141
+    % dots = 21 22 23 24
+    [a b]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==-1));
+    selected_bits = a';
+
+    
+    for BIT_Number = selected_bits; 
+        
+        
+
+                
+            %% to get the pres_time in that condition
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            if stim_pres_time >= 1000
+                if STIM_STOP(1) > STIM_START(1)
+                stim_pres_times = abs(STIM_START(1) - STIM_STOP(1));
+                stim_pres_all_bars = [stim_pres_all, stim_pres_times]
+                end
+            end
+            
+    end
+    
+    %% Uncomment for test hist
+           
+            figure;
+       
+            hist (stim_pres_all_bars, 200, 'k')
+                title(['Bars']); 
+    
+    selected_bits = [];        
+    clear stim_pres_all       
+    [a b]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==1));
+    selected_bits = a';
+
+    
+    for BIT_Number = selected_bits; 
+        
+
+                
+            %% to get the pres_time in that condition
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            if stim_pres_time >= 1000
+                if STIM_STOP(1) > STIM_START(1)
+                stim_pres_times = abs(STIM_START(1) - STIM_STOP(1));
+                stim_pres_all = [stim_pres_all, stim_pres_times]
+                end
+            end
+            
+    end
+    
+    figure;
+   
+    hist (stim_pres_all, 200, 'g')
+     title(['Object1']);
+     
+    selected_bits = [];
+    clear stim_pres_all 
+    [a b]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==1));
+    selected_bits = a';
+
+    
+    for BIT_Number = selected_bits; 
+                
+            %% to get the pres_time in that condition
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            if stim_pres_time >= 1000
+                if STIM_STOP(1) > STIM_START(1)
+                stim_pres_times = abs(STIM_START(1) - STIM_STOP(1));
+                stim_pres_all = [stim_pres_all, stim_pres_times]
+                end
+            end
+            
+    end
+    
+    figure;
+   
+    hist (stim_pres_all, 200, 'b')
+     title(['Grating1']);
+
+    selected_bits = [];
+    stim_pres_all = [];        
+            
+    [a b]=ind2sub(size(Fede_STIM), find(Fede_STIM(1:270,2)==21));
+    selected_bits = a';
+
+    
+    for BIT_Number = selected_bits; 
+                
+            %% to get the pres_time in that condition
+
+            a = PsthAndRaster.Trials{BIT_Number,nn}(1);
+            stim_pres_time = (STIM_STOP(a)-STIM_START(a))*1000;
+            if stim_pres_time >= 1000
+                if STIM_STOP(1) > STIM_START(1)
+                stim_pres_times = abs(STIM_START(1) - STIM_STOP(1));
+                stim_pres_all = [stim_pres_all, stim_pres_times]
+                end
+            end
+            
+    end
+    
+    figure;
+   
+    hist (stim_pres_all, 200, 'r')
+     title(['Dot1']);
+  
+            
+    
+end

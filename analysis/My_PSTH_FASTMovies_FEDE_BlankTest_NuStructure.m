@@ -8,9 +8,10 @@ clc
 
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/TEST/BL_2/My_Structure/25
 % cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/BlockS-67/BL_2/My_Structure/STEST/25
-% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_18_3_2013/ANALYSED/Block-5/My_Structure/25
+% cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_15_8_2013/ANALYSED/Block-2/My_Structure/25
 
-cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_19_7_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25
+cd /zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_05_07_2013/ANALYSED/BlockS-56/BL_2/My_Structure/25
+
 %% note: 29_5_2013: no conditions 35 and 36 were presented for this session
 
 files = dir(fullfile('*.mat'));
@@ -133,8 +134,9 @@ for nn = 1:neuronS
             end
     end
     
-    %
+    
     lulu = [7:bitcodes];
+
 %     lulu_29_5_2013=[5:34, 37:bitcodes];
 % lulu_15_7_2013 = [7:166, 168, 170, 172, 174, 176, 178,];  %% note: no
 % slow movies for gratings n dots for this session
@@ -175,6 +177,7 @@ for nn = 1:neuronS
                 figure(nn)                
                 alla = mean(B_fastmovies);
                 b = alla*(1000/25);
+               
                 B_fastmovies_All = vertcat(B_fastmovies_All, b);
                 T=linspace(-200,2200,size(PsthAndRaster.Psth{BIT_Number,nn},2));
                 [int tm]=min(abs(T-1000));
@@ -205,7 +208,7 @@ for nn = 1:neuronS
            hold on;
            grey2=[0.65, 0.65, 0.65];
            plot(T(1:tm),bubublank2(1:tm), '-k', 'LineWidth',2, 'Color', grey2)
-           
+%            
     ww = cd;
     saveas(figure(nn),[ww,'/PSTHS_FASTMovies/PSTH_',num2str(nn),'.jpeg']) 
     saveas(figure(nn),[ww,'/PSTHS_FASTMovies/PSTH_',num2str(nn),'.fig'])  

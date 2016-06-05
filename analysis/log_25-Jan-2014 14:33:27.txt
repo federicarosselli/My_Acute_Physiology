@@ -1,0 +1,44 @@
+Day of Recording 10_12_2013, BlockS-1011
+Day of Recording 10_12_2013, BlockS-56
+Day of Recording 10_12_2013, BlockS-89
+Day of Recording 10_7_2013, BlockS-12
+Day of Recording 10_7_2013, BlockS-34
+Day of Recording 10_7_2013, BlockS-56
+Day of Recording 12_11_2013, BlockS-67
+Day of Recording 12_11_2013, BlockS-89
+Day of Recording 13_12_2013, BlockS-56
+Warning : Latencies does not exist. [Inspect].
+Warning ! Number of neurons and size of mat files is not consistent ! [Inspect.]Day of Recording 15_8_2013, BlockS-12
+Day of Recording 15_8_2013, BlockS-45
+Day of Recording 19_11_2013, BlockS-23
+Day of Recording 19_7_2013, BlockS-12
+Day of Recording 20_8_2013, BlockS-12
+Day of Recording 20_8_2013, BlockS-34
+Day of Recording 22_11_2013, BlockS-12
+Day of Recording 22_11_2013, BlockS-56
+Day of Recording 23_8_2013, BlockS-12
+Day of Recording 23_8_2013, BlockS-34
+Day of Recording 27_8_2013, BlockS-34
+Day of Recording 27_8_2013, BlockS-56
+Day of Recording 27_8_2013, BlockS-78
+Day of Recording 29_11_2013, BlockS-12
+Day of Recording 29_11_2013, BlockS-56
+Day of Recording 29_11_2013, BlockS-89
+Day of Recording 29_8_2013, BlockS-34
+Day of Recording 29_8_2013, BlockS-56
+Day of Recording 29_8_2013, BlockS-78
+Day of Recording 2_7_2013, BlockS-12
+Day of Recording 2_7_2013, BlockS-45
+Day of Recording 2_7_2013, BlockS-67
+Day of Recording 3_12_2013, BlockS-1011
+Day of Recording 3_12_2013, BlockS-1213
+Day of Recording 3_12_2013, BlockS-56
+Day of Recording 5_7_2013, BlockS-12
+Day of Recording 5_7_2013, BlockS-34
+Day of Recording 5_7_2013, BlockS-56
+Warning : SADFR does not exist. [Inspect].
+Warning : Latencies does not exist. [Inspect].
+Day of Recording 8_7_2013, BlockS-12
+Day of Recording 8_7_2013, BlockS-34
+Day of Recording 8_7_2013, BlockS-56
+You received 4 warnings. [Inspect].

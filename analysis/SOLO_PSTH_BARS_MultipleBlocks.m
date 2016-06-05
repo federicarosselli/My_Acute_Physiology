@@ -2,11 +2,12 @@ clear all
 close all
 clc
 w=cd;
-BLOCK_NUM1=45;
+BLOCK_NUM1=12;
 %bin=50/1000;
 
 %FOLDER_FROM=['/zocconasphys2/acute_objects/Sina_Acute_Rec_6_07_2012/ANALYSED'];
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_2_7_2013/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_22_11_2013/ANALYSED'];
+% FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Giulio_Acute_Recording_2015_05_18'];
 
 bin=25/1000;
 
@@ -56,6 +57,14 @@ ind_stop=find(diff(BITCODE)<=-1);
 STIM_STOP=TBC(ind_stop);
 BIT_STOP=BITCODE(ind_stop);
 
+% ind_start=find(diff(BITCODE)>=1);
+% STIM_START=TBC(ind_start);
+% BIT_START=BITCODE(ind_start+1);
+% 
+% ind_stop=find(diff(BITCODE)<=-1);
+% STIM_STOP=TBC(ind_stop);
+% BIT_STOP=BITCODE(ind_stop);
+
     case 2
         
 
@@ -98,6 +107,13 @@ clear BITCODE TBC BCODE TBCOD
 % end
 % end
     
+%% for BlockS-56 of session 5_7_2013
+% a = unique(BIT_START);
+% b = a(end);
+% c = BIT_START==b;
+% 
+% BIT_START(c)=[];
+% BIT_STOP(c)=[];
 
 
 for i=unique(sort(BIT_START)) 

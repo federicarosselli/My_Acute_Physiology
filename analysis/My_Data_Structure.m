@@ -9,7 +9,7 @@ POST_TIME=2200/1000;
 PRE_TIME=200/1000;
 
 % DayOfRecording = '18_3_2013';
-AreaOfRecording = 'V1b'; % AL %AM
+AreaOfRecording = 'LM'; % AL %AM
 
 shift_bin=10/1000;
 

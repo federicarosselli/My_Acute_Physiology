@@ -1,13 +1,15 @@
-cd '/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_10_7_2013/ANALYSED/BlockS-34/BL_2/My_Structure/25'
+cd '/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_15_08_2013/ANALYSED/BlockS-12/BL_2/My_Structure/25'
 
 files = dir(fullfile('*.mat'));
 neuronS = (numel(files))/2;
 
-for pappa = 1:23 %1:neuronS
+% neurones = [13, 4, 1, 14, 7, 19];
+
+for pappa = 1:neuronS
     
     load (['NEURON_', num2str(pappa), '.mat'])
     
-    My_Neurons.Area=char('AL');
+    My_Neurons.Area=char('V1b');
     
     save (['NEURON_', num2str(pappa), '.mat'], 'My_Neurons')
     

@@ -47,8 +47,8 @@ ky=(ori{or}(2)*k);
 Dphas=2*pi*0.25*spf; %Dphas=2*pi*0.25*spf;
 
 for orientation=1   %:4
-%     mkdir(['/Users/invernomuto/Desktop/REALLY_NO_SPH/']) %,'orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
-mkdir(['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
+mkdir(['/Users/labuser/Desktop/REALLY_NO_SPH/']) %,'orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
+% mkdir(['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 %mkdir(['/zocconasphys2/acute_rev_core/Test/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 %mkdir(['/u/shared/Gratings/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(spf)]) 
 
@@ -91,53 +91,54 @@ ky=ori{or}(2)*k;
 PHASE=ph;
 %H=Hartley(kx,ky,M,PHASE);
 H=Hartley_REALLY_FEDE(kx,ky,L,W,PHASE);
-%Inverse_Sphere_NEW
+% Inverse_Sphere_NEW
+Inverse_Sphere
 
 % H=1
 % H=IM;
-% IM=H;
-% [pl ul]=size(H);
-% 
-% nl=round(pl/k);
-% NL=ph*nl;
-% 
-% AAA=H(round(ul/2),:);
-% rrr=find(diff(AAA)~=0);
-% 
-% pl=rrr(end)-rrr(1)+1;
-% [inizio_rig,inizio_col]=find(IM,1,'first')
-% [fine_rig,fine_col]=find(IM,1,'last')
-% 
-% H_CUT=IM(1:600,1:600);
-% 
-% %H_TRUE=H_CUT(186:414,50:550);
+IM=H;
+[pl ul]=size(H);
+
+nl=round(pl/k);
+NL=ph*nl;
+
+AAA=H(round(ul/2),:);
+rrr=find(diff(AAA)~=0);
+
+pl=rrr(end)-rrr(1)+1;
+[inizio_rig,inizio_col]=find(IM,1,'first')
+[fine_rig,fine_col]=find(IM,1,'last')
+
+H_CUT=IM(1:600,1:600);
+
+%H_TRUE=H_CUT(186:414,50:550);
 % H_TRUE=H_CUT(300-round(90*265/120):300+round(90*265/120),35:565);
 
-%H_CUT=H(round(ul/2)-round(pl*57.8/103.8/2):round(ul/2)+round(pl*57.8/103.8/2)+1,1+rrr(1):pl+rrr(1));
+% H_CUT=H(round(ul/2)-round(pl*57.8/103.8/2):round(ul/2)+round(pl*57.8/103.8/2)+1,1+rrr(1):pl+rrr(1));
 % H_CUT=H(1:round(pl*57.8/103.8/2),1:pl);
 
-%set(0,'DefaultFigureMenu','none');
-%format compact;
-%figure('Position',[50,50,pl/4.5,round(pl*57.8/103.8)/4.5],'units','pixels')
+set(0,'DefaultFigureMenu','none');
+format compact;
+figure('Position',[50,50,pl/4.5,round(pl*57.8/103.8)/4.5],'units','pixels')
 
-%imshow(H_CUT)
-% % % % % % % %  h=pcolor(H_CUT);
-% % % % % % % % set(gca,'Position',[0,0,1,1],'units','normalized')
-% % % % % % % % axis off
-% % % % % % % % colormap(gray)
-% % % % % % % % set(h,'EdgeColor','none')
-% % % % % % % % set(gca,'xtick',[],'ytick',[])
-% % % % % % % % set(gca,'TickLength',[0 0])
-% % % % % % % % set(gcf, 'InvertHardCopy', 'off');
-% % % % % % % % count=count+1;
-% % % % % % % % set(gcf,'PaperPositionMode','auto');
-% % % % % % % % %saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\original\',num2str(find(spf==sp)),'_',num2str(or),'_',num2str(ph),'.jpg'])
-%saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\New_New_Original\',num2str(find(spf==sp)),'_',num2str(or),'_',num2str(find(TF==tf)),'\',num2str(phn),'.jpg'])
-% % % % % % % % saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\New_New_Original','\',num2str(phn),'.jpg'])
-%H_TRUE=IM;
-H_TRUE=H; %imresize(H,2);
-% imwrite(H_TRUE,['/Users/labuser/Desktop/REALLY_NO_SPH/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'.jpg'])%'_',num2str(coglio),'.jpg'])
-imwrite(H_TRUE,['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
+imshow(H_CUT)
+% % % % % % %  h=pcolor(H_CUT);
+% % % % % % % set(gca,'Position',[0,0,1,1],'units','normalized')
+% % % % % % % axis off
+% % % % % % % colormap(gray)
+% % % % % % % set(h,'EdgeColor','none')
+% % % % % % % set(gca,'xtick',[],'ytick',[])
+% % % % % % % set(gca,'TickLength',[0 0])
+% % % % % % % set(gcf, 'InvertHardCopy', 'off');
+% % % % % % % count=count+1;
+% % % % % % % set(gcf,'PaperPositionMode','auto');
+% % % % % % % %saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\original\',num2str(find(spf==sp)),'_',num2str(or),'_',num2str(ph),'.jpg'])
+% saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\New_New_Original\',num2str(find(spf==sp)),'_',num2str(or),'_',num2str(find(TF==tf)),'\',num2str(phn),'.jpg'])
+% % % % % % % saveas(h,['\\zocconasphys2.cns.sissa.it\acute_rev_core\gratings\New_New_Original','\',num2str(phn),'.jpg'])
+H_TRUE=IM;
+% H_TRUE=H; %imresize(H,2);
+imwrite(H_TRUE,['/Users/labuser/Desktop/REALLY_NO_SPH/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'.jpg'])%'_',num2str(coglio),'.jpg'])
+% imwrite(H_TRUE,['/zocconasphys2/acute_rev_core/gssdggds/SILVIA/smaller/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
 %imwrite(H_TRUE,['/u/shared/Gratings/','orientation',num2str(alberto(orientation)),'_spatial frequency_',num2str(fanculo),'/',num2str(coglio),'.jpg'])
 
 toc

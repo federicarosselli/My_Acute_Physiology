@@ -1,22 +1,28 @@
-function My_Data_Structure_MultipleBlocks (DayOfRecording, Block)
+function NEW_My_Data_Structure_MultipleBlocks (DayOfRecording, Block)
 
 w=cd;
 BLOCKS= Block; %67
+BLOCK_NUM1_TEMP=3;
 bin=25/1000;
 %bin=50/1000;
 
 
 
 % DayOfRecording = '18_3_2013';
-AreaOfRecording = 'LM' %'V1b'; %AL %AM
+AreaOfRecording = 'V1b'; %AL %AM
 
 shift_bin=10/1000;
 
-FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Fede_Acute_Recording_', char(DayOfRecording), '/ANALYSED'];
+FOLDER_FROM12=['/zocconasphys1/chronic_inv_rec/Tanks/Giulio_Acute_Recording_', char(DayOfRecording)];
 
-for BLOCK_PHASE=2 %1:2
+% sf_incorr = 24000;
+% sf_corr = 24414.0625;
+% fsRatio = sf_incorr/sf_corr;
+
+for BLOCK_PHASE=1 %1:2
     
 load([FOLDER_FROM12,'/BlockS-',num2str(BLOCKS),'/SPIKE.mat'])
+load([FOLDER_FROM12,'/Block-',num2str(BLOCK_NUM1_TEMP),'/STIM.mat'])
 
 
 FOLDER_FROM=FOLDER_FROM12;
@@ -34,47 +40,34 @@ TSTART=0; %sec
 
 switch BLOCK_PHASE
     case 1
-POST_TIME=500/1000; 
-PRE_TIME=250/1000;
-num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
+
 
 BCODE=BCODE(TBCOD<=TB_1_end);
 TBCOD=TBCOD(TBCOD<=TB_1_end);
 
-BITCODE=BCODE(TBCOD>TSTART);
-TBC=TBCOD(TBCOD>TSTART);
+STIM_START=TBCOD;
+BIT_START=BCODE;
 
-ind_start=find(diff(BITCODE)>=1);
-STIM_START=TBC(ind_start);
-BIT_START=BITCODE(ind_start+1);
+corrected_offset = offset-0.250;
 
-ind_stop=find(diff(BITCODE)<=-1);
-STIM_STOP=TBC(ind_stop);
-BIT_STOP=BITCODE(ind_stop);
+STIM_STOP=corrected_offset;
+BIT_STOP=BCODE;
 
     case 2
         
 
-% POST_TIME=2200/1000; 
-% PRE_TIME=200/1000;
-POST_TIME=2200/1000; 
-PRE_TIME=200/1000;
-num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
-
 BCODE=BCODE(TBCOD>T_END);
 TBCOD=TBCOD(TBCOD>T_END);
 
+STIM_START=TBCOD;
+BIT_START=BCODE;
 
-BITCODE=BCODE(TBCOD>TSTART);
-TBC=TBCOD(TBCOD>TSTART);
+offset=offset+T_END;
+corrected_offset = offset-0.500;
 
-ind_start=find(diff(BITCODE)>=1);
-STIM_START=TBC(ind_start);
-BIT_START=BITCODE(ind_start+1);
+STIM_STOP=corrected_offset;
+BIT_STOP=BCODE;
 
-ind_stop=find(diff(BITCODE)<=-1);
-STIM_STOP=TBC(ind_stop);
-BIT_STOP=BITCODE(ind_stop);
 
 end
 
@@ -111,6 +104,7 @@ for nn=NeuronS
     neurons = neurons+1;
     Shape = SPIKES.shape(nn);
     Channel=GetChannel(neurons,ChannelS);
+    SPIKES.spikes{nn} = SPIKES.spikes{nn}*fsRatio;
         
 %     First_Spike = min(SPIKES.spikes{nn});
 %     Last_Spike = max(SPIKES.spikes{nn});
@@ -132,7 +126,15 @@ for nn=NeuronS
 
     
     for i=BitCodeS
+    
+%         POST_TIME=2200/1000; 
+%         PRE_TIME=200/1000;
+%         num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
 
+        POST_TIME=500/1000; 
+        PRE_TIME=250/1000;
+        num_bin=floor((POST_TIME+PRE_TIME-bin)/shift_bin);
+        
         
         [TT First_Trial] = min(abs(First_Spike-STIM_START));
         [TT Last_Trial] = min(abs(Last_Spike-STIM_STOP));
@@ -145,14 +147,14 @@ for nn=NeuronS
         
         
         for tt=1:numel(All_Trial_TimeS)
-            T_num=0;
+%             T_num=0;
             
                 if (All_Trial_NumberS(tt)>=First_Trial & All_Trial_NumberS(tt)<=Last_Trial)
                 tt0=tt0+1;
                 Trial_num{i,neurons}(tt0)=All_Trial_NumberS(tt);   %%trials per bitcode          
                 end
             
-            T_num=All_Trial_NumberS(tt);
+%             T_num=All_Trial_NumberS(tt);
             
            
             TIME_START=All_Trial_TimeS(tt)-PRE_TIME;
@@ -165,7 +167,9 @@ for nn=NeuronS
 %             T_num=T_num+1;
 
                 for b=1:num_bin+1
-                    PSTH{i,neurons}(T_num,b)=sum(SPIKES_TAKEN>shift_bin*(b-1) & SPIKES_TAKEN<(shift_bin*(b-1)+bin));  
+                    PSTH{i,neurons}(tt0,b)=sum(SPIKES_TAKEN>shift_bin*(b-1) & SPIKES_TAKEN<(shift_bin*(b-1)+bin));  
+%                     PSTH{i,neurons}(T_num,b)=sum(SPIKES_TAKEN>shift_bin*(b-1) & SPIKES_TAKEN<(shift_bin*(b-1)+bin));  
+
                 end
             
             end
